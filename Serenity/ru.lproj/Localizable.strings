@@ -1,0 +1,476 @@
+/* Common */
+"common.next" = "Далее";
+"common.back" = "Назад";
+"common.done" = "Готово";
+"common.save" = "Сохранить";
+"common.skip" = "Пропустить";
+"common.cancel" = "Отмена";
+"common.close" = "Закрыть";
+"common.see_all" = "Все";
+"common.clear" = "Очистить";
+"common.loading" = "Загрузка...";
+
+/* Onboarding */
+"onboarding.goal.stress" = "Снизить стресс";
+"onboarding.goal.sleep" = "Лучше спать";
+"onboarding.goal.energy" = "Больше энергии";
+"onboarding.goal.balance" = "Эмоциональный баланс";
+"onboarding.goal.awareness" = "Самосознание";
+"onboarding.goal.mindfulness" = "Осознанность";
+"onboarding.goal.happiness" = "Счастье";
+"onboarding.welcome.title" = "Добро пожаловать в Serenity";
+"onboarding.welcome.subtitle" = "Твой личный помощник по психологическому благополучию";
+"onboarding.name.label" = "Как тебя зовут?";
+"onboarding.name.placeholder" = "Введи своё имя";
+"onboarding.next" = "Продолжить";
+"onboarding.skip" = "Пропустить";
+"onboarding.goals.title" = "Каковы твои цели?";
+"onboarding.goals.subtitle" = "Выбери области, на которых хочешь сосредоточиться";
+"onboarding.notifications.title" = "Не сбивайся с пути";
+"onboarding.notifications.subtitle" = "Мягкие напоминания, чтобы отмечаться и сохранять серию";
+"onboarding.allow_notifications" = "Разрешить уведомления";
+"onboarding.notif.streak" = "Защита серии дней";
+"onboarding.notif.insights" = "Персональные советы AI";
+"onboarding.notif.checkin" = "Ежедневные напоминания";
+
+/* Tabs */
+"tab.home" = "Главная";
+"tab.journal" = "Дневник";
+"tab.analytics" = "Аналитика";
+"tab.psychologist" = "Чат";
+"tab.profile" = "Профиль";
+
+/* Greetings */
+"greeting.morning" = "Доброе утро";
+"greeting.afternoon" = "Добрый день";
+"greeting.evening" = "Добрый вечер";
+
+/* Home */
+"home.checkin.prompt" = "Как ты себя чувствуешь?";
+"home.checkin.cta" = "Нажми, чтобы отметиться";
+"home.quick_actions" = "Быстрые действия";
+"home.breathe" = "Дыхание";
+"home.gratitude" = "Благодарность";
+"home.recent_mood" = "Последние настроения";
+"home.active_programs" = "Активные программы";
+"home.breathing.title" = "Дыхательные упражнения";
+"home.breathing.subtitle" = "Квадратное дыхание, 4-7-8 и другие";
+"home.weekly_report.title" = "Недельный отчёт";
+"home.weekly_report.subtitle" = "Персональная AI-сводка о твоём благополучии";
+
+/* Moods */
+"mood.veryBad" = "Тяжело";
+"mood.bad" = "Плохо";
+"mood.neutral" = "Нормально";
+"mood.good" = "Хорошо";
+"mood.great" = "Отлично";
+
+/* Check-in */
+"checkin.title" = "Отметка настроения";
+"checkin.mood.question" = "Как ты себя чувствуешь прямо сейчас?";
+"checkin.energy_stress.question" = "Оцени уровень энергии и стресса";
+"checkin.energy" = "Энергия";
+"checkin.stress" = "Стресс";
+"checkin.tags.question" = "Что занимает твои мысли сегодня?";
+"checkin.note.placeholder" = "Добавь заметку (по желанию)";
+"checkin.get_insight" = "Получить совет AI";
+"checkin.ai.loading" = "Генерирую совет...";
+
+/* Tags */
+"tag.work" = "Работа";
+"tag.family" = "Семья";
+"tag.health" = "Здоровье";
+"tag.sleep" = "Сон";
+"tag.exercise" = "Спорт";
+"tag.food" = "Еда";
+"tag.social" = "Общение";
+"tag.weather" = "Погода";
+"tag.creativity" = "Творчество";
+"tag.travel" = "Путешествия";
+"tag.money" = "Деньги";
+"tag.love" = "Любовь";
+"tag.stress" = "Стресс";
+"tag.joy" = "Радость";
+"tag.tired" = "Усталость";
+
+/* Journal */
+"journal.title" = "Дневник";
+"journal.search" = "Поиск записей...";
+"journal.new_entry" = "Новая запись";
+"journal.title_placeholder" = "Заголовок";
+"journal.content_placeholder" = "Запиши свои мысли...";
+"journal.mood_optional" = "Каким было настроение? (по желанию)";
+"journal.untitled" = "Без названия";
+"journal.voice_entry" = "Голосовая запись";
+"journal.empty.title" = "Твой дневник ждёт";
+"journal.empty.subtitle" = "Нажми + чтобы написать первую запись";
+"journal.delete.confirm.title" = "Удалить запись?";
+"journal.delete.confirm.body" = "Это действие нельзя отменить.";
+"journal.discard.title" = "Не сохранять изменения?";
+"journal.discard.confirm" = "Не сохранять";
+
+/* Programs */
+"programs.day_format" = "День %d/%d";
+"programs.title" = "Программы";
+"programs.subtitle" = "7-дневные программы благополучия";
+"programs.days" = "дней";
+"programs.active" = "Активные программы";
+"programs.available" = "Доступные программы";
+"programs.start" = "Начать программу";
+"programs.daily_tasks" = "Ежедневные задания";
+"programs.progress_format" = "Выполнено %d%%";
+"program.category.calm" = "Спокойствие";
+"program.category.energy" = "Энергия";
+"program.category.stress" = "Снятие стресса";
+
+/* Analytics */
+"analytics.title" = "Аналитика";
+"analytics.subtitle" = "Твой путь к благополучию";
+"analytics.avg_mood" = "Ср. настроение";
+"analytics.entries" = "Записей";
+"analytics.streak" = "Серия";
+"analytics.journal" = "Дневников";
+"analytics.mood_trend" = "Динамика настроения";
+"analytics.no_data.title" = "Данных пока нет";
+"analytics.no_data.subtitle" = "Сделай несколько отметок, чтобы увидеть динамику";
+"analytics.mood_dna.title" = "ДНК Настроения";
+"analytics.mood_dna.subtitle" = "Открой свои эмоциональные паттерны";
+"analytics.top_tags" = "Главные темы";
+"analytics.chart.14days" = "Последние 14 дней";
+"analytics.dna.weekday" = "Настроение по дням недели";
+"analytics.dna.time_of_day" = "Настроение по времени суток";
+"analytics.dna.insights" = "Наблюдения AI";
+"analytics.dna.not_enough.title" = "Продолжай!";
+"analytics.dna.not_enough.subtitle" = "Нужно минимум 7 отметок для ДНК настроения";
+"analytics.dna.morning" = "Утро";
+"analytics.dna.afternoon" = "День";
+"analytics.dna.evening" = "Вечер";
+"analytics.dna.night" = "Ночь";
+"analytics.dna.insight.positive" = "На этой неделе твоё настроение было позитивным — так держать!";
+"analytics.dna.insight.challenging" = "Эта неделя была непростой. Попробуй дыхательные упражнения и режим SOS.";
+"analytics.dna.insight.morning_better" = "Утром ты чувствуешь себя лучше. Планируй важные дела на первую половину дня.";
+"analytics.dna.insight.high_stress" = "Замечен высокий уровень стресса. Программа снятия стресса может помочь.";
+"analytics.dna.insight.default" = "Продолжай отмечаться каждый день, чтобы открыть глубокие наблюдения о своих паттернах.";
+
+/* Gratitude */
+"gratitude.title" = "Благодарность";
+"gratitude.streak_title" = "Серия благодарности";
+"gratitude.days" = "дней";
+"gratitude.today_prompt" = "За что ты благодарен сегодня?";
+"gratitude.today_done" = "Благодарность сегодня";
+"gratitude.placeholder" = "Напиши то, за что ты благодарен...";
+"gratitude.save" = "Сохранить";
+"gratitude.saved" = "Сохранено с любовью";
+"gratitude.recent" = "Последние записи";
+
+/* Weekly Report */
+"report.title" = "Недельный отчёт";
+"report.week_of" = "Неделя";
+"report.avg_mood" = "Ср. настроение";
+"report.check_ins" = "Отметок";
+"report.streak" = "Серия";
+"report.ai_summary" = "Сводка AI";
+"report.generating" = "Генерирую отчёт...";
+"report.unavailable" = "Отчёт недоступен";
+"report.sunday_only" = "Недельные отчёты доступны каждое воскресенье";
+"report.ai_unavailable" = "Сводка AI недоступна. Проверь API-ключ в Профиле.";
+
+/* Voice Journal */
+"voice.title" = "Голосовой дневник";
+"voice.listening" = "Слушаю...";
+"voice.transcript" = "Текст";
+"voice.placeholder" = "Нажми на микрофон, чтобы начать запись";
+"voice.save" = "Сохранить";
+"voice.discard" = "Удалить";
+"voice.stop" = "Остановить запись";
+"voice.journal_entry_title" = "Голосовая запись";
+"voice.error.permission" = "Доступ к распознаванию речи запрещён. Включи его в Настройках.";
+"voice.error.mic" = "Не удалось запустить микрофон. Попробуй снова.";
+
+/* Breathing */
+"breathing.box" = "Квадратное дыхание";
+"breathing.box.desc" = "Равномерное дыхание для спокойной концентрации";
+"breathing.478.desc" = "Для расслабления и подготовки ко сну";
+"breathing.calm" = "Спокойное дыхание";
+"breathing.calm.desc" = "Простое расслабляющее дыхание";
+"breathing.inhale" = "Вдох";
+"breathing.hold" = "Задержка";
+"breathing.exhale" = "Выдох";
+"breathing.holdOut" = "Пауза";
+"breathing.start" = "Начать";
+"breathing.stop" = "Стоп";
+"breathing.cycles" = "Циклов";
+"breathing.choose_exercise" = "Выбрать упражнение";
+
+/* SOS */
+"sos.title" = "SOS — Упражнение заземления";
+"sos.step_label" = "Шаг %d из %d";
+"sos.step.1.title" = "5 вещей, которые ты видишь";
+"sos.step.1.instruction" = "Осмотрись и назови 5 вещей, которые видишь прямо сейчас.";
+"sos.step.2.title" = "4 вещи, которых ты касаешься";
+"sos.step.2.instruction" = "Прикоснись к 4 поверхностям — почувствуй текстуру, температуру, давление.";
+"sos.step.3.title" = "3 звука, которые ты слышишь";
+"sos.step.3.instruction" = "Закрой глаза и прислушайся к 3 отдельным звукам.";
+"sos.step.4.title" = "2 запаха, которые ты чувствуешь";
+"sos.step.4.instruction" = "Замети 2 аромата или просто сделай медленный глубокий вдох.";
+"sos.step.5.title" = "1 вкус, который ты ощущаешь";
+"sos.step.5.instruction" = "Замети один вкус или сделай осознанный глоток воды.";
+"sos.complete" = "Мне стало лучше";
+"sos.completed.title" = "Ты справился";
+"sos.completed.subtitle" = "Отлично, что ты использовал технику заземления. Мы проверим тебя через час.";
+
+/* AI Companion */
+"psychologist.name" = "Serenity AI";
+"psychologist.specialty" = "Поддерживающий компаньон · не медицинская консультация";
+"psychologist.input_placeholder" = "Поделись, что у тебя на душе...";
+"psychologist.chip.anxiety" = "Мне тревожно";
+"psychologist.chip.stress" = "Хочу поговорить";
+"psychologist.chip.sleep" = "Не могу уснуть";
+"psychologist.chip.motivation" = "Помоги успокоиться";
+"psychologist.chip.unpack" = "Разобрать мысль";
+"psychologist.no_api_key" = "AI не настроен";
+"psychologist.error" = "Сейчас нет связи с AI. Попробуй позже или открой упражнение заземления.";
+"chat.disclaimer.accept" = "Понимаю";
+"chat.empty.title" = "Здесь можно говорить";
+"chat.empty.subtitle" = "Поделись, что у тебя на душе.\nЯ здесь.";
+"chat.welcome" = "Привет! Я здесь, чтобы поддержать тебя. Расскажи, что тебя беспокоит?";
+
+/* Profile */
+"profile.title" = "Профиль";
+"profile.streak_label" = "Серия:";
+"profile.days" = "дней";
+"profile.stat.checkins" = "Отметок";
+"profile.stat.entries" = "Записей";
+"profile.stat.badges" = "Достижений";
+"profile.theme" = "Внешний вид";
+"profile.api_key" = "Ключ Claude API";
+"profile.api_key_hint" = "Получи ключ на console.anthropic.com";
+"profile.notifications" = "Напоминания";
+"profile.badges" = "Достижения";
+"profile.disclaimer_title" = "О Serenity AI";
+"profile.disclaimer_body" = "Serenity AI — поддерживающий компаньон, а не замена профессиональной помощи. Если тебе плохо — обратись к специалисту.";
+"profile.data_privacy" = "Данные и приватность";
+"profile.back" = "Назад";
+
+/* Theme */
+"theme.title" = "Выбрать тему";
+
+/* Badges */
+"badge.unlocked" = "Достижение разблокировано!";
+"badge.first_checkin.title" = "Первый шаг";
+"badge.week_streak.title" = "Неделя заботы";
+"badge.month_streak.title" = "Мягкая привычка";
+"badge.journal_5.title" = "Голос найден";
+"badge.journal_20.title" = "Мой голос";
+"badge.gratitude_7.title" = "Благодарное сердце";
+"badge.programs_complete.title" = "Путь пройден";
+"badge.sos_used.title" = "Смелый шаг";
+"badge.mood_dna.title" = "Самопознание";
+"badge.all_moods.title" = "Полная гамма";
+
+/* Programs */
+"program.calm7.name" = "7 дней спокойствия";
+"program.calm7.desc" = "Ежедневные практики для снижения тревоги и обретения покоя.";
+"program.energy7.name" = "Энергия без давления";
+"program.energy7.desc" = "Восстанови жизненную силу мягкими ежедневными практиками.";
+"program.stress7.name" = "Снятие стресса";
+"program.stress7.desc" = "Практические инструменты для управления и снятия стресса.";
+
+/* Home extra */
+"home.ai_companion.title" = "Serenity AI";
+"home.ai_companion.subtitle" = "Поговори о том, что на душе";
+
+/* Weekdays */
+"weekday.1" = "Вс";
+"weekday.2" = "Пн";
+"weekday.3" = "Вт";
+"weekday.4" = "Ср";
+"weekday.5" = "Чт";
+"weekday.6" = "Пт";
+"weekday.7" = "Сб";
+
+/* Notifications */
+"notification.sos.title" = "Как ты сейчас?";
+"notification.sos.body" = "Прошёл час. Сделай быструю отметку настроения.";
+"notification.streak.title" = "Сохрани серию!";
+"notification.streak.body" = "Не забудь отметиться сегодня. Твоё благополучие важно.";
+"notification.lunch.title" = "Дневная отметка";
+"notification.lunch.body" = "Как ты себя чувствуешь? Отметь настроение — это займёт секунду.";
+"notification.evening.title" = "Вечерняя рефлексия";
+"notification.evening.body" = "Как прошёл день? Отметь своё настроение перед сном.";
+"notification.affirmation.title" = "Твоя аффирмация на сегодня";
+
+/* Themes */
+"theme.cosmic" = "Космос";
+"theme.aurora" = "Аврора";
+"theme.midnight" = "Полночь";
+"theme.forest" = "Лес";
+"theme.rose" = "Роза";
+"profile.presets" = "Быстрые пресеты";
+
+/* Program tasks — Calm */
+"program.task.c1.title" = "Утреннее дыхание";
+"program.task.c1.desc" = "Практикуй квадратное дыхание 5 минут после пробуждения.";
+"program.task.c2.title" = "Сканирование тела";
+"program.task.c2.desc" = "Сделай 10-минутную медитацию сканирования тела перед сном.";
+"program.task.c3.title" = "Осознанная прогулка";
+"program.task.c3.desc" = "Прогуляйся 15 минут без телефона, наблюдая за природой.";
+"program.task.c4.title" = "Список благодарностей";
+"program.task.c4.desc" = "Запиши 3 вещи, за которые ты благодарен сегодня.";
+"program.task.c5.title" = "Цифровой детокс";
+"program.task.c5.desc" = "Проведи 1 час полностью офлайн. Почитай или попиши в дневник.";
+"program.task.c6.title" = "Дыхание 4-7-8";
+"program.task.c6.desc" = "Практикуй дыхание 4-7-8 перед любым стрессовым событием.";
+"program.task.c7.title" = "Рефлексия и планы";
+"program.task.c7.desc" = "Запиши, как ты чувствовал себя на этой неделе и что помогло больше всего.";
+
+/* Program tasks — Energy */
+"program.task.e1.title" = "Утренняя разминка";
+"program.task.e1.desc" = "Сделай 5 минут бодрящей растяжки после пробуждения.";
+"program.task.e2.title" = "Энергичное дыхание";
+"program.task.e2.desc" = "Попробуй бодрящее «огненное дыхание» в течение 2 минут.";
+"program.task.e3.title" = "Холодная вода";
+"program.task.e3.desc" = "Закончи душ 30 секундами холодной воды.";
+"program.task.e4.title" = "Движение";
+"program.task.e4.desc" = "Удели 20 минут любой физической активности, которая тебе нравится.";
+"program.task.e5.title" = "Поза силы";
+"program.task.e5.desc" = "Постой в уверенной позе силы 2 минуты перед сложным делом.";
+"program.task.e6.title" = "Водный баланс";
+"program.task.e6.desc" = "Выпей сегодня 8 стаканов воды и обрати внимание на самочувствие.";
+"program.task.e7.title" = "Радость дня";
+"program.task.e7.desc" = "Сделай сегодня что-то, что приносит тебе настоящую радость.";
+
+/* Program tasks — Stress */
+"program.task.s1.title" = "Аудит стресса";
+"program.task.s1.desc" = "Запиши 3 главных источника стресса и по одному маленькому действию для каждого.";
+"program.task.s2.title" = "Прогрессивная релаксация";
+"program.task.s2.desc" = "Практикуй прогрессивную мышечную релаксацию 10 минут.";
+"program.task.s3.title" = "Практика «нет»";
+"program.task.s3.desc" = "Вежливо откажись сегодня от одной необязательной просьбы.";
+"program.task.s4.title" = "Время на природе";
+"program.task.s4.desc" = "Проведи 20 минут в парке или на природе.";
+"program.task.s5.title" = "Коробка тревог";
+"program.task.s5.desc" = "Запиши тревоги на бумаге, сложи листок и отложи его до вечера.";
+"program.task.s6.title" = "Дыхательная перезагрузка";
+"program.task.s6.desc" = "Используй дыхание 4-7-8 всякий раз, когда сегодня возникает стресс.";
+"program.task.s7.title" = "Письмо в будущее";
+"program.task.s7.desc" = "Напиши письмо себе через год о том, как ты справлялся со стрессом.";
+
+/* Daily affirmations */
+"affirmation.1" = "Тебя достаточно — такого, какой ты есть.";
+"affirmation.2" = "Каждый день — новое начало.";
+"affirmation.3" = "Твои чувства имеют значение.";
+"affirmation.4" = "Маленькие шаги ведут к большим переменам.";
+"affirmation.5" = "Ты заслуживаешь доброты — особенно от самого себя.";
+"affirmation.6" = "Прогресс, а не совершенство.";
+"affirmation.7" = "Ты пережил все трудные дни до этого.";
+"affirmation.8" = "Твоё присутствие важно.";
+"affirmation.9" = "Будь сегодня мягче к себе.";
+"affirmation.10" = "Ты сильнее, чем думаешь.";
+"affirmation.11" = "Спокойствие начинается с одного вдоха.";
+"affirmation.12" = "Сегодня ты выбираешь рост.";
+"affirmation.13" = "Ты достоин любви и поддержки.";
+"affirmation.14" = "Трудные моменты проходят — ты остаёшься.";
+"affirmation.15" = "Каждая отметка — акт заботы о себе.";
+
+/* Fallback insights */
+"fallback.1.title" = "Каждый день важен";
+"fallback.1.body" = "Каждая отметка — шаг к лучшему пониманию себя.";
+"fallback.1.tip" = "Попробуй записать в дневник, что повлияло на твоё настроение сегодня.";
+"fallback.2.title" = "Будь добр к себе";
+"fallback.2.body" = "Твои чувства важны, какими бы они ни были сегодня.";
+"fallback.2.tip" = "Сделай 3 глубоких вдоха и признай свои чувства.";
+"fallback.3.title" = "Маленькие шаги важны";
+"fallback.3.body" = "Прогресс в душевном благополучии складывается из регулярных маленьких действий.";
+"fallback.3.tip" = "Выбери одно крошечное полезное действие, которое можешь сделать прямо сейчас.";
+"fallback.4.title" = "Замечай хорошее";
+"fallback.4.body" = "Даже в трудных днях есть маленькие моменты, достойные благодарности.";
+"fallback.4.tip" = "Найди одну вещь, пусть маленькую, которая сегодня удалась.";
+"fallback.5.title" = "Оседлай волну";
+"fallback.5.body" = "Эмоции как волны — поднимаются, достигают пика и естественно отступают.";
+"fallback.5.tip" = "Попробуй дыхание 4-7-8, чтобы помочь трудным эмоциям пройти.";
+"fallback.6.title" = "Самопознание";
+"fallback.6.body" = "Замечать свои паттерны — первый шаг к их изменению.";
+"fallback.6.tip" = "Какую закономерность в своём настроении ты заметил в последнее время?";
+"fallback.7.title" = "Мышление роста";
+"fallback.7.body" = "Трудности — возможность расти, даже когда так не кажется.";
+"fallback.7.tip" = "Спроси себя: чему меня может научить то, что я чувствую сегодня?";
+
+/* LLM errors */
+"llm.error.no_key" = "API-ключ не настроен. Добавь его в Профиле.";
+"llm.error.bad_url" = "Неверный адрес эндпоинта. Проверь его в Профиле.";
+"llm.error.unauthorized" = "Неверный API-ключ. Проверь его в Профиле.";
+"llm.error.rate_limited" = "Достигнут лимит запросов. Попробуй через минуту.";
+"llm.error.server" = "Сервис AI временно недоступен. Попробуй позже.";
+"llm.error.empty" = "AI вернул пустой ответ. Попробуй ещё раз.";
+"llm.error.network" = "Нет соединения. Проверь интернет.";
+
+/* Common (extended) */
+"common.edit" = "Изменить";
+"common.delete" = "Удалить";
+
+/* Check-in (extended) */
+"checkin.limit.title" = "Лимит на сегодня";
+"checkin.limit.body" = "Ты уже сделал 2 отметки сегодня. Возвращайся завтра!";
+"checkin.limit.done" = "Ок";
+"checkin.second_available" = "Вторая отметка доступна";
+"checkin.limit.reached" = "Лимит достигнут";
+
+/* Journal (extended) */
+"journal.words" = "слов";
+"journal.chars" = "символов";
+"journal.edit_entry" = "Редактировать";
+
+/* Programs (extended) */
+"programs.reset" = "Сбросить программу";
+"programs.reset.confirm.title" = "Сбросить прогресс?";
+"programs.reset.confirm.body" = "Весь прогресс будет удалён, и ты начнёшь с первого дня.";
+
+/* Weekly Report (extended) */
+"report.generate" = "Сгенерировать отчёт";
+
+/* Chat (extended) */
+"chat.clear.title" = "Очистить историю чата";
+"chat.clear.confirm" = "Очистить";
+"chat.clear.body" = "Все сообщения будут удалены без возможности восстановления.";
+
+/* Profile (extended) */
+"profile.reminders" = "Напоминания";
+"profile.lunch_reminder" = "Напоминание в обед";
+"profile.evening_reminder" = "Вечернее напоминание";
+"profile.reminder_time" = "Время напоминания";
+"profile.affirmations" = "Ежедневные аффирмации";
+"profile.face_id" = "Защита Face ID";
+"profile.face_id.unavailable.title" = "Нужен код-пароль";
+"profile.face_id.unavailable.body" = "Чтобы заблокировать Serenity, сначала установи код-пароль на устройстве: Настройки → Face ID и код-пароль.";
+"profile.custom_tags" = "Мои теги";
+"profile.api_key_empty" = "Не настроен";
+"profile.api_key_set" = "Настроен";
+"profile.api_key_add" = "Добавить ключ";
+"profile.api_key_edit" = "Изменить ключ";
+"profile.milestones" = "Достижения";
+
+/* Custom Tags */
+"tags.custom.title" = "Мои теги";
+"tags.custom.placeholder" = "Добавить тег...";
+
+/* Analytics (extended) */
+"analytics.calendar.title" = "Календарь настроений";
+"analytics.calendar.subtitle" = "Отслеживай настроение по месяцам";
+"analytics.calendar.legend" = "Обозначения";
+
+/* Face Lock */
+"facelock.reason" = "Разблокировать Serenity";
+"facelock.subtitle" = "Твои данные под защитой";
+"facelock.unlock" = "Разблокировать через Face ID";
+
+/* Home (extended) */
+"home.sos" = "SOS";
+
+/* Onboarding API Key step */
+"onboarding.api.title" = "Включи функции AI";
+"onboarding.api.subtitle" = "Добавь ключ Claude API, чтобы получать персональные советы, AI-отчёты и поддержку в чате.";
+"onboarding.api.hint" = "Получи бесплатный ключ на console.anthropic.com";
+"onboarding.api.placeholder" = "sk-ant-...";
+"onboarding.api.continue" = "Сохранить и продолжить";
+"onboarding.api.skip" = "Пропустить";

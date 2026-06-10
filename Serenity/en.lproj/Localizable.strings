@@ -1,0 +1,476 @@
+/* Common */
+"common.next" = "Next";
+"common.back" = "Back";
+"common.done" = "Done";
+"common.save" = "Save";
+"common.skip" = "Skip";
+"common.cancel" = "Cancel";
+"common.close" = "Close";
+"common.see_all" = "All";
+"common.clear" = "Clear";
+"common.loading" = "Loading...";
+
+/* Onboarding */
+"onboarding.goal.stress" = "Reduce stress";
+"onboarding.goal.sleep" = "Better sleep";
+"onboarding.goal.energy" = "More energy";
+"onboarding.goal.balance" = "Emotional balance";
+"onboarding.goal.awareness" = "Self-awareness";
+"onboarding.goal.mindfulness" = "Mindfulness";
+"onboarding.goal.happiness" = "Happiness";
+"onboarding.welcome.title" = "Welcome to Serenity";
+"onboarding.welcome.subtitle" = "Your personal mental wellness companion";
+"onboarding.name.label" = "What's your name?";
+"onboarding.name.placeholder" = "Enter your name";
+"onboarding.next" = "Continue";
+"onboarding.skip" = "Skip";
+"onboarding.goals.title" = "What are your goals?";
+"onboarding.goals.subtitle" = "Choose the areas you'd like to focus on";
+"onboarding.notifications.title" = "Stay on track";
+"onboarding.notifications.subtitle" = "Get gentle reminders to check in and protect your streak";
+"onboarding.allow_notifications" = "Allow Notifications";
+"onboarding.notif.streak" = "Streak protection reminders";
+"onboarding.notif.insights" = "Personalized AI insights";
+"onboarding.notif.checkin" = "Daily check-in prompts";
+
+/* Tabs */
+"tab.home" = "Home";
+"tab.journal" = "Journal";
+"tab.analytics" = "Analytics";
+"tab.psychologist" = "Chat";
+"tab.profile" = "Profile";
+
+/* Greetings */
+"greeting.morning" = "Good morning";
+"greeting.afternoon" = "Good afternoon";
+"greeting.evening" = "Good evening";
+
+/* Home */
+"home.checkin.prompt" = "How are you feeling?";
+"home.checkin.cta" = "Tap to check in";
+"home.quick_actions" = "Quick Actions";
+"home.breathe" = "Breathe";
+"home.gratitude" = "Gratitude";
+"home.recent_mood" = "Recent Mood";
+"home.active_programs" = "Active Programs";
+"home.breathing.title" = "Breathing Exercise";
+"home.breathing.subtitle" = "Box breathing, 4-7-8, and more";
+"home.weekly_report.title" = "Weekly Report";
+"home.weekly_report.subtitle" = "Your personalized AI wellness summary";
+
+/* Moods */
+"mood.veryBad" = "Rough";
+"mood.bad" = "Low";
+"mood.neutral" = "Okay";
+"mood.good" = "Good";
+"mood.great" = "Great";
+
+/* Check-in */
+"checkin.title" = "Mood Check-in";
+"checkin.mood.question" = "How are you feeling right now?";
+"checkin.energy_stress.question" = "Describe your energy & stress levels";
+"checkin.energy" = "Energy";
+"checkin.stress" = "Stress";
+"checkin.tags.question" = "What's on your mind today?";
+"checkin.note.placeholder" = "Add a note (optional)";
+"checkin.get_insight" = "Get AI Insight";
+"checkin.ai.loading" = "Generating your insight...";
+
+/* Tags */
+"tag.work" = "Work";
+"tag.family" = "Family";
+"tag.health" = "Health";
+"tag.sleep" = "Sleep";
+"tag.exercise" = "Exercise";
+"tag.food" = "Food";
+"tag.social" = "Social";
+"tag.weather" = "Weather";
+"tag.creativity" = "Creativity";
+"tag.travel" = "Travel";
+"tag.money" = "Money";
+"tag.love" = "Love";
+"tag.stress" = "Stress";
+"tag.joy" = "Joy";
+"tag.tired" = "Tired";
+
+/* Journal */
+"journal.title" = "Journal";
+"journal.search" = "Search entries...";
+"journal.new_entry" = "New Entry";
+"journal.title_placeholder" = "Title";
+"journal.content_placeholder" = "Write your thoughts...";
+"journal.mood_optional" = "How was your mood? (optional)";
+"journal.untitled" = "Untitled";
+"journal.voice_entry" = "Voice entry";
+"journal.empty.title" = "Your journal awaits";
+"journal.empty.subtitle" = "Tap the + button to write your first entry";
+"journal.delete.confirm.title" = "Delete this entry?";
+"journal.delete.confirm.body" = "This action cannot be undone.";
+"journal.discard.title" = "Discard changes?";
+"journal.discard.confirm" = "Discard";
+
+/* Programs */
+"programs.day_format" = "Day %d/%d";
+"programs.title" = "Programs";
+"programs.subtitle" = "7-day structured wellness programs";
+"programs.days" = "days";
+"programs.active" = "Active Programs";
+"programs.available" = "Available Programs";
+"programs.start" = "Start Program";
+"programs.daily_tasks" = "Daily Tasks";
+"programs.progress_format" = "%d%% complete";
+"program.category.calm" = "Calm";
+"program.category.energy" = "Energy";
+"program.category.stress" = "Stress Relief";
+
+/* Analytics */
+"analytics.title" = "Analytics";
+"analytics.subtitle" = "Your wellness journey at a glance";
+"analytics.avg_mood" = "Avg Mood";
+"analytics.entries" = "Entries";
+"analytics.streak" = "Streak";
+"analytics.journal" = "Journals";
+"analytics.mood_trend" = "Mood Trend";
+"analytics.no_data.title" = "No data yet";
+"analytics.no_data.subtitle" = "Complete a few check-ins to see your trend";
+"analytics.mood_dna.title" = "Mood DNA";
+"analytics.mood_dna.subtitle" = "Discover your emotional patterns";
+"analytics.top_tags" = "Top Themes";
+"analytics.chart.14days" = "Last 14 days";
+"analytics.dna.weekday" = "Mood by Weekday";
+"analytics.dna.time_of_day" = "Mood by Time of Day";
+"analytics.dna.insights" = "AI Insights";
+"analytics.dna.not_enough.title" = "Keep going!";
+"analytics.dna.not_enough.subtitle" = "You need at least 7 check-ins to unlock Mood DNA insights";
+"analytics.dna.morning" = "Morning";
+"analytics.dna.afternoon" = "Afternoon";
+"analytics.dna.evening" = "Evening";
+"analytics.dna.night" = "Night";
+"analytics.dna.insight.positive" = "Your overall mood this week has been positive — keep up the great work!";
+"analytics.dna.insight.challenging" = "This week has been challenging. Consider using the breathing exercises and SOS mode.";
+"analytics.dna.insight.morning_better" = "You tend to feel better in the mornings. Try scheduling important tasks earlier in the day.";
+"analytics.dna.insight.high_stress" = "High stress levels detected frequently. The stress relief program might help.";
+"analytics.dna.insight.default" = "Keep checking in daily to unlock deeper insights about your emotional patterns.";
+
+/* Gratitude */
+"gratitude.title" = "Gratitude";
+"gratitude.streak_title" = "Gratitude Streak";
+"gratitude.days" = "days";
+"gratitude.today_prompt" = "What are you grateful for today?";
+"gratitude.today_done" = "Today's gratitude";
+"gratitude.placeholder" = "Write something you're grateful for...";
+"gratitude.save" = "Save";
+"gratitude.saved" = "Saved with love";
+"gratitude.recent" = "Recent Entries";
+
+/* Weekly Report */
+"report.title" = "Weekly Report";
+"report.week_of" = "Week of";
+"report.avg_mood" = "Avg Mood";
+"report.check_ins" = "Check-ins";
+"report.streak" = "Streak";
+"report.ai_summary" = "AI Summary";
+"report.generating" = "Generating your report...";
+"report.unavailable" = "Report not available";
+"report.sunday_only" = "Weekly reports are available every Sunday";
+"report.ai_unavailable" = "AI summary unavailable. Please check your API key in Profile.";
+
+/* Voice Journal */
+"voice.title" = "Voice Journal";
+"voice.listening" = "Listening...";
+"voice.transcript" = "Transcript";
+"voice.placeholder" = "Tap the microphone to start recording";
+"voice.save" = "Save Entry";
+"voice.discard" = "Discard";
+"voice.stop" = "Stop Recording";
+"voice.journal_entry_title" = "Voice Entry";
+"voice.error.permission" = "Speech recognition access denied. Enable it in Settings.";
+"voice.error.mic" = "Failed to start microphone. Please try again.";
+
+/* Breathing */
+"breathing.box" = "Box Breathing";
+"breathing.box.desc" = "Equal breathing pattern for calm focus";
+"breathing.478.desc" = "Relaxation and sleep preparation";
+"breathing.calm" = "Calm Breath";
+"breathing.calm.desc" = "Simple relaxation breathing";
+"breathing.inhale" = "Inhale";
+"breathing.hold" = "Hold";
+"breathing.exhale" = "Exhale";
+"breathing.holdOut" = "Hold Out";
+"breathing.start" = "Start";
+"breathing.stop" = "Stop";
+"breathing.cycles" = "Cycles";
+"breathing.choose_exercise" = "Choose exercise";
+
+/* SOS */
+"sos.title" = "SOS — Grounding Exercise";
+"sos.step_label" = "Step %d of %d";
+"sos.step.1.title" = "5 things you see";
+"sos.step.1.instruction" = "Look around and name 5 things you can see right now.";
+"sos.step.2.title" = "4 things you touch";
+"sos.step.2.instruction" = "Touch 4 surfaces near you — notice texture, temperature, pressure.";
+"sos.step.3.title" = "3 things you hear";
+"sos.step.3.instruction" = "Close your eyes and listen for 3 distinct sounds.";
+"sos.step.4.title" = "2 things you smell";
+"sos.step.4.instruction" = "Notice 2 scents, or simply take a slow, deep breath.";
+"sos.step.5.title" = "1 thing you taste";
+"sos.step.5.instruction" = "Notice one taste, or take a mindful sip of water.";
+"sos.complete" = "I'm Feeling Better";
+"sos.completed.title" = "You got through it";
+"sos.completed.subtitle" = "Great work using grounding techniques. We'll check in with you in an hour.";
+
+/* AI Companion */
+"psychologist.name" = "Serenity AI";
+"psychologist.specialty" = "Supportive companion · not medical advice";
+"psychologist.input_placeholder" = "Share what's on your mind...";
+"psychologist.chip.anxiety" = "I feel anxious";
+"psychologist.chip.stress" = "I need to talk";
+"psychologist.chip.sleep" = "Can't sleep";
+"psychologist.chip.motivation" = "Help me calm down";
+"psychologist.chip.unpack" = "Unpack a thought";
+"psychologist.no_api_key" = "AI is not configured";
+"psychologist.error" = "AI is unavailable right now. You can try again later or open a grounding exercise.";
+"chat.disclaimer.accept" = "I understand";
+"chat.empty.title" = "Your space to talk";
+"chat.empty.subtitle" = "Share what's on your mind.\nI'm here to listen.";
+"chat.welcome" = "Hi! I'm here to support you. What's on your mind today?";
+
+/* Profile */
+"profile.title" = "Profile";
+"profile.streak_label" = "Streak:";
+"profile.days" = "days";
+"profile.stat.checkins" = "Check-ins";
+"profile.stat.entries" = "Journals";
+"profile.stat.badges" = "Milestones";
+"profile.theme" = "Appearance";
+"profile.api_key" = "Claude API Key";
+"profile.api_key_hint" = "Get your API key at console.anthropic.com";
+"profile.notifications" = "Reminders";
+"profile.badges" = "Milestones";
+"profile.disclaimer_title" = "About Serenity AI";
+"profile.disclaimer_body" = "Serenity AI is a supportive companion, not a substitute for professional mental health care. If you are in crisis, please seek help from a qualified professional.";
+"profile.data_privacy" = "Data & Privacy";
+"profile.back" = "Back";
+
+/* Theme */
+"theme.title" = "Choose Theme";
+
+/* Badges */
+"badge.unlocked" = "Milestone Unlocked!";
+"badge.first_checkin.title" = "First Step";
+"badge.week_streak.title" = "Week of Care";
+"badge.month_streak.title" = "Gentle Habit";
+"badge.journal_5.title" = "Voice Found";
+"badge.journal_20.title" = "My Story";
+"badge.gratitude_7.title" = "Grateful Heart";
+"badge.programs_complete.title" = "Journey Complete";
+"badge.sos_used.title" = "Courageous Step";
+"badge.mood_dna.title" = "Self-Aware";
+"badge.all_moods.title" = "Full Palette";
+
+/* Programs */
+"program.calm7.name" = "7 Days of Calm";
+"program.calm7.desc" = "Daily practices to reduce anxiety and find inner peace.";
+"program.energy7.name" = "Energy Without Pressure";
+"program.energy7.desc" = "Recharge your vitality with gentle daily practices.";
+"program.stress7.name" = "Stress Relief";
+"program.stress7.desc" = "Practical tools to manage and release daily stress.";
+
+/* Home extra */
+"home.ai_companion.title" = "Serenity AI";
+"home.ai_companion.subtitle" = "Talk through what's on your mind";
+
+/* Weekdays */
+"weekday.1" = "Sun";
+"weekday.2" = "Mon";
+"weekday.3" = "Tue";
+"weekday.4" = "Wed";
+"weekday.5" = "Thu";
+"weekday.6" = "Fri";
+"weekday.7" = "Sat";
+
+/* Notifications */
+"notification.sos.title" = "Checking in on you";
+"notification.sos.body" = "How are you feeling now? Take a moment to do a quick mood check-in.";
+"notification.streak.title" = "Keep your streak going!";
+"notification.streak.body" = "Don't forget your daily check-in. Your well-being matters.";
+"notification.lunch.title" = "Midday check-in";
+"notification.lunch.body" = "How are you feeling today? A quick mood log takes only a moment.";
+"notification.evening.title" = "Evening reflection";
+"notification.evening.body" = "Reflect on your day. How are you feeling tonight?";
+"notification.affirmation.title" = "Your daily affirmation";
+
+/* Themes */
+"theme.cosmic" = "Cosmic";
+"theme.aurora" = "Aurora";
+"theme.midnight" = "Midnight";
+"theme.forest" = "Forest";
+"theme.rose" = "Rose";
+"profile.presets" = "Quick presets";
+
+/* Program tasks — Calm */
+"program.task.c1.title" = "Morning Breathing";
+"program.task.c1.desc" = "Practice box breathing for 5 minutes after waking up.";
+"program.task.c2.title" = "Body Scan";
+"program.task.c2.desc" = "Do a 10-minute body scan meditation before sleep.";
+"program.task.c3.title" = "Mindful Walk";
+"program.task.c3.desc" = "Take a 15-minute walk without your phone, observing nature.";
+"program.task.c4.title" = "Gratitude List";
+"program.task.c4.desc" = "Write 3 things you are grateful for today.";
+"program.task.c5.title" = "Digital Detox";
+"program.task.c5.desc" = "Spend 1 hour completely offline. Read or journal instead.";
+"program.task.c6.title" = "4-7-8 Breathing";
+"program.task.c6.desc" = "Practice 4-7-8 breathing before any stressful activity.";
+"program.task.c7.title" = "Reflect & Plan";
+"program.task.c7.desc" = "Write a reflection on how you felt this week and what helped most.";
+
+/* Program tasks — Energy */
+"program.task.e1.title" = "Morning Stretch";
+"program.task.e1.desc" = "Do 5 minutes of energizing stretches after waking up.";
+"program.task.e2.title" = "Power Breathing";
+"program.task.e2.desc" = "Try energizing breath-of-fire breathing for 2 minutes.";
+"program.task.e3.title" = "Cold Water";
+"program.task.e3.desc" = "End your shower with 30 seconds of cold water.";
+"program.task.e4.title" = "Move Your Body";
+"program.task.e4.desc" = "Do any 20-minute physical activity you enjoy.";
+"program.task.e5.title" = "Power Pose";
+"program.task.e5.desc" = "Stand in a confident power pose for 2 minutes before a challenge.";
+"program.task.e6.title" = "Hydration Check";
+"program.task.e6.desc" = "Drink 8 glasses of water today and notice how you feel.";
+"program.task.e7.title" = "Celebration";
+"program.task.e7.desc" = "Do something that brings you genuine joy today.";
+
+/* Program tasks — Stress */
+"program.task.s1.title" = "Stress Audit";
+"program.task.s1.desc" = "Write down your top 3 stressors and one small action for each.";
+"program.task.s2.title" = "Progressive Relaxation";
+"program.task.s2.desc" = "Practice progressive muscle relaxation for 10 minutes.";
+"program.task.s3.title" = "Say No Practice";
+"program.task.s3.desc" = "Politely decline one non-essential request today.";
+"program.task.s4.title" = "Nature Time";
+"program.task.s4.desc" = "Spend 20 minutes in a park or natural setting.";
+"program.task.s5.title" = "Worry Box";
+"program.task.s5.desc" = "Write your worries on paper, fold them, and set them aside until evening.";
+"program.task.s6.title" = "Breathing Reset";
+"program.task.s6.desc" = "Use 4-7-8 breathing whenever stress arises today.";
+"program.task.s7.title" = "Future Letter";
+"program.task.s7.desc" = "Write a letter to yourself 1 year from now about how you managed stress.";
+
+/* Daily affirmations */
+"affirmation.1" = "You are enough, exactly as you are.";
+"affirmation.2" = "Every day is a new beginning.";
+"affirmation.3" = "Your feelings are valid.";
+"affirmation.4" = "Small steps lead to big changes.";
+"affirmation.5" = "You deserve kindness — especially from yourself.";
+"affirmation.6" = "Progress, not perfection.";
+"affirmation.7" = "You have survived every difficult day so far.";
+"affirmation.8" = "Your presence matters.";
+"affirmation.9" = "Be gentle with yourself today.";
+"affirmation.10" = "You are stronger than you think.";
+"affirmation.11" = "Peace begins with a single breath.";
+"affirmation.12" = "Today, you choose growth.";
+"affirmation.13" = "You are worthy of love and support.";
+"affirmation.14" = "Difficult moments pass — you remain.";
+"affirmation.15" = "Each check-in is an act of self-care.";
+
+/* Fallback insights */
+"fallback.1.title" = "Every Day Counts";
+"fallback.1.body" = "Each check-in is a step toward understanding yourself better.";
+"fallback.1.tip" = "Try journaling about what influenced your mood today.";
+"fallback.2.title" = "Be Kind to Yourself";
+"fallback.2.body" = "Your feelings are valid, whatever they may be today.";
+"fallback.2.tip" = "Take 3 deep breaths and acknowledge how you're feeling.";
+"fallback.3.title" = "Small Steps Matter";
+"fallback.3.body" = "Progress in mental wellness comes from consistent small actions.";
+"fallback.3.tip" = "Pick one tiny positive action you can take right now.";
+"fallback.4.title" = "Notice the Good";
+"fallback.4.body" = "Even difficult days contain small moments worth appreciating.";
+"fallback.4.tip" = "Find one thing, however small, that went well today.";
+"fallback.5.title" = "Ride the Wave";
+"fallback.5.body" = "Emotions are like waves — they rise, peak, and naturally subside.";
+"fallback.5.tip" = "Try the 4-7-8 breathing to help difficult emotions pass.";
+"fallback.6.title" = "Self-Awareness";
+"fallback.6.body" = "Recognizing your patterns is the first key to changing them.";
+"fallback.6.tip" = "What's one pattern in your mood you've noticed recently?";
+"fallback.7.title" = "Growth Mindset";
+"fallback.7.body" = "Challenges are opportunities for growth, even when they don't feel it.";
+"fallback.7.tip" = "Ask yourself: what can I learn from how I'm feeling today?";
+
+/* LLM errors */
+"llm.error.no_key" = "No API key configured. Add one in Profile.";
+"llm.error.bad_url" = "Invalid endpoint URL. Check it in Profile.";
+"llm.error.unauthorized" = "Invalid API key. Check it in Profile.";
+"llm.error.rate_limited" = "Rate limit reached. Try again in a minute.";
+"llm.error.server" = "The AI service is temporarily unavailable. Try again later.";
+"llm.error.empty" = "The AI returned an empty response. Try again.";
+"llm.error.network" = "No connection. Check your internet.";
+
+/* Common (extended) */
+"common.edit" = "Edit";
+"common.delete" = "Delete";
+
+/* Check-in (extended) */
+"checkin.limit.title" = "Daily Limit Reached";
+"checkin.limit.body" = "You've already completed 2 check-ins today. Come back tomorrow!";
+"checkin.limit.done" = "OK";
+"checkin.second_available" = "Second check-in available";
+"checkin.limit.reached" = "Daily limit reached";
+
+/* Journal (extended) */
+"journal.words" = "words";
+"journal.chars" = "chars";
+"journal.edit_entry" = "Edit Entry";
+
+/* Programs (extended) */
+"programs.reset" = "Reset Program";
+"programs.reset.confirm.title" = "Reset Program?";
+"programs.reset.confirm.body" = "All progress will be lost and you can start over from day 1.";
+
+/* Weekly Report (extended) */
+"report.generate" = "Generate Report";
+
+/* Chat (extended) */
+"chat.clear.title" = "Clear Chat History";
+"chat.clear.confirm" = "Clear";
+"chat.clear.body" = "All messages will be permanently deleted.";
+
+/* Profile (extended) */
+"profile.reminders" = "Reminders";
+"profile.lunch_reminder" = "Lunch Reminder";
+"profile.evening_reminder" = "Evening Reminder";
+"profile.reminder_time" = "Reminder Time";
+"profile.affirmations" = "Daily Affirmations";
+"profile.face_id" = "Face ID Lock";
+"profile.face_id.unavailable.title" = "Passcode Required";
+"profile.face_id.unavailable.body" = "To lock Serenity, first set a passcode on this device in Settings → Face ID & Passcode.";
+"profile.custom_tags" = "Custom Tags";
+"profile.api_key_empty" = "Not configured";
+"profile.api_key_set" = "Configured";
+"profile.api_key_add" = "Add Key";
+"profile.api_key_edit" = "Edit Key";
+"profile.milestones" = "Milestones";
+
+/* Custom Tags */
+"tags.custom.title" = "My Tags";
+"tags.custom.placeholder" = "Add a custom tag...";
+
+/* Analytics (extended) */
+"analytics.calendar.title" = "Mood Calendar";
+"analytics.calendar.subtitle" = "Track mood across months";
+"analytics.calendar.legend" = "Legend";
+
+/* Face Lock */
+"facelock.reason" = "Unlock Serenity";
+"facelock.subtitle" = "Your wellness data is protected";
+"facelock.unlock" = "Unlock with Face ID";
+
+/* Home (extended) */
+"home.sos" = "SOS";
+
+/* Onboarding API Key step */
+"onboarding.api.title" = "Unlock AI Features";
+"onboarding.api.subtitle" = "Add your Claude API key to get personalized mood insights, AI-powered summaries, and a supportive chat companion.";
+"onboarding.api.hint" = "Get your free key at console.anthropic.com";
+"onboarding.api.placeholder" = "sk-ant-...";
+"onboarding.api.continue" = "Save & Continue";
+"onboarding.api.skip" = "Skip for Now";

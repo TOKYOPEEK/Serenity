@@ -1,0 +1,14 @@
+# Secrets — never commit API keys
+Serenity/Secrets.swift
+
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+.claude/
