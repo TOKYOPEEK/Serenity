@@ -6,9 +6,6 @@
     </linearGradient>
   </defs>
 
-  <g id="tail">
-    <path d="M 175 350 C 150 450, 270 470, 330 410 C 365 365, 290 380, 230 345 Z" fill="url(#furGradient)" />
-  </g>
   <g id="foot-left"><ellipse cx="155" cy="395" rx="24" ry="15" fill="#8E6E50" /></g>
   <g id="foot-right"><ellipse cx="245" cy="395" rx="24" ry="15" fill="#8E6E50" /></g>
   <g id="body">

@@ -209,7 +209,10 @@ private struct CompanionCreature: View {
     let state: CompanionState
     let size: CGFloat
 
-    private var assetName: String {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var wag = false
+
+    private var bodyAsset: String {
         switch state {
         case .blooming: return "CompanionBlooming"
         case .calm:     return "CompanionCalm"
@@ -218,10 +221,29 @@ private struct CompanionCreature: View {
         }
     }
 
+    private var tailAsset: String {
+        state == .sleepy ? "CompanionTailSleepy" : "CompanionTail"
+    }
+
+    // The tail meets the body around (210, 350) in the 400×470 artwork.
+    private let tailPivot = UnitPoint(x: 210.0 / 400, y: 350.0 / 470)
+
     var body: some View {
-        Image(assetName)
-            .resizable()
-            .scaledToFit()
-            .frame(width: size, height: size * 1.12)
+        ZStack {
+            Image(tailAsset)
+                .resizable()
+                .scaledToFit()
+                .frame(width: size, height: size * 1.12)
+                .rotationEffect(.degrees(wag ? 5 : -5), anchor: tailPivot)
+            Image(bodyAsset)
+                .resizable()
+                .scaledToFit()
+                .frame(width: size, height: size * 1.12)
+        }
+        .onAppear {
+            // Sleepy Lu keeps its tail still; otherwise a slow, content wag.
+            guard !reduceMotion, state != .sleepy else { return }
+            withAnimation(.easeInOut(duration: 1.9).repeatForever(autoreverses: true)) { wag = true }
+        }
     }
 }
