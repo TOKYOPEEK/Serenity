@@ -77,6 +77,7 @@ struct PsychologistChatView: View {
     @EnvironmentObject var appVM: AppViewModel
     @StateObject private var viewModel = PsychologistViewModel()
     @State private var showClearConfirm = false
+    @FocusState private var inputFocused: Bool
     @State private var showDisclaimer =
         !UserDefaults.standard.bool(forKey: StorageKey.hasSeenChatDisclaimer)
 
@@ -91,10 +92,18 @@ struct PsychologistChatView: View {
                 } else {
                     chatScrollArea
                 }
-
-                if let err = viewModel.errorMessage { errorBanner(err) }
-                quickChips
-                inputArea
+            }
+            // Pinning the composer here lets SwiftUI keep it above the keyboard
+            // automatically; the bottom padding clears the floating tab bar
+            // while it's visible (it slides away once typing starts).
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                VStack(spacing: 0) {
+                    if let err = viewModel.errorMessage { errorBanner(err) }
+                    quickChips
+                    inputArea
+                }
+                .padding(.bottom, inputFocused ? 0 : 78)
+                .animation(DS.springSnappy, value: inputFocused)
             }
 
             if showDisclaimer { disclaimerOverlay }
@@ -291,6 +300,8 @@ struct PsychologistChatView: View {
         HStack(spacing: DS.s10) {
             TextField(L("psychologist.input_placeholder"), text: $viewModel.inputText, axis: .vertical)
                 .lineLimit(1...4)
+                .focused($inputFocused)
+                .submitLabel(.send)
                 .font(.app(size: 15, design: .rounded))
                 .foregroundColor(DS.textPrimary)
                 .tint(appVM.selectedTheme.primaryColor)

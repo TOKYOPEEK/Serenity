@@ -243,8 +243,9 @@
 "profile.stat.entries" = "Записей";
 "profile.stat.badges" = "Достижений";
 "profile.theme" = "Внешний вид";
-"profile.api_key" = "Ключ Claude API";
-"profile.api_key_hint" = "Получи ключ на console.anthropic.com";
+"profile.api_key" = "AI-подключение";
+"profile.api_key.caption" = "AI работает по умолчанию. Поля ниже — необязательные, заполни их только чтобы использовать свой ключ.";
+"profile.api_key_hint" = "Необязательно: свой провайдер";
 "profile.notifications" = "Напоминания";
 "profile.badges" = "Достижения";
 "profile.disclaimer_title" = "О Serenity AI";
@@ -306,7 +307,6 @@
 "theme.midnight" = "Полночь";
 "theme.forest" = "Лес";
 "theme.rose" = "Роза";
-"profile.presets" = "Быстрые пресеты";
 
 /* Program tasks — Calm */
 "program.task.c1.title" = "Утреннее дыхание";

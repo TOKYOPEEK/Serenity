@@ -32,6 +32,9 @@ struct LLMClient {
         let endpoint: String
         let model: String
         let apiKey: String
+        /// OpenAI-style reasoning effort ("none" disables slow reasoning).
+        /// Only sent to providers known to accept it — nil omits the field.
+        var reasoningEffort: String? = nil
     }
 
     struct Message: Codable {
@@ -57,6 +60,20 @@ struct LLMClient {
         let model: String
         let max_tokens: Int
         let messages: [Message]
+        let reasoning_effort: String?
+
+        enum CodingKeys: String, CodingKey {
+            case model, max_tokens, messages, reasoning_effort
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var c = encoder.container(keyedBy: CodingKeys.self)
+            try c.encode(model, forKey: .model)
+            try c.encode(max_tokens, forKey: .max_tokens)
+            try c.encode(messages, forKey: .messages)
+            // Omitted entirely when nil so strict providers don't reject it.
+            try c.encodeIfPresent(reasoning_effort, forKey: .reasoning_effort)
+        }
     }
 
     private struct OpenAIResponse: Decodable {
@@ -91,7 +108,7 @@ struct LLMClient {
         let isAnthropic = endpoint.contains("anthropic.com")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.timeoutInterval = 30
+        request.timeoutInterval = 45
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         if isAnthropic {
@@ -104,7 +121,8 @@ struct LLMClient {
             request.setValue("Bearer \(config.apiKey)", forHTTPHeaderField: "Authorization")
             request.httpBody = try JSONEncoder().encode(OpenAIRequest(
                 model: config.model, max_tokens: maxTokens,
-                messages: [Message(role: "system", content: system)] + messages
+                messages: [Message(role: "system", content: system)] + messages,
+                reasoning_effort: config.reasoningEffort
             ))
         }
 

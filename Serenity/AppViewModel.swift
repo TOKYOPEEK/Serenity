@@ -357,9 +357,23 @@ class AppViewModel: ObservableObject {
     }
 
     private var llmConfig: LLMClient.Config {
-        // A user-entered key always overrides the bundled default.
-        .init(endpoint: llmEndpoint, model: effectiveModel,
-              apiKey: claudeAPIKey.isEmpty ? Secrets.defaultAPIKey : claudeAPIKey)
+        // No personal key → use the bundled provider as one consistent unit
+        // (endpoint + model + key), ignoring any stale saved endpoint.
+        if claudeAPIKey.isEmpty && !Secrets.defaultAPIKey.isEmpty {
+            return .init(
+                endpoint: Secrets.defaultEndpoint,
+                model:    Secrets.defaultModel.isEmpty ? effectiveModel : Secrets.defaultModel,
+                apiKey:   Secrets.defaultAPIKey,
+                reasoningEffort: "none"
+            )
+        }
+        // Personal key: send reasoning_effort only if it points at our host.
+        return .init(
+            endpoint: llmEndpoint,
+            model:    effectiveModel,
+            apiKey:   claudeAPIKey,
+            reasoningEffort: llmEndpoint == Secrets.defaultEndpoint ? "none" : nil
+        )
     }
 
     func fetchLLM(system: String, userPrompt: String, maxTokens: Int) async throws -> String {

@@ -243,8 +243,9 @@
 "profile.stat.entries" = "Journals";
 "profile.stat.badges" = "Milestones";
 "profile.theme" = "Appearance";
-"profile.api_key" = "Claude API Key";
-"profile.api_key_hint" = "Get your API key at console.anthropic.com";
+"profile.api_key" = "AI Connection";
+"profile.api_key.caption" = "AI works out of the box. The fields below are optional — only fill them to use your own key.";
+"profile.api_key_hint" = "Optional: use your own provider";
 "profile.notifications" = "Reminders";
 "profile.badges" = "Milestones";
 "profile.disclaimer_title" = "About Serenity AI";
@@ -306,7 +307,6 @@
 "theme.midnight" = "Midnight";
 "theme.forest" = "Forest";
 "theme.rose" = "Rose";
-"profile.presets" = "Quick presets";
 
 /* Program tasks — Calm */
 "program.task.c1.title" = "Morning Breathing";

@@ -3,6 +3,7 @@ import SwiftUI
 // MARK: - ContentView (5-tab root)
 struct ContentView: View {
     @EnvironmentObject var appVM: AppViewModel
+    @State private var keyboardUp = false
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -13,6 +14,11 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             CustomTabBar(selectedTab: $appVM.selectedTab)
+                // Slide out of the way while typing so it never covers a
+                // text field; the composer handles keyboard avoidance itself.
+                .offset(y: keyboardUp ? 160 : 0)
+                .animation(.easeOut(duration: 0.25), value: keyboardUp)
+                .ignoresSafeArea(.keyboard, edges: .bottom)
 
             if appVM.showBadgeToast, let badge = appVM.newBadge {
                 BadgeToast(badge: badge, isShowing: $appVM.showBadgeToast)
@@ -20,7 +26,12 @@ struct ContentView: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .ignoresSafeArea(.keyboard)
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+            keyboardUp = true
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+            keyboardUp = false
+        }
     }
 
     // Only the active tab exists in the hierarchy; inactive tabs are torn down.
@@ -737,15 +748,6 @@ struct APIKeySheet: View {
     @State private var endpointInput: String = ""
     @State private var modelInput: String = ""
 
-    private let presets: [(name: String, url: String, model: String)] = [
-        ("Anthropic",  "https://api.anthropic.com/v1/messages",              "claude-sonnet-4-6"),
-        ("OpenAI",     "https://api.openai.com/v1/chat/completions",         "gpt-4o"),
-        ("Groq",       "https://api.groq.com/openai/v1/chat/completions",    "llama-3.3-70b-versatile"),
-        ("DeepSeek",   "https://api.deepseek.com/v1/chat/completions",       "deepseek-chat"),
-        ("Mistral",    "https://api.mistral.ai/v1/chat/completions",         "mistral-large-latest"),
-        ("Ollama",     "http://localhost:11434/v1/chat/completions",          "llama3.2"),
-    ]
-
     var body: some View {
         ZStack {
             appBG.ignoresSafeArea()
@@ -769,52 +771,20 @@ struct APIKeySheet: View {
                         .font(.app(size: 22, weight: .bold))
                         .foregroundColor(DS.textPrimary)
 
-                    // Quick presets
-                    GlassCard {
-                        VStack(alignment: .leading, spacing: DS.s10) {
-                            Text(L("profile.presets"))
-                                .font(.app(size: 12, weight: .medium, design: .rounded))
-                                .foregroundColor(DS.textTertiary)
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: DS.s8) {
-                                ForEach(presets, id: \.name) { p in
-                                    Button(action: {
-                                        endpointInput = p.url
-                                        modelInput    = p.model
-                                    }) {
-                                        Text(p.name)
-                                            .font(.app(size: 12, weight: .medium, design: .rounded))
-                                            .foregroundColor(endpointInput == p.url
-                                                             ? appVM.selectedTheme.primaryColor
-                                                             : DS.textSecondary)
-                                            .frame(maxWidth: .infinity)
-                                            .padding(.vertical, DS.s8)
-                                            .background(
-                                                Capsule()
-                                                    .fill(endpointInput == p.url
-                                                          ? appVM.selectedTheme.primaryColor.opacity(0.15)
-                                                          : Color.white.opacity(0.06))
-                                                    .overlay(Capsule().strokeBorder(
-                                                        endpointInput == p.url
-                                                            ? appVM.selectedTheme.primaryColor.opacity(0.4)
-                                                            : DS.strokeSubtle,
-                                                        lineWidth: 1))
-                                            )
-                                    }
-                                }
-                            }
-                        }
-                        .padding(DS.s16)
-                    }
-                    .padding(.horizontal, DS.s24)
+                    Text(L("profile.api_key.caption"))
+                        .font(.app(size: 13, weight: .regular, design: .rounded))
+                        .foregroundColor(DS.textTertiary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, DS.s32)
 
-                    // Fields
+                    // Optional: bring your own key / endpoint / model
                     GlassCard {
                         VStack(alignment: .leading, spacing: DS.s14) {
                             apiField(label: "API Key", placeholder: "Paste your key...", text: $apiKey)
                             Divider().background(DS.strokeSubtle)
                             apiField(label: "Endpoint URL", placeholder: "https://...", text: $endpointInput)
                             Divider().background(DS.strokeSubtle)
-                            apiField(label: "Model", placeholder: "e.g. gpt-4o, claude-sonnet-4-6", text: $modelInput)
+                            apiField(label: "Model", placeholder: "gpt-5.5", text: $modelInput)
                         }
                         .padding(DS.s16)
                     }
