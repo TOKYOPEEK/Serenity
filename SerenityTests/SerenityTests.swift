@@ -138,6 +138,60 @@ final class BadgeRulesTests: XCTestCase {
     }
 }
 
+// MARK: - UserContext (AI memory)
+
+final class UserContextTests: XCTestCase {
+    private let cal = Calendar.current
+
+    private func mood(daysAgo: Int, _ index: Int, tags: [String] = []) -> MoodEntry {
+        MoodEntry(
+            date: cal.date(byAdding: .day, value: -daysAgo, to: Date())!,
+            moodIndex: index, energyLevel: 0.5, stressLevel: 0.5, tags: tags, note: ""
+        )
+    }
+
+    func testNilWhenTooFewCheckIns() {
+        let summary = UserContext.summary(
+            name: "Amir", moods: [mood(daysAgo: 0, 3), mood(daysAgo: 1, 2)],
+            journals: [], gratitude: [], streak: 2
+        )
+        XCTAssertNil(summary, "fewer than 3 check-ins should produce no memory")
+    }
+
+    func testIncludesNameStreakAndThemes() {
+        let moods = [
+            mood(daysAgo: 0, 3, tags: ["work", "sleep"]),
+            mood(daysAgo: 1, 2, tags: ["work"]),
+            mood(daysAgo: 2, 4, tags: ["work"])
+        ]
+        let summary = UserContext.summary(
+            name: "Amir", moods: moods, journals: [], gratitude: [], streak: 3
+        )
+        let text = try? XCTUnwrap(summary)
+        XCTAssertNotNil(text)
+        XCTAssertTrue(text!.contains("Amir"))
+        XCTAssertTrue(text!.contains("streak: 3"))
+        XCTAssertTrue(text!.contains("work"), "the dominant theme should surface")
+    }
+
+    func testIncludesLatestJournalSnippet() {
+        let moods = (0..<3).map { mood(daysAgo: $0, 3) }
+        let journals = [
+            JournalEntry(date: cal.date(byAdding: .day, value: -1, to: Date())!,
+                         title: "t", content: "I felt overwhelmed at work today", mood: 1)
+        ]
+        let summary = UserContext.summary(
+            name: "", moods: moods, journals: journals, gratitude: [], streak: 1
+        )
+        XCTAssertTrue(summary?.contains("overwhelmed at work") ?? false)
+    }
+
+    func testPreambleIsEmptyForNilSummary() {
+        XCTAssertEqual(UserContext.systemPreamble(nil), "")
+        XCTAssertFalse(UserContext.systemPreamble("Name: Amir").isEmpty)
+    }
+}
+
 // MARK: - ChatMessage backward compatibility
 
 final class ChatMessageCompatibilityTests: XCTestCase {

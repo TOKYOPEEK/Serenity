@@ -351,8 +351,10 @@ private func fetchMoodInsight(entry: MoodEntry, appVM: AppViewModel) async throw
     Respond ONLY with valid JSON (no markdown):
     {"emoji":"...","title":"...","body":"...","tip":"...","tone":"..."}
     """
+    let system = "You are a compassionate wellness AI. Respond only with the requested JSON."
+        + UserContext.systemPreamble(appVM.memorySummary)
     let text = try await appVM.fetchLLM(
-        system: "You are a compassionate wellness AI. Respond only with the requested JSON.",
+        system: system,
         userPrompt: prompt,
         maxTokens: 300
     )

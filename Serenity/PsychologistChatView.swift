@@ -50,9 +50,11 @@ class PsychologistViewModel: ObservableObject {
         let context = messages.suffix(20).map { LLMClient.Message(role: $0.role.rawValue, content: $0.content) }
         Task { [weak self] in
             guard let appVM = self?.appVM else { return }
+            // Inject the user's recent history so replies feel personal.
+            let system = chatSystemPrompt + UserContext.systemPreamble(appVM.memorySummary)
             do {
                 let reply = try await appVM.fetchLLMChat(
-                    system: chatSystemPrompt, messages: context, maxTokens: 600)
+                    system: system, messages: context, maxTokens: 600)
                 self?.messages.append(ChatMessage(role: .assistant, content: reply))
             } catch is CancellationError {
                 // view model torn down — nothing to show

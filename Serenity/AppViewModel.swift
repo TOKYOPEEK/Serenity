@@ -376,6 +376,18 @@ class AppViewModel: ObservableObject {
         )
     }
 
+    /// Compact memory of the user's recent history, injected into AI prompts
+    /// so the assistant feels personal. Nil until there's enough data.
+    var memorySummary: String? {
+        UserContext.summary(
+            name: userName,
+            moods: moodEntries,
+            journals: journalEntries,
+            gratitude: gratitudeEntries,
+            streak: streak
+        )
+    }
+
     func fetchLLM(system: String, userPrompt: String, maxTokens: Int) async throws -> String {
         try await fetchLLMChat(
             system: system,

@@ -269,6 +269,7 @@ struct WeeklyReportView: View {
         Respond in the user's language (Russian or English — match the themes/tags language).
         """
         let system = "You are a compassionate wellness coach writing a warm weekly summary."
+            + UserContext.systemPreamble(appVM.memorySummary)
         Task {
             do {
                 report = try await appVM.fetchLLM(system: system, userPrompt: prompt, maxTokens: 500)
