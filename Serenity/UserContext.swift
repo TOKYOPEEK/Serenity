@@ -17,6 +17,7 @@ enum UserContext {
         journals: [JournalEntry],
         gratitude: [GratitudeEntry],
         streak: Int,
+        health: HealthSnapshot? = nil,
         now: Date = Date(),
         calendar cal: Calendar = .current
     ) -> String? {
@@ -64,6 +65,20 @@ enum UserContext {
             let snippet = lastGratitude.text.trimmingCharacters(in: .whitespacesAndNewlines).prefix(100)
             if !snippet.isEmpty {
                 lines.append("Recently grateful for: \"\(snippet)\".")
+            }
+        }
+
+        // Apple Health context — lets the AI connect body and mood.
+        if let h = health, h.hasAnything {
+            var parts: [String] = []
+            if let s = h.avgSleepHours { parts.append(String(format: "sleeps ~%.1fh/night", s)) }
+            if let hr = h.restingHeartRate { parts.append("resting heart rate ~\(Int(hr)) bpm") }
+            if let steps = h.avgSteps { parts.append("~\(steps) steps/day") }
+            if !parts.isEmpty {
+                lines.append("Health (last 2 weeks): \(parts.joined(separator: ", ")).")
+            }
+            if h.shortSleepLowersMood == true {
+                lines.append("Mood tends to be lower after nights of shorter-than-usual sleep.")
             }
         }
 

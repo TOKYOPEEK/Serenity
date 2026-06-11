@@ -57,9 +57,14 @@ class AppViewModel: ObservableObject {
     @Published var llmEndpoint: String
     @Published var llmModel: String
 
+    // Apple Health
+    @Published var healthEnabled: Bool
+    @Published var healthSnapshot: HealthSnapshot?
+
     private let defaults = UserDefaults.standard
     private let store: PersistenceStore
     private let notifications = NotificationScheduler()
+    private let health = HealthStore()
 
     init() {
         let store = PersistenceStore()
@@ -112,6 +117,12 @@ class AppViewModel: ObservableObject {
             self.llmEndpoint = "https://api.anthropic.com/v1/messages"
         }
         self.llmModel = UserDefaults.standard.string(forKey: StorageKey.llmModel) ?? ""
+
+        self.healthEnabled = UserDefaults.standard.bool(forKey: StorageKey.healthEnabled)
+        if let data = UserDefaults.standard.data(forKey: StorageKey.healthSnapshot) {
+            self.healthSnapshot = try? JSONDecoder().decode(HealthSnapshot.self, from: data)
+        }
+        if healthEnabled { Task { await refreshHealth() } }
     }
 
     /// Persists scalar settings only. Collections are written individually
@@ -126,6 +137,7 @@ class AppViewModel: ObservableObject {
         defaults.set(faceLockEnabled,      forKey: StorageKey.faceLockEnabled)
         defaults.set(llmEndpoint, forKey: StorageKey.llmEndpoint)
         defaults.set(llmModel,    forKey: StorageKey.llmModel)
+        defaults.set(healthEnabled, forKey: StorageKey.healthEnabled)
 
         defaults.set(lunchReminderEnabled,  forKey: StorageKey.lunchReminderEnabled)
         defaults.set(lunchReminderHour,     forKey: StorageKey.lunchReminderHour)
@@ -368,6 +380,42 @@ class AppViewModel: ObservableObject {
         return moodEntries.first { cal.isDateInToday($0.date) }
     }
 
+    // MARK: - Apple Health
+    var isHealthAvailable: Bool { HealthStore.isAvailable }
+
+    /// Asks for Health permission and pulls a first snapshot. Returns whether
+    /// the user is now connected.
+    @discardableResult
+    func connectHealth() async -> Bool {
+        let granted = await health.requestAuthorization()
+        healthEnabled = granted
+        save()
+        if granted { await refreshHealth() }
+        return granted
+    }
+
+    func disconnectHealth() {
+        healthEnabled = false
+        healthSnapshot = nil
+        defaults.removeObject(forKey: StorageKey.healthSnapshot)
+        save()
+    }
+
+    /// Re-reads recent Health metrics and persists the snapshot.
+    func refreshHealth() async {
+        guard healthEnabled else { return }
+        let cal = Calendar.current
+        let moodByDay = Dictionary(
+            moodEntries.map { (cal.startOfDay(for: $0.date), $0.moodIndex) },
+            uniquingKeysWith: { a, _ in a }
+        )
+        let snap = await health.snapshot(moodByDay: moodByDay)
+        healthSnapshot = snap
+        if let data = try? JSONEncoder().encode(snap) {
+            defaults.set(data, forKey: StorageKey.healthSnapshot)
+        }
+    }
+
     // MARK: - LLM
     private var isAnthropicEndpoint: Bool { llmEndpoint.contains("anthropic.com") }
 
@@ -413,7 +461,8 @@ class AppViewModel: ObservableObject {
             moods: moodEntries,
             journals: journalEntries,
             gratitude: gratitudeEntries,
-            streak: streak
+            streak: streak,
+            health: healthEnabled ? healthSnapshot : nil
         )
     }
 

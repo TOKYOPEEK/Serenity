@@ -31,6 +31,7 @@
 		E2E2E2E2E2E2E2E2E2E2E205 /* SerenityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2E2E2E2E2E2E2E2E2E204 /* SerenityTests.swift */; };
 		F3F3F3F3F3F3F3F3F3F3F302 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F3F3F3F3F3F3F3F3F3F301 /* Secrets.swift */; };
 		F4F4F4F4F4F4F4F4F4F4F402 /* UserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4F4F4F4F4F4F4F4F4F401 /* UserContext.swift */; };
+		F7F7F7F7F7F7F7F7F7F7F702 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F7F7F7F7F7F7F7F7F7F701 /* HealthStore.swift */; };
 		F5F5F5F5F5F5F5F5F5F5F502 /* Companion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5F5F5F5F5F5F5F5F5F501 /* Companion.swift */; };
 		F6F6F6F6F6F6F6F6F6F6F602 /* CompanionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F6F6F6F6F6F6F6F6F6F601 /* CompanionView.swift */; };
 		F8AE38F0DBB24ED1ADEA8F77 /* WellnessViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A580B0828F47414A976877DA /* WellnessViews.swift */; };
@@ -72,6 +73,7 @@
 		E2E2E2E2E2E2E2E2E2E2E202 /* SerenityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SerenityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F3F3F3F3F3F3F3F3F3F301 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		F4F4F4F4F4F4F4F4F4F4F401 /* UserContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContext.swift; sourceTree = "<group>"; };
+		F7F7F7F7F7F7F7F7F7F7F701 /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
 		F5F5F5F5F5F5F5F5F5F5F501 /* Companion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companion.swift; sourceTree = "<group>"; };
 		F6F6F6F6F6F6F6F6F6F6F601 /* CompanionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionView.swift; sourceTree = "<group>"; };
 		E2E2E2E2E2E2E2E2E2E2E204 /* SerenityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerenityTests.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				89A2E68081ED4829AA087E43 /* KeychainHelper.swift */,
 				F3F3F3F3F3F3F3F3F3F3F301 /* Secrets.swift */,
 				F4F4F4F4F4F4F4F4F4F4F401 /* UserContext.swift */,
+				F7F7F7F7F7F7F7F7F7F7F701 /* HealthStore.swift */,
 				F5F5F5F5F5F5F5F5F5F5F501 /* Companion.swift */,
 				11AA22BB33CC44DD55EE66F1 /* PersistenceStore.swift */,
 				11AA22BB33CC44DD55EE66F3 /* NotificationScheduler.swift */,
@@ -263,6 +266,7 @@
 				63E96A6978BE46A89135D6B3 /* KeychainHelper.swift in Sources */,
 				F3F3F3F3F3F3F3F3F3F3F302 /* Secrets.swift in Sources */,
 				F4F4F4F4F4F4F4F4F4F4F402 /* UserContext.swift in Sources */,
+				F7F7F7F7F7F7F7F7F7F7F702 /* HealthStore.swift in Sources */,
 				F5F5F5F5F5F5F5F5F5F5F502 /* Companion.swift in Sources */,
 				F6F6F6F6F6F6F6F6F6F6F602 /* CompanionView.swift in Sources */,
 				11AA22BB33CC44DD55EE66F2 /* PersistenceStore.swift in Sources */,

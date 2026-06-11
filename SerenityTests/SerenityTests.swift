@@ -190,6 +190,32 @@ final class UserContextTests: XCTestCase {
         XCTAssertEqual(UserContext.systemPreamble(nil), "")
         XCTAssertFalse(UserContext.systemPreamble("Name: Amir").isEmpty)
     }
+
+    func testIncludesHealthMetricsAndSignal() {
+        let moods = (0..<3).map { mood(daysAgo: $0, 3) }
+        let health = HealthSnapshot(
+            avgSleepHours: 6.4, restingHeartRate: 61, avgSteps: 7800,
+            shortSleepLowersMood: true
+        )
+        let summary = UserContext.summary(
+            name: "", moods: moods, journals: [], gratitude: [], streak: 1, health: health
+        )
+        let text = try? XCTUnwrap(summary)
+        XCTAssertNotNil(text)
+        XCTAssertTrue(text!.contains("6.4"), "sleep hours should appear")
+        XCTAssertTrue(text!.contains("61 bpm"))
+        XCTAssertTrue(text!.contains("7800"))
+        XCTAssertTrue(text!.lowercased().contains("shorter"), "the sleep/mood signal should surface")
+    }
+
+    func testIgnoresEmptyHealthSnapshot() {
+        let moods = (0..<3).map { mood(daysAgo: $0, 3) }
+        let empty = HealthSnapshot()
+        let summary = UserContext.summary(
+            name: "Amir", moods: moods, journals: [], gratitude: [], streak: 1, health: empty
+        )
+        XCTAssertFalse(summary?.contains("Health") ?? false, "no metrics → no health line")
+    }
 }
 
 // MARK: - Companion state

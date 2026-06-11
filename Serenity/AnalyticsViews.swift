@@ -13,6 +13,7 @@ struct AnalyticsView: View {
                     analyticsHeader
                     statsGrid
                     moodChartSection
+                    if appVM.isHealthAvailable { healthSection }
                     calendarBanner
                     moodDNABanner
                     tagsSection
@@ -30,6 +31,61 @@ struct AnalyticsView: View {
             MoodCalendarView()
                 .presentationDragIndicator(.visible)
         }
+    }
+
+    private var healthSection: some View {
+        VStack(alignment: .leading, spacing: DS.s12) {
+            SectionHeader(title: L("analytics.health.title"))
+            GlassCard {
+                VStack(spacing: DS.s12) {
+                    if let snap = appVM.healthEnabled ? appVM.healthSnapshot : nil, snap.hasAnything {
+                        HStack(spacing: DS.s12) {
+                            if let s = snap.avgSleepHours {
+                                HealthMetric(icon: "bed.double.fill", color: Color(hex: "818CF8"),
+                                             value: String(format: "%.1f", s),
+                                             unit: L("analytics.health.sleep_unit"),
+                                             label: L("analytics.health.sleep"))
+                            }
+                            if let hr = snap.restingHeartRate {
+                                HealthMetric(icon: "heart.fill", color: Color(hex: "FB7185"),
+                                             value: "\(Int(hr))",
+                                             unit: L("analytics.health.heart_unit"),
+                                             label: L("analytics.health.heart"))
+                            }
+                            if let steps = snap.avgSteps {
+                                HealthMetric(icon: "figure.walk", color: Color(hex: "34D399"),
+                                             value: stepsShort(steps),
+                                             unit: L("analytics.health.steps_unit"),
+                                             label: L("analytics.health.steps"))
+                            }
+                        }
+                        if snap.shortSleepLowersMood == true {
+                            HStack(spacing: DS.s8) {
+                                Image(systemName: "sparkles")
+                                    .font(.app(size: 12)).foregroundColor(appVM.selectedTheme.primaryColor)
+                                Text(L("analytics.health.signal"))
+                                    .font(.app(size: 12, design: .rounded))
+                                    .foregroundColor(DS.textSecondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                Spacer(minLength: 0)
+                            }
+                        }
+                    } else {
+                        Text(L("analytics.health.empty"))
+                            .font(.app(size: 13, design: .rounded))
+                            .foregroundColor(DS.textTertiary)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                .padding(DS.s16)
+            }
+        }
+    }
+
+    private func stepsShort(_ n: Int) -> String {
+        n >= 1000 ? String(format: "%.1fk", Double(n) / 1000) : "\(n)"
     }
 
     private var analyticsHeader: some View {
@@ -122,6 +178,36 @@ struct AnalyticsView: View {
                 }
             }
         }
+    }
+}
+
+// MARK: - HealthMetric
+private struct HealthMetric: View {
+    let icon: String
+    let color: Color
+    let value: String
+    let unit: String
+    let label: String
+
+    var body: some View {
+        VStack(spacing: DS.s4) {
+            Image(systemName: icon)
+                .font(.app(size: 16))
+                .foregroundColor(color)
+            HStack(alignment: .firstTextBaseline, spacing: 2) {
+                Text(value)
+                    .font(.app(size: 19, weight: .bold, design: .rounded))
+                    .foregroundColor(DS.textPrimary)
+                Text(unit)
+                    .font(.app(size: 9, weight: .medium, design: .rounded))
+                    .foregroundColor(DS.textTertiary)
+            }
+            Text(label)
+                .font(.app(size: 10, weight: .medium, design: .rounded))
+                .foregroundColor(DS.textTertiary)
+                .lineLimit(1).minimumScaleFactor(0.8)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 

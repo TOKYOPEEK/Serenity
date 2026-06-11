@@ -142,6 +142,7 @@ struct ProfileView: View {
                     appearanceSection
                     remindersSection
                     affirmationsSection
+                    if appVM.isHealthAvailable { healthSection }
                     faceLockSection
                     customTagsSection
                     aiDisclaimerCard
@@ -379,6 +380,57 @@ struct ProfileView: View {
                     .padding(.bottom, DS.s4)
                 }
             }
+        }
+    }
+
+    private var healthSection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: DS.s12) {
+                HStack(spacing: DS.s14) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .fill(Color(hex: "FB7185").opacity(0.15))
+                            .frame(width: 32, height: 32)
+                        Image(systemName: "heart.fill")
+                            .font(.app(size: 14))
+                            .foregroundColor(Color(hex: "FB7185"))
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(L("profile.health"))
+                            .font(.app(size: 15, weight: .medium, design: .rounded))
+                            .foregroundColor(DS.textPrimary)
+                        Text(appVM.healthEnabled ? L("profile.health.on") : L("profile.health.off"))
+                            .font(.app(size: 11, design: .rounded))
+                            .foregroundColor(appVM.healthEnabled ? Color(hex: "34D399") : DS.textTertiary)
+                    }
+                    Spacer()
+                    if appVM.healthEnabled {
+                        Button(action: { appVM.disconnectHealth() }) {
+                            Text(L("profile.health.disconnect"))
+                                .font(.app(size: 12, weight: .semibold, design: .rounded))
+                                .foregroundColor(DS.textTertiary)
+                                .padding(.horizontal, DS.s10).padding(.vertical, DS.s6)
+                                .background(Capsule().fill(Color.white.opacity(0.07)))
+                        }
+                    } else {
+                        Button(action: { Task { await appVM.connectHealth() } }) {
+                            Text(L("profile.health.connect"))
+                                .font(.app(size: 12, weight: .semibold, design: .rounded))
+                                .foregroundColor(appVM.selectedTheme.primaryColor)
+                                .padding(.horizontal, DS.s10).padding(.vertical, DS.s6)
+                                .background(Capsule().fill(appVM.selectedTheme.primaryColor.opacity(0.12)))
+                        }
+                    }
+                }
+                if !appVM.healthEnabled {
+                    Text(L("profile.health.hint"))
+                        .font(.app(size: 11, design: .rounded))
+                        .foregroundColor(DS.textTertiary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .padding(.horizontal, DS.s20)
+            .padding(.vertical, DS.s14)
         }
     }
 
