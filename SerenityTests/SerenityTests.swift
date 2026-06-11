@@ -192,6 +192,48 @@ final class UserContextTests: XCTestCase {
     }
 }
 
+// MARK: - Companion state
+
+final class CompanionStateTests: XCTestCase {
+    func testSleepyWhenNeglected() {
+        // 3+ days away beats everything else, even a great streak.
+        XCTAssertEqual(
+            CompanionState.derive(daysSinceLastCheckIn: 4, recentAvgMood: 3.5, streak: 10),
+            .sleepy)
+    }
+
+    func testAnxiousOnSustainedLowMood() {
+        XCTAssertEqual(
+            CompanionState.derive(daysSinceLastCheckIn: 0, recentAvgMood: 0.8, streak: 4),
+            .anxious)
+    }
+
+    func testBloomingOnLongStreak() {
+        XCTAssertEqual(
+            CompanionState.derive(daysSinceLastCheckIn: 0, recentAvgMood: 3.0, streak: 7),
+            .blooming)
+    }
+
+    func testCalmIsTheDefault() {
+        XCTAssertEqual(
+            CompanionState.derive(daysSinceLastCheckIn: 1, recentAvgMood: 2.5, streak: 3),
+            .calm)
+    }
+
+    func testNeglectBeatsLowMood() {
+        // Both conditions true → neglect (sleepy) wins by design.
+        XCTAssertEqual(
+            CompanionState.derive(daysSinceLastCheckIn: 5, recentAvgMood: 0.5, streak: 0),
+            .sleepy)
+    }
+
+    func testFreshUserWithNoHistoryIsCalm() {
+        XCTAssertEqual(
+            CompanionState.derive(daysSinceLastCheckIn: nil, recentAvgMood: nil, streak: 0),
+            .calm)
+    }
+}
+
 // MARK: - ChatMessage backward compatibility
 
 final class ChatMessageCompatibilityTests: XCTestCase {

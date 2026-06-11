@@ -231,6 +231,27 @@
 "psychologist.no_api_key" = "AI не настроен";
 "psychologist.error" = "Сейчас нет связи с AI. Попробуй позже или открой упражнение заземления.";
 "chat.disclaimer.accept" = "Понимаю";
+
+/* Companion */
+"companion.name" = "Лу";
+"companion.friend" = "друг";
+"companion.a11y.blooming" = "Твой компаньон цветёт";
+"companion.a11y.calm" = "Твой компаньон спокоен";
+"companion.a11y.sleepy" = "Твой компаньон задремал";
+"companion.a11y.anxious" = "Твой компаньон переживает";
+"companion.a11y.hint" = "Нажми, чтобы услышать Лу";
+"companion.blooming.1" = "%streak% дней подряд, %name%! Я так горжусь тобой ✨";
+"companion.blooming.2" = "Ты в последнее время светишься, %name%. Так держать!";
+"companion.blooming.3" = "Смотри, как мы идём — %streak% дней вместе!";
+"companion.calm.1" = "Привет, %name%. Как ты на самом деле?";
+"companion.calm.2" = "Я сегодня рядом с тобой.";
+"companion.calm.3" = "Тихая отметка держит нас вместе.";
+"companion.sleepy.1" = "Я скучал по тебе, %name%... отметимся?";
+"companion.sleepy.2" = "*зевает* Ты вернулся! Я задремал в ожидании.";
+"companion.anxious.1" = "Непростые были дни, да? Пройдём через это вместе.";
+"companion.anxious.2" = "Я немного за тебя переживаю. Подышим вместе?";
+"companion.notif.title" = "Лу скучает по тебе";
+"companion.notif.body" = "Прошло несколько дней. Короткая отметка — и Лу снова счастлив 🦦";
 "chat.empty.title" = "Здесь можно говорить";
 "chat.empty.subtitle" = "Поделись, что у тебя на душе.\nЯ здесь.";
 "chat.welcome" = "Привет! Я здесь, чтобы поддержать тебя. Расскажи, что тебя беспокоит?";

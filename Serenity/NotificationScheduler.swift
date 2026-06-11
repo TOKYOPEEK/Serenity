@@ -17,6 +17,21 @@ struct NotificationScheduler {
         }
     }
 
+    /// Schedules a one-off "the companion misses you" nudge `afterDays` from now,
+    /// replacing any previous one. Call on each check-in to push it forward.
+    func scheduleCompanionNudge(afterDays days: Int = 3) {
+        let id = "companion_miss"
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [id])
+        let content = UNMutableNotificationContent()
+        content.title = L("companion.notif.title")
+        content.body  = L("companion.notif.body")
+        content.sound = .default
+        let trigger = UNTimeIntervalNotificationTrigger(
+            timeInterval: TimeInterval(days * 86_400), repeats: false)
+        center.add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
+    }
+
     func scheduleSOSFollowUp() {
         let content = UNMutableNotificationContent()
         content.title = L("notification.sos.title")

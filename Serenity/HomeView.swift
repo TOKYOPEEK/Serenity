@@ -18,6 +18,8 @@ struct HomeView: View {
                 VStack(spacing: DS.s20) {
                     headerSection
                         .padding(.top, DS.s8)
+                    CompanionView(state: appVM.companionState)
+                        .padding(.top, DS.s4)
                     moodHeroCard
                     quickActionsRow
                     if !appVM.moodEntries.isEmpty { recentMoodSection }
