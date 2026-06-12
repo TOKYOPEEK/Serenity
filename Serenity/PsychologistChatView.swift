@@ -98,6 +98,8 @@ struct PsychologistChatView: View {
             // Pinning the composer here lets SwiftUI keep it above the keyboard
             // automatically; the bottom padding clears the floating tab bar
             // while it's visible (it slides away once typing starts).
+            // One opaque background must cover the WHOLE inset (banner, chips,
+            // input and the tab-bar gap), or scrolled messages bleed through.
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 VStack(spacing: 0) {
                     if let err = viewModel.errorMessage { errorBanner(err) }
@@ -105,6 +107,16 @@ struct PsychologistChatView: View {
                     inputArea
                 }
                 .padding(.bottom, inputFocused ? 0 : 78)
+                .background {
+                    ZStack {
+                        Rectangle().fill(.thinMaterial)
+                        Rectangle().fill(appBG.opacity(0.55))
+                    }
+                    .overlay(alignment: .top) {
+                        Divider().background(DS.strokeSubtle)
+                    }
+                    .ignoresSafeArea()
+                }
                 .animation(DS.springSnappy, value: inputFocused)
             }
 
@@ -330,7 +342,6 @@ struct PsychologistChatView: View {
             .buttonStyle(ScaleButtonStyle())
         }
         .padding(.horizontal, DS.s16).padding(.vertical, DS.s12)
-        .background(ZStack { Rectangle().fill(.thinMaterial); Rectangle().fill(appBG.opacity(0.5)) })
     }
 }
 
