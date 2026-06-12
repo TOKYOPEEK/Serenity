@@ -233,25 +233,6 @@
 "chat.disclaimer.accept" = "I understand";
 
 /* Companion */
-"companion.name" = "Lu";
-"companion.friend" = "friend";
-"companion.a11y.blooming" = "Your companion is thriving";
-"companion.a11y.calm" = "Your companion is calm";
-"companion.a11y.sleepy" = "Your companion is dozing off";
-"companion.a11y.anxious" = "Your companion seems worried";
-"companion.a11y.hint" = "Tap to hear from Lu";
-"companion.blooming.1" = "%streak% days in a row, %name%! I'm so proud of you ✨";
-"companion.blooming.2" = "You're glowing lately, %name%. Keep it up!";
-"companion.blooming.3" = "Look at us go — %streak% days strong together!";
-"companion.calm.1" = "Hey %name%. How are you, really?";
-"companion.calm.2" = "I'm right here with you today.";
-"companion.calm.3" = "A quiet check-in keeps us close.";
-"companion.sleepy.1" = "I missed you, %name%... let's check in?";
-"companion.sleepy.2" = "*yawn* You're back! I dozed off waiting.";
-"companion.anxious.1" = "Rough few days, huh? We'll get through it together.";
-"companion.anxious.2" = "I'm a little worried about you. Want to breathe with me?";
-"companion.notif.title" = "Lu misses you";
-"companion.notif.body" = "It's been a few days. A quick check-in keeps Lu happy 🦦";
 "chat.empty.title" = "Your space to talk";
 "chat.empty.subtitle" = "Share what's on your mind.\nI'm here to listen.";
 "chat.welcome" = "Hi! I'm here to support you. What's on your mind today?";

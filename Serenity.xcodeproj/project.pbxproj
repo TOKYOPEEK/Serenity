@@ -32,8 +32,6 @@
 		F3F3F3F3F3F3F3F3F3F3F302 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F3F3F3F3F3F3F3F3F3F301 /* Secrets.swift */; };
 		F4F4F4F4F4F4F4F4F4F4F402 /* UserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4F4F4F4F4F4F4F4F4F401 /* UserContext.swift */; };
 		F7F7F7F7F7F7F7F7F7F7F702 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F7F7F7F7F7F7F7F7F7F701 /* HealthStore.swift */; };
-		F5F5F5F5F5F5F5F5F5F5F502 /* Companion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5F5F5F5F5F5F5F5F5F501 /* Companion.swift */; };
-		F6F6F6F6F6F6F6F6F6F6F602 /* CompanionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F6F6F6F6F6F6F6F6F6F601 /* CompanionView.swift */; };
 		F8AE38F0DBB24ED1ADEA8F77 /* WellnessViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A580B0828F47414A976877DA /* WellnessViews.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,8 +72,6 @@
 		F3F3F3F3F3F3F3F3F3F3F301 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		F4F4F4F4F4F4F4F4F4F4F401 /* UserContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContext.swift; sourceTree = "<group>"; };
 		F7F7F7F7F7F7F7F7F7F7F701 /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
-		F5F5F5F5F5F5F5F5F5F5F501 /* Companion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companion.swift; sourceTree = "<group>"; };
-		F6F6F6F6F6F6F6F6F6F6F601 /* CompanionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionView.swift; sourceTree = "<group>"; };
 		E2E2E2E2E2E2E2E2E2E2E204 /* SerenityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerenityTests.swift; sourceTree = "<group>"; };
 		E99D5D0912724603841DDAD3 /* ProgramViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramViews.swift; sourceTree = "<group>"; };
 		F1A2B3C4D5E64F7A8B9C0D1E /* MoodCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCalendarView.swift; sourceTree = "<group>"; };
@@ -128,7 +124,6 @@
 				F3F3F3F3F3F3F3F3F3F3F301 /* Secrets.swift */,
 				F4F4F4F4F4F4F4F4F4F4F401 /* UserContext.swift */,
 				F7F7F7F7F7F7F7F7F7F7F701 /* HealthStore.swift */,
-				F5F5F5F5F5F5F5F5F5F5F501 /* Companion.swift */,
 				11AA22BB33CC44DD55EE66F1 /* PersistenceStore.swift */,
 				11AA22BB33CC44DD55EE66F3 /* NotificationScheduler.swift */,
 				11AA22BB33CC44DD55EE66F5 /* LLMClient.swift */,
@@ -145,7 +140,6 @@
 				F1A2B3C4D5E64F7A8B9C0D1E /* MoodCalendarView.swift */,
 				A580B0828F47414A976877DA /* WellnessViews.swift */,
 				7AC2A151686D46D0B4F7F7BC /* PsychologistChatView.swift */,
-				F6F6F6F6F6F6F6F6F6F6F601 /* CompanionView.swift */,
 				C4C1BDABBE6940D1AC642F6E /* Assets.xcassets */,
 				148AED7D890A4BE2899201F5 /* Localizable.strings */,
 				7ED0144275D14ACC9C9C8B2E /* Serenity.entitlements */,
@@ -267,8 +261,6 @@
 				F3F3F3F3F3F3F3F3F3F3F302 /* Secrets.swift in Sources */,
 				F4F4F4F4F4F4F4F4F4F4F402 /* UserContext.swift in Sources */,
 				F7F7F7F7F7F7F7F7F7F7F702 /* HealthStore.swift in Sources */,
-				F5F5F5F5F5F5F5F5F5F5F502 /* Companion.swift in Sources */,
-				F6F6F6F6F6F6F6F6F6F6F602 /* CompanionView.swift in Sources */,
 				11AA22BB33CC44DD55EE66F2 /* PersistenceStore.swift in Sources */,
 				11AA22BB33CC44DD55EE66F4 /* NotificationScheduler.swift in Sources */,
 				11AA22BB33CC44DD55EE66F6 /* LLMClient.swift in Sources */,

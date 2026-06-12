@@ -162,8 +162,6 @@ class AppViewModel: ObservableObject {
         moodEntries.insert(entry, at: 0)
         checkBadges()
         saveMoodEntries()
-        // Push the companion's "I miss you" nudge forward on every check-in.
-        notifications.scheduleCompanionNudge()
     }
 
     func deleteMoodEntry(_ entry: MoodEntry) {
@@ -260,33 +258,6 @@ class AppViewModel: ObservableObject {
     /// Consecutive days with at least one check-in, derived from `moodEntries`.
     var streak: Int {
         Streaks.consecutiveDays(containing: moodEntries.map { $0.date })
-    }
-
-    // MARK: - Companion
-    /// Whole days since the most recent check-in (nil when there are none).
-    var daysSinceLastCheckIn: Int? {
-        guard let last = moodEntries.map({ $0.date }).max() else { return nil }
-        let cal = Calendar.current
-        return cal.dateComponents([.day], from: cal.startOfDay(for: last),
-                                  to: cal.startOfDay(for: Date())).day
-    }
-
-    /// Average mood over the last 7 days, or nil if too few entries to judge.
-    private var recentAvgMood: Double? {
-        let cal = Calendar.current
-        guard let weekAgo = cal.date(byAdding: .day, value: -7, to: Date()) else { return nil }
-        let recent = moodEntries.filter { $0.date >= weekAgo }
-        guard recent.count >= 3 else { return nil }
-        return Double(recent.map { $0.moodIndex }.reduce(0, +)) / Double(recent.count)
-    }
-
-    /// Current mood of the companion, derived live from the user's activity.
-    var companionState: CompanionState {
-        CompanionState.derive(
-            daysSinceLastCheckIn: daysSinceLastCheckIn,
-            recentAvgMood: recentAvgMood,
-            streak: streak
-        )
     }
 
     func checkBadges() {
