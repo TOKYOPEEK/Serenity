@@ -9,6 +9,8 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Serenity uses Face ID to lock your private mood and journal entries so only you can open them.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Serenity reads your sleep, resting heart rate and steps to help connect how your body and mood relate, and to personalise your insights.</string>
 	<key>UIBackgroundModes</key>
