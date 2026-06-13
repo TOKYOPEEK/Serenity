@@ -11,5 +11,9 @@
 	</dict>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Serenity reads your sleep, resting heart rate and steps to help connect how your body and mood relate, and to personalise your insights.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 </dict>
 </plist>

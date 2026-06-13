@@ -60,6 +60,21 @@
 "home.tools" = "Инструменты";
 "home.habits" = "Привычки";
 "home.affirmation.personalize" = "Сделать личной";
+
+/* Focus */
+"focus.title" = "Фокус";
+"focus.focus" = "Фокус";
+"focus.break" = "Перерыв";
+"focus.start" = "Старт";
+"focus.pause" = "Пауза";
+"focus.reset" = "Сброс";
+"focus.skip" = "Пропустить";
+"focus.sessions" = "Сессий: %d";
+"focus.sound" = "Фоновый звук";
+"sound.off" = "Выкл";
+"sound.brown" = "Коричневый";
+"sound.pink" = "Розовый";
+"sound.white" = "Белый";
 "share.button" = "Поделиться неделей";
 "share.tagline" = "Моя неделя · Serenity";
 "share.week_mood" = "среднее настроение за неделю";

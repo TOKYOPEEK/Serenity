@@ -60,6 +60,21 @@
 "home.tools" = "Tools";
 "home.habits" = "Habits";
 "home.affirmation.personalize" = "Make it personal";
+
+/* Focus */
+"focus.title" = "Focus";
+"focus.focus" = "Focus";
+"focus.break" = "Break";
+"focus.start" = "Start";
+"focus.pause" = "Pause";
+"focus.reset" = "Reset";
+"focus.skip" = "Skip";
+"focus.sessions" = "%d sessions done";
+"focus.sound" = "Ambient sound";
+"sound.off" = "Off";
+"sound.brown" = "Brown";
+"sound.pink" = "Pink";
+"sound.white" = "White";
 "share.button" = "Share my week";
 "share.tagline" = "My week · Serenity";
 "share.week_mood" = "average mood this week";

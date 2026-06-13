@@ -13,6 +13,7 @@ struct HomeView: View {
     @State private var showCopingPlan   = false
     @State private var showHabits       = false
     @State private var affirmationLoading = false
+    @State private var showFocus        = false
     @State private var selectedProgram: WellnessProgram?
     @State private var animateIn        = false
 
@@ -73,6 +74,10 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showHabits) {
             HabitsView()
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showFocus) {
+            FocusView()
                 .presentationDragIndicator(.visible)
         }
         .sheet(item: $selectedProgram) { prog in
@@ -274,6 +279,9 @@ struct HomeView: View {
                          title: L("cbt.coping.title"),
                          color: appVM.selectedTheme.secondaryColor) { showCopingPlan = true }
             }
+            ToolCard(icon: "timer",
+                     title: L("focus.title"),
+                     color: appVM.selectedTheme.primaryColor) { showFocus = true }
         }
     }
 
