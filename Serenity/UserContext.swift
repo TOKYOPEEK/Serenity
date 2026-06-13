@@ -53,6 +53,13 @@ enum UserContext {
             lines.append("Tends to feel lowest on \(tough).")
         }
 
+        // Most-named feelings (emotion wheel) over the recent window.
+        let emotionCounts = recent.flatMap { $0.emotionNames }.reduce(into: [String: Int]()) { $0[$1, default: 0] += 1 }
+        let topEmotions = emotionCounts.sorted { $0.value > $1.value }.prefix(3).map { $0.key }
+        if !topEmotions.isEmpty {
+            lines.append("Often names these feelings: \(topEmotions.joined(separator: ", ")).")
+        }
+
         // Latest journal entry, trimmed — gives the AI something concrete and current.
         if let last = journals.max(by: { $0.date < $1.date }) {
             let snippet = last.content.trimmingCharacters(in: .whitespacesAndNewlines).prefix(160)

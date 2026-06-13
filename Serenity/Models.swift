@@ -101,12 +101,32 @@ struct MoodEntry: Codable, Identifiable {
     var tags: [String]
     var note: String
     var aiInsight: AIInsight?
+    /// Specific named feelings (emotion wheel). Optional so entries saved
+    /// before this field still decode cleanly.
+    var emotions: [String]?
 
     var moodEmoji: String { ["😔", "😕", "😐", "🙂", "😊"][moodIndex] }
 
     var moodName: String {
         [L("mood.veryBad"), L("mood.bad"), L("mood.neutral"),
          L("mood.good"), L("mood.great")][moodIndex]
+    }
+
+    /// Localized names of the chosen emotions.
+    var emotionNames: [String] { (emotions ?? []).map { L("emotion.\($0)") } }
+}
+
+/// Emotion-wheel options, grouped by mood level (0 = rough … 4 = great), so the
+/// user names the feeling precisely in the language of their current state.
+enum EmotionWheel {
+    static func options(for moodIndex: Int) -> [String] {
+        switch moodIndex {
+        case 0:  return ["overwhelmed", "hopeless", "anxious", "exhausted", "angry", "numb"]
+        case 1:  return ["sad", "worried", "tired", "lonely", "irritated", "stressed"]
+        case 2:  return ["calm", "meh", "neutral", "content", "unsure", "restless"]
+        case 3:  return ["happy", "relaxed", "hopeful", "motivated", "grateful", "focused"]
+        default: return ["joyful", "excited", "proud", "energized", "loved", "inspired"]
+        }
     }
 }
 

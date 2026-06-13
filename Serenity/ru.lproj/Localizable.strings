@@ -75,6 +75,39 @@
 "checkin.note.placeholder" = "Добавь заметку (по желанию)";
 "checkin.get_insight" = "Получить совет AI";
 "checkin.ai.loading" = "Генерирую совет...";
+"checkin.emotion.question" = "Назови чувство точнее (по желанию)";
+
+/* Emotions (emotion wheel) */
+"emotion.overwhelmed" = "Перегружен";
+"emotion.hopeless" = "Безнадёжность";
+"emotion.anxious" = "Тревога";
+"emotion.exhausted" = "Истощён";
+"emotion.angry" = "Злость";
+"emotion.numb" = "Опустошён";
+"emotion.sad" = "Грусть";
+"emotion.worried" = "Беспокойство";
+"emotion.tired" = "Усталость";
+"emotion.lonely" = "Одиночество";
+"emotion.irritated" = "Раздражение";
+"emotion.stressed" = "Напряжение";
+"emotion.calm" = "Спокойствие";
+"emotion.meh" = "Так себе";
+"emotion.neutral" = "Нейтрально";
+"emotion.content" = "Умиротворён";
+"emotion.unsure" = "Неуверенность";
+"emotion.restless" = "Беспокойно";
+"emotion.happy" = "Радость";
+"emotion.relaxed" = "Расслаблен";
+"emotion.hopeful" = "Надежда";
+"emotion.motivated" = "Мотивация";
+"emotion.grateful" = "Благодарность";
+"emotion.focused" = "Сосредоточен";
+"emotion.joyful" = "Ликование";
+"emotion.excited" = "Воодушевление";
+"emotion.proud" = "Гордость";
+"emotion.energized" = "Полон сил";
+"emotion.loved" = "Любим";
+"emotion.inspired" = "Вдохновлён";
 
 /* Tags */
 "tag.work" = "Работа";

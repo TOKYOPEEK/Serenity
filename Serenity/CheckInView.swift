@@ -8,6 +8,7 @@ struct CheckInView: View {
     @State private var moodIndex:     Int    = 2
     @State private var energyLevel:   Double = 0.5
     @State private var stressLevel:   Double = 0.5
+    @State private var selectedEmotions: Set<String> = []
     @State private var selectedTags:  Set<String> = []
     @State private var note:          String = ""
     @State private var isLoading      = false
@@ -57,6 +58,14 @@ struct CheckInView: View {
                 .foregroundColor(DS.textPrimary)
                 .multilineTextAlignment(.center)
             MoodOrbPicker(selected: $moodIndex)
+                .onChange(of: moodIndex) { _ in selectedEmotions.removeAll() }
+
+            VStack(spacing: DS.s12) {
+                Text(L("checkin.emotion.question"))
+                    .font(.app(size: 14, weight: .medium, design: .rounded))
+                    .foregroundColor(DS.textTertiary)
+                EmotionPicker(moodIndex: moodIndex, selected: $selectedEmotions)
+            }
         }
     }
 
@@ -159,7 +168,8 @@ struct CheckInView: View {
             energyLevel: energyLevel,
             stressLevel: stressLevel,
             tags:        Array(selectedTags),
-            note:        note
+            note:        note,
+            emotions:    Array(selectedEmotions)
         )
 
         isLoading = true
@@ -224,6 +234,32 @@ private struct MoodOrbPicker: View {
                 }
             }
             .padding(DS.s16)
+        }
+    }
+}
+
+// MARK: - EmotionPicker (emotion wheel)
+private struct EmotionPicker: View {
+    let moodIndex: Int
+    @Binding var selected: Set<String>
+
+    private let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+
+    var body: some View {
+        LazyVGrid(columns: columns, spacing: DS.s10) {
+            ForEach(EmotionWheel.options(for: moodIndex), id: \.self) { emotion in
+                TagChip(
+                    title: L("emotion.\(emotion)"),
+                    isSelected: selected.contains(emotion)
+                ) {
+                    HapticManager.impact(.light)
+                    if selected.contains(emotion) {
+                        selected.remove(emotion)
+                    } else {
+                        selected.insert(emotion)
+                    }
+                }
+            }
         }
     }
 }
@@ -343,6 +379,7 @@ private func fetchMoodInsight(entry: MoodEntry, appVM: AppViewModel) async throw
     let prompt = """
     User mood check-in:
     - Mood: \(entry.moodEmoji) \(entry.moodName)
+    - Feelings: \(entry.emotionNames.joined(separator: ", "))
     - Energy: \(Int(entry.energyLevel * 100))%
     - Stress: \(Int(entry.stressLevel * 100))%
     - Tags: \(entry.tags.joined(separator: ", "))

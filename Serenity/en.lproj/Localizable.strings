@@ -75,6 +75,39 @@
 "checkin.note.placeholder" = "Add a note (optional)";
 "checkin.get_insight" = "Get AI Insight";
 "checkin.ai.loading" = "Generating your insight...";
+"checkin.emotion.question" = "Name it more precisely (optional)";
+
+/* Emotions (emotion wheel) */
+"emotion.overwhelmed" = "Overwhelmed";
+"emotion.hopeless" = "Hopeless";
+"emotion.anxious" = "Anxious";
+"emotion.exhausted" = "Exhausted";
+"emotion.angry" = "Angry";
+"emotion.numb" = "Numb";
+"emotion.sad" = "Sad";
+"emotion.worried" = "Worried";
+"emotion.tired" = "Tired";
+"emotion.lonely" = "Lonely";
+"emotion.irritated" = "Irritated";
+"emotion.stressed" = "Stressed";
+"emotion.calm" = "Calm";
+"emotion.meh" = "Meh";
+"emotion.neutral" = "Neutral";
+"emotion.content" = "Content";
+"emotion.unsure" = "Unsure";
+"emotion.restless" = "Restless";
+"emotion.happy" = "Happy";
+"emotion.relaxed" = "Relaxed";
+"emotion.hopeful" = "Hopeful";
+"emotion.motivated" = "Motivated";
+"emotion.grateful" = "Grateful";
+"emotion.focused" = "Focused";
+"emotion.joyful" = "Joyful";
+"emotion.excited" = "Excited";
+"emotion.proud" = "Proud";
+"emotion.energized" = "Energized";
+"emotion.loved" = "Loved";
+"emotion.inspired" = "Inspired";
 
 /* Tags */
 "tag.work" = "Work";
