@@ -70,6 +70,9 @@ struct RootView: View {
 struct FaceLockView: View {
     @EnvironmentObject var appVM: AppViewModel
     @State private var isAuthenticating = false
+    @State private var didAutoPrompt = false
+    /// Hold the automatic Face ID prompt back until the launch splash has played.
+    var autoPromptDelay: Double = 2.4
 
     var body: some View {
         ZStack {
@@ -105,7 +108,13 @@ struct FaceLockView: View {
                 .disabled(isAuthenticating)
             }
         }
-        .onAppear { authenticate() }
+        .onAppear {
+            guard !didAutoPrompt else { return }
+            didAutoPrompt = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + autoPromptDelay) {
+                authenticate()
+            }
+        }
     }
 
     private func authenticate() {
