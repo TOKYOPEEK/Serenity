@@ -220,6 +220,11 @@
 "checkin.get_insight" = "Получить совет AI";
 "checkin.ai.loading" = "Генерирую совет...";
 "checkin.emotion.question" = "Назови чувство точнее (по желанию)";
+"moodpad.flow" = "В потоке";
+"moodpad.tense" = "Взвинчен";
+"moodpad.calm" = "Спокоен";
+"moodpad.drained" = "Вымотан";
+"moodpad.hint" = "Двигай точку — вверх энергия, вправо напряжение";
 
 /* Emotions (emotion wheel) */
 "emotion.overwhelmed" = "Перегружен";

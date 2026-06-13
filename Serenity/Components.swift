@@ -271,22 +271,37 @@ extension SheetHeader where Trailing == EmptyView {
 
 // MARK: - EmptyStateView
 struct EmptyStateView: View {
+    @EnvironmentObject var appVM: AppViewModel
     let icon: String
     let title: String
     let subtitle: String
 
     var body: some View {
-        VStack(spacing: DS.s12) {
-            Image(systemName: icon)
-                .font(.app(size: 40, weight: .light))
-                .foregroundColor(DS.textTertiary)
-            Text(title)
-                .font(.app(size: 17, weight: .medium))
-                .foregroundColor(DS.textSecondary)
-            Text(subtitle)
-                .font(.app(size: 14, weight: .regular, design: .rounded))
-                .foregroundColor(DS.textTertiary)
-                .multilineTextAlignment(.center)
+        VStack(spacing: DS.s16) {
+            ZStack {
+                Circle()
+                    .fill(appVM.selectedTheme.primaryColor.opacity(0.22))
+                    .frame(width: 96, height: 96)
+                    .blur(radius: 22)
+                ZStack {
+                    Circle()
+                        .fill(appVM.selectedTheme.primaryColor.opacity(0.14))
+                        .frame(width: 72, height: 72)
+                    Image(systemName: icon)
+                        .font(.app(size: 28, weight: .regular))
+                        .foregroundStyle(appVM.selectedTheme.gradient)
+                }
+            }
+            VStack(spacing: DS.s6) {
+                Text(title)
+                    .font(.app(size: 17, weight: .semibold))
+                    .foregroundColor(DS.textPrimary)
+                Text(subtitle)
+                    .font(.app(size: 14, weight: .regular, design: .rounded))
+                    .foregroundColor(DS.textTertiary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
         .padding(DS.s32)
     }

@@ -220,6 +220,11 @@
 "checkin.get_insight" = "Get AI Insight";
 "checkin.ai.loading" = "Generating your insight...";
 "checkin.emotion.question" = "Name it more precisely (optional)";
+"moodpad.flow" = "In flow";
+"moodpad.tense" = "Tense";
+"moodpad.calm" = "Calm";
+"moodpad.drained" = "Drained";
+"moodpad.hint" = "Drag the dot — up for energy, right for tension";
 
 /* Emotions (emotion wheel) */
 "emotion.overwhelmed" = "Overwhelmed";

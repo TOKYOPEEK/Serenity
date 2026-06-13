@@ -70,27 +70,19 @@ struct CheckInView: View {
     }
 
     private var energyStressStep: some View {
-        VStack(spacing: DS.s28) {
+        VStack(spacing: DS.s20) {
             Text(L("checkin.energy_stress.question"))
                 .font(.app(size: 20, weight: .bold))
                 .foregroundColor(DS.textPrimary)
                 .multilineTextAlignment(.center)
 
-            GlassCard {
-                VStack(spacing: DS.s24) {
-                    SmoothSlider(
-                        value: $energyLevel,
-                        accentColor: appVM.selectedTheme.primaryColor,
-                        label: L("checkin.energy") + " \(Int(energyLevel * 100))%"
-                    )
-                    SmoothSlider(
-                        value: $stressLevel,
-                        accentColor: Color(hex: "F87171"),
-                        label: L("checkin.stress") + " \(Int(stressLevel * 100))%"
-                    )
-                }
-                .padding(DS.s20)
-            }
+            MoodPad(energy: $energyLevel, stress: $stressLevel)
+                .padding(.horizontal, DS.s4)
+
+            Text(L("moodpad.hint"))
+                .font(.app(size: 12, design: .rounded))
+                .foregroundColor(DS.textTertiary)
+                .multilineTextAlignment(.center)
         }
     }
 
@@ -232,6 +224,74 @@ private struct MoodOrbPicker: View {
                 }
             }
             .padding(DS.s16)
+        }
+    }
+}
+
+// MARK: - MoodPad (2D energy × stress field)
+/// One tactile gesture sets both energy (vertical) and stress (horizontal),
+/// replacing two separate sliders.
+private struct MoodPad: View {
+    @EnvironmentObject var appVM: AppViewModel
+    @Binding var energy: Double   // 0 = low (bottom) … 1 = high (top)
+    @Binding var stress: Double    // 0 = calm (left) … 1 = tense (right)
+
+    var body: some View {
+        GeometryReader { geo in
+            let side = geo.size.width
+            ZStack(alignment: .topLeading) {
+                RoundedRectangle(cornerRadius: 26, style: .continuous)
+                    .fill(LinearGradient(
+                        colors: [Color(hex: "6D5DD3").opacity(0.85),
+                                 appVM.selectedTheme.primaryColor.opacity(0.5),
+                                 Color(hex: "E0856B").opacity(0.8)],
+                        startPoint: .bottomLeading, endPoint: .topTrailing))
+                    .overlay(RoundedRectangle(cornerRadius: 26)
+                        .strokeBorder(Color.white.opacity(0.12), lineWidth: 1))
+
+                Path { p in
+                    p.move(to: CGPoint(x: side / 2, y: 8)); p.addLine(to: CGPoint(x: side / 2, y: side - 8))
+                    p.move(to: CGPoint(x: 8, y: side / 2)); p.addLine(to: CGPoint(x: side - 8, y: side / 2))
+                }.stroke(Color.white.opacity(0.10), lineWidth: 1)
+
+                cornerLabels
+
+                handle.position(x: stress * side, y: (1 - energy) * side)
+            }
+            .frame(width: side, height: side)
+            .contentShape(RoundedRectangle(cornerRadius: 26))
+            .gesture(DragGesture(minimumDistance: 0)
+                .onChanged { v in
+                    stress = min(1, max(0, Double(v.location.x / side)))
+                    energy = min(1, max(0, 1 - Double(v.location.y / side)))
+                }
+                .onEnded { _ in HapticManager.impact(.light) })
+        }
+        .aspectRatio(1, contentMode: .fit)
+    }
+
+    private var cornerLabels: some View {
+        VStack {
+            HStack {
+                Text(L("moodpad.flow")); Spacer(); Text(L("moodpad.tense"))
+            }
+            Spacer()
+            HStack {
+                Text(L("moodpad.calm")); Spacer(); Text(L("moodpad.drained"))
+            }
+        }
+        .font(.app(size: 11, weight: .medium, design: .rounded))
+        .foregroundColor(.white.opacity(0.75))
+        .padding(DS.s16)
+    }
+
+    private var handle: some View {
+        ZStack {
+            Circle().fill(appVM.selectedTheme.primaryColor.opacity(0.45))
+                .frame(width: 52, height: 52).blur(radius: 8)
+            Circle().fill(Color.white).frame(width: 26, height: 26)
+            Circle().strokeBorder(appVM.selectedTheme.primaryColor, lineWidth: 2)
+                .frame(width: 26, height: 26)
         }
     }
 }
