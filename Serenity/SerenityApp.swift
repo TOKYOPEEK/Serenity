@@ -17,6 +17,7 @@ struct SerenityApp: App {
 struct RootView: View {
     @EnvironmentObject var appVM: AppViewModel
     @State private var isResigningActive = false
+    @State private var showSplash = true
 
     var body: some View {
         ZStack {
@@ -29,6 +30,16 @@ struct RootView: View {
             } else {
                 OnboardingView()
             }
+
+            if showSplash {
+                SplashView()
+                    .transition(.opacity)
+                    .zIndex(1)
+            }
+        }
+        .task {
+            try? await Task.sleep(nanoseconds: 1_900_000_000)
+            withAnimation(.easeInOut(duration: 0.5)) { showSplash = false }
         }
         .animation(.easeInOut(duration: 0.4), value: appVM.isOnboardingComplete)
         .animation(.easeInOut(duration: 0.3), value: appVM.isUnlocked)
