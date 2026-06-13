@@ -218,6 +218,43 @@ final class UserContextTests: XCTestCase {
     }
 }
 
+// MARK: - Correlations (#9 activity influences)
+
+final class CorrelationsTests: XCTestCase {
+    private func entry(_ mood: Int, _ tags: [String]) -> MoodEntry {
+        MoodEntry(moodIndex: mood, energyLevel: 0.5, stressLevel: 0.5, tags: tags, note: "")
+    }
+
+    func testTooLittleHistoryGivesNothing() {
+        let r = Correlations.activityInfluences(from: [entry(4, ["exercise"]), entry(0, ["work"])])
+        XCTAssertTrue(r.lifts.isEmpty && r.weighs.isEmpty)
+    }
+
+    func testExerciseLiftsAndWorkWeighs() {
+        // Exercise days are great (4), work days are rough (0), baseline mixed.
+        let moods = [
+            entry(4, ["exercise"]), entry(4, ["exercise"]), entry(4, ["exercise"]),
+            entry(0, ["work"]),     entry(0, ["work"]),     entry(1, ["work"]),
+            entry(2, ["food"]),     entry(2, ["food"])
+        ]
+        let r = Correlations.activityInfluences(from: moods)
+        XCTAssertEqual(r.lifts.first?.tag, "exercise")
+        XCTAssertGreaterThan(r.lifts.first?.delta ?? 0, 0)
+        XCTAssertEqual(r.weighs.first?.tag, "work")
+        XCTAssertLessThan(r.weighs.first?.delta ?? 0, 0)
+    }
+
+    func testRareTagsAreIgnored() {
+        // "travel" appears only twice (< minCount 3) → not reported despite extremes.
+        let moods = [
+            entry(4, ["travel"]), entry(4, ["travel"]),
+            entry(2, ["work"]), entry(2, ["work"]), entry(2, ["work"]), entry(2, ["work"])
+        ]
+        let r = Correlations.activityInfluences(from: moods)
+        XCTAssertFalse(r.lifts.contains { $0.tag == "travel" })
+    }
+}
+
 // MARK: - ChatMessage backward compatibility
 
 final class ChatMessageCompatibilityTests: XCTestCase {

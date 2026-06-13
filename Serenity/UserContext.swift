@@ -87,6 +87,20 @@ enum UserContext {
             if h.shortSleepLowersMood == true {
                 lines.append("Mood tends to be lower after nights of shorter-than-usual sleep.")
             }
+            if h.moreStepsLiftsMood == true {
+                lines.append("Mood tends to be better on more active (higher-step) days.")
+            }
+        }
+
+        // What activities lift or weigh on mood (correlation).
+        let influences = Correlations.activityInfluences(from: moods)
+        let liftTags  = influences.lifts.map  { L("tag.\($0.tag)") }
+        let weighTags = influences.weighs.map { L("tag.\($0.tag)") }
+        if !liftTags.isEmpty {
+            lines.append("Mood is usually higher around: \(liftTags.joined(separator: ", ")).")
+        }
+        if !weighTags.isEmpty {
+            lines.append("Mood tends to dip around: \(weighTags.joined(separator: ", ")).")
         }
 
         guard !lines.isEmpty else { return nil }

@@ -489,6 +489,10 @@
 "analytics.health.heart_unit" = "bpm";
 "analytics.health.steps_unit" = "/day";
 "analytics.health.signal" = "Your mood tends to dip after shorter-than-usual sleep.";
+"analytics.health.signal_steps" = "Your mood is usually better on more active days.";
+"analytics.influences.title" = "What influences you";
+"analytics.influences.lifts" = "Lifts your mood";
+"analytics.influences.weighs" = "Weighs on you";
 "analytics.health.empty" = "Connect Apple Health in your profile to see how your body and mood relate.";
 "profile.face_id" = "Face ID Lock";
 "profile.face_id.unavailable.title" = "Passcode Required";

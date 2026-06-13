@@ -489,6 +489,10 @@
 "analytics.health.heart_unit" = "уд/мин";
 "analytics.health.steps_unit" = "/день";
 "analytics.health.signal" = "После более короткого сна твоё настроение обычно ниже.";
+"analytics.health.signal_steps" = "В более активные дни настроение обычно лучше.";
+"analytics.influences.title" = "Что на тебя влияет";
+"analytics.influences.lifts" = "Поднимает настроение";
+"analytics.influences.weighs" = "Забирает силы";
 "analytics.health.empty" = "Подключи Apple Health в профиле, чтобы видеть связь тела и настроения.";
 "profile.face_id" = "Защита Face ID";
 "profile.face_id.unavailable.title" = "Нужен код-пароль";
