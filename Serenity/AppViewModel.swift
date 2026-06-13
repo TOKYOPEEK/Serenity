@@ -534,6 +534,16 @@ class AppViewModel: ObservableObject {
         )
     }
 
+    /// Streaming variant for the chat — yields the reply token-by-token.
+    func streamLLMChat(system: String, messages: [LLMClient.Message], maxTokens: Int) -> AsyncThrowingStream<String, Error> {
+        LLMClient().stream(
+            system: system,
+            messages: messages,
+            maxTokens: maxTokens,
+            config: llmConfig
+        )
+    }
+
     // MARK: - Face ID
     /// Whether the device can verify its owner (biometrics or passcode).
     var isDeviceAuthAvailable: Bool {

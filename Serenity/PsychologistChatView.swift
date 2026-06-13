@@ -49,20 +49,30 @@ class PsychologistViewModel: ObservableObject {
 
         let context = messages.suffix(20).map { LLMClient.Message(role: $0.role.rawValue, content: $0.content) }
         Task { [weak self] in
-            guard let appVM = self?.appVM else { return }
+            guard let self, let appVM = self.appVM else { return }
             // Inject the user's recent history so replies feel personal.
             let system = chatSystemPrompt + UserContext.systemPreamble(appVM.memorySummary)
+            let replyId = UUID()
+            var assembled = ""
             do {
-                let reply = try await appVM.fetchLLMChat(
-                    system: system, messages: context, maxTokens: 600)
-                self?.messages.append(ChatMessage(role: .assistant, content: reply))
+                for try await chunk in appVM.streamLLMChat(system: system, messages: context, maxTokens: 600) {
+                    if assembled.isEmpty {
+                        // First token: drop the typing dots, show the bubble.
+                        self.isTyping = false
+                        self.messages.append(ChatMessage(id: replyId, role: .assistant, content: chunk))
+                    } else if let idx = self.messages.firstIndex(where: { $0.id == replyId }) {
+                        self.messages[idx].content += chunk
+                    }
+                    assembled += chunk
+                }
+                if assembled.isEmpty { self.errorMessage = L("llm.error.empty") }
             } catch is CancellationError {
                 // view model torn down — nothing to show
             } catch {
-                self?.errorMessage = error.localizedDescription
+                self.errorMessage = error.localizedDescription
             }
-            self?.isTyping = false
-            self?.persist()
+            self.isTyping = false
+            self.persist()
         }
     }
 
@@ -268,6 +278,10 @@ struct PsychologistChatView: View {
                 withAnimation {
                     if let lastId = viewModel.messages.last?.id { proxy.scrollTo(lastId, anchor: .bottom) }
                 }
+            }
+            // Keep the newest reply in view as it streams in token-by-token.
+            .onChange(of: viewModel.messages.last?.content) { _ in
+                if let lastId = viewModel.messages.last?.id { proxy.scrollTo(lastId, anchor: .bottom) }
             }
             .onChange(of: viewModel.isTyping) { _ in
                 if viewModel.isTyping { withAnimation { proxy.scrollTo("typing", anchor: .bottom) } }
