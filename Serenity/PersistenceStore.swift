@@ -38,7 +38,6 @@ enum StorageKey {
     static let sosUsed                = "sosUsed"
     static let hasSeenChatDisclaimer  = "hasSeenChatDisclaimer"
     static let healthEnabled          = "healthEnabled"
-    static let healthSnapshot         = "healthSnapshot"
 
     // Keychain
     static let claudeAPIKey = "claudeAPIKey"

@@ -138,9 +138,8 @@ class AppViewModel: ObservableObject {
         self.llmModel = UserDefaults.standard.string(forKey: StorageKey.llmModel) ?? ""
 
         self.healthEnabled = UserDefaults.standard.bool(forKey: StorageKey.healthEnabled)
-        if let data = UserDefaults.standard.data(forKey: StorageKey.healthSnapshot) {
-            self.healthSnapshot = try? JSONDecoder().decode(HealthSnapshot.self, from: data)
-        }
+        // Health-derived data is never persisted (App Store guideline) — it is
+        // recomputed from HealthKit each launch and kept only in memory.
         if healthEnabled { Task { await refreshHealth() } }
     }
 
@@ -423,11 +422,10 @@ class AppViewModel: ObservableObject {
     func disconnectHealth() {
         healthEnabled = false
         healthSnapshot = nil
-        defaults.removeObject(forKey: StorageKey.healthSnapshot)
         save()
     }
 
-    /// Re-reads recent Health metrics and persists the snapshot.
+    /// Re-reads recent Health metrics into memory (never persisted).
     func refreshHealth() async {
         guard healthEnabled else { return }
         let cal = Calendar.current
@@ -435,11 +433,7 @@ class AppViewModel: ObservableObject {
             moodEntries.map { (cal.startOfDay(for: $0.date), $0.moodIndex) },
             uniquingKeysWith: { a, _ in a }
         )
-        let snap = await health.snapshot(moodByDay: moodByDay)
-        healthSnapshot = snap
-        if let data = try? JSONEncoder().encode(snap) {
-            defaults.set(data, forKey: StorageKey.healthSnapshot)
-        }
+        healthSnapshot = await health.snapshot(moodByDay: moodByDay)
     }
 
     // MARK: - LLM
