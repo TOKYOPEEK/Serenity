@@ -33,6 +33,10 @@ class AppViewModel: ObservableObject {
     // Chat persistence
     @Published var chatMessages: [ChatMessage]
 
+    // CBT tools
+    @Published var thoughtRecords: [ThoughtRecord]
+    @Published var copingPlan: [CopingItem]
+
     // Custom tags
     @Published var customTags: [String]
 
@@ -89,6 +93,8 @@ class AppViewModel: ObservableObject {
         self.programs         = store.load([WellnessProgram].self, key: StorageKey.programs)         ?? WellnessProgram.defaultPrograms
         self.badges           = store.load([Badge].self,           key: StorageKey.badges)           ?? Badge.defaultBadges
         self.chatMessages     = store.load([ChatMessage].self,     key: StorageKey.chatMessages)     ?? []
+        self.thoughtRecords   = store.load([ThoughtRecord].self,   key: StorageKey.thoughtRecords)   ?? []
+        self.copingPlan       = store.load([CopingItem].self,      key: StorageKey.copingPlan)       ?? []
 
         self.userGoals  = UserDefaults.standard.array(forKey: StorageKey.userGoals) as? [String] ?? []
         self.customTags = UserDefaults.standard.array(forKey: StorageKey.customTags) as? [String] ?? []
@@ -157,6 +163,17 @@ class AppViewModel: ObservableObject {
     private func savePrograms()         { store.save(programs,         key: StorageKey.programs) }
     private func saveBadges()           { store.save(badges,           key: StorageKey.badges) }
     private func saveChat()             { store.save(chatMessages,     key: StorageKey.chatMessages) }
+    private func saveThoughtRecords()   { store.save(thoughtRecords,   key: StorageKey.thoughtRecords) }
+    func saveCopingPlan()               { store.save(copingPlan,       key: StorageKey.copingPlan) }
+
+    func addThoughtRecord(_ record: ThoughtRecord) {
+        thoughtRecords.insert(record, at: 0)
+        saveThoughtRecords()
+    }
+    func deleteThoughtRecord(_ record: ThoughtRecord) {
+        thoughtRecords.removeAll { $0.id == record.id }
+        saveThoughtRecords()
+    }
 
     func addMoodEntry(_ entry: MoodEntry) {
         moodEntries.insert(entry, at: 0)

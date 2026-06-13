@@ -10,6 +10,8 @@ enum StorageKey {
     static let programs         = "programs"
     static let badges           = "badges"
     static let chatMessages     = "chatMessages"
+    static let thoughtRecords   = "thoughtRecords"
+    static let copingPlan       = "copingPlan"
 
     // Scalar settings — UserDefaults
     static let isOnboardingComplete   = "isOnboardingComplete"

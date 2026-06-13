@@ -9,6 +9,8 @@ struct HomeView: View {
     @State private var showWeeklyReport = false
     @State private var showLimitAlert   = false
     @State private var showAllPrograms  = false
+    @State private var showReframe      = false
+    @State private var showCopingPlan   = false
     @State private var selectedProgram: WellnessProgram?
     @State private var animateIn        = false
 
@@ -20,6 +22,7 @@ struct HomeView: View {
                         .padding(.top, DS.s8)
                     moodHeroCard
                     quickActionsRow
+                    toolsSection
                     if !appVM.moodEntries.isEmpty { recentMoodSection }
                     programsSection
                     aiCompanionCard
@@ -54,6 +57,14 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showAllPrograms) {
             ProgramsView()
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showReframe) {
+            ThoughtReframeView()
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showCopingPlan) {
+            CopingPlanView()
                 .presentationDragIndicator(.visible)
         }
         .sheet(item: $selectedProgram) { prog in
@@ -165,6 +176,21 @@ struct HomeView: View {
             }
         }
         .buttonStyle(ScaleButtonStyle())
+    }
+
+    // MARK: - Tools (CBT)
+    private var toolsSection: some View {
+        VStack(alignment: .leading, spacing: DS.s12) {
+            SectionHeader(title: L("home.tools"))
+            HStack(spacing: DS.s12) {
+                ToolCard(icon: "arrow.triangle.2.circlepath",
+                         title: L("cbt.reframe.title"),
+                         color: appVM.selectedTheme.primaryColor) { showReframe = true }
+                ToolCard(icon: "list.bullet.clipboard.fill",
+                         title: L("cbt.coping.title"),
+                         color: appVM.selectedTheme.secondaryColor) { showCopingPlan = true }
+            }
+        }
     }
 
     // MARK: - Quick actions
@@ -298,6 +324,38 @@ struct HomeView: View {
 }
 
 // MARK: - HomeQuickAction
+private struct ToolCard: View {
+    let icon: String
+    let title: String
+    let color: Color
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: { HapticManager.impact(.light); action() }) {
+            HStack(spacing: DS.s10) {
+                Image(systemName: icon)
+                    .font(.app(size: 18))
+                    .foregroundColor(color)
+                Text(title)
+                    .font(.app(size: 13, weight: .semibold, design: .rounded))
+                    .foregroundColor(DS.textPrimary)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                Spacer(minLength: 0)
+            }
+            .padding(DS.s14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: DS.r16, style: .continuous)
+                    .fill(color.opacity(0.09))
+                    .overlay(RoundedRectangle(cornerRadius: DS.r16, style: .continuous)
+                        .strokeBorder(color.opacity(0.22), lineWidth: 1))
+            )
+        }
+        .buttonStyle(ScaleButtonStyle())
+    }
+}
+
 private struct HomeQuickAction: View {
     let icon: String
     let label: String

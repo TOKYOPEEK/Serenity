@@ -57,6 +57,46 @@
 "home.breathing.subtitle" = "Квадратное дыхание, 4-7-8 и другие";
 "home.weekly_report.title" = "Недельный отчёт";
 "home.weekly_report.subtitle" = "Персональная AI-сводка о твоём благополучии";
+"home.tools" = "Инструменты";
+
+/* CBT tools */
+"cbt.reframe.title" = "Разобрать мысль";
+"cbt.reframe.thought.q" = "Какая мысль тебя тревожит?";
+"cbt.reframe.thought.placeholder" = "напр. Я всё испорчу, и все меня осудят";
+"cbt.reframe.distortion.q" = "Замечаешь шаблоны?";
+"cbt.reframe.distortion.hint" = "По желанию — отметь подходящие. Это поможет разбору.";
+"cbt.reframe.cta" = "Помоги переосмыслить";
+"cbt.reframe.loading" = "Ищу более добрый взгляд...";
+"cbt.reframe.result.title" = "Сбалансированный взгляд";
+"cbt.reframe.fallback" = "Эта мысль — лишь одна из возможностей, а не факт. Что бы ты сказал другу, который так чувствует? Попробуй более добрую и взвешенную версию.";
+"cbt.coping.title" = "Мой план поддержки";
+"cbt.coping.subtitle" = "Собери короткий список того, что помогает, когда тяжело — чтобы он был под рукой в нужный момент.";
+"cbt.coping.suggestions" = "С чего начать";
+"cbt.coping.placeholder" = "Добавь то, что тебе помогает...";
+"cbt.coping.suggest.breath" = "Сделать 5 медленных вдохов";
+"cbt.coping.suggest.call" = "Позвонить близкому человеку";
+"cbt.coping.suggest.walk" = "Выйти на короткую прогулку";
+"cbt.coping.suggest.shower" = "Принять тёплый душ";
+"cbt.coping.suggest.write" = "Записать, что чувствую";
+"cbt.coping.suggest.music" = "Включить спокойную музыку";
+
+/* Cognitive distortions */
+"distortion.catastrophizing" = "Катастрофизация";
+"distortion.catastrophizing.desc" = "Ожидание наихудшего сценария";
+"distortion.allOrNothing" = "Всё или ничего";
+"distortion.allOrNothing.desc" = "Чёрно-белое мышление";
+"distortion.mindReading" = "Чтение мыслей";
+"distortion.mindReading.desc" = "Уверенность, что знаешь мысли других";
+"distortion.fortuneTelling" = "Предсказание будущего";
+"distortion.fortuneTelling.desc" = "Негативные прогнозы наперёд";
+"distortion.shouldStatements" = "Долженствование";
+"distortion.shouldStatements.desc" = "Жёсткие правила «как должно быть»";
+"distortion.overgeneralizing" = "Сверхобобщение";
+"distortion.overgeneralizing.desc" = "Один случай — это «всегда» и «никогда»";
+"distortion.labeling" = "Навешивание ярлыков";
+"distortion.labeling.desc" = "Оценка себя по одной ошибке";
+"distortion.emotionalReasoning" = "Эмоциональное обоснование";
+"distortion.emotionalReasoning.desc" = "Если чувствую — значит, так и есть";
 
 /* Moods */
 "mood.veryBad" = "Тяжело";

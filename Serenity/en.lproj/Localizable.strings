@@ -57,6 +57,46 @@
 "home.breathing.subtitle" = "Box breathing, 4-7-8, and more";
 "home.weekly_report.title" = "Weekly Report";
 "home.weekly_report.subtitle" = "Your personalized AI wellness summary";
+"home.tools" = "Tools";
+
+/* CBT tools */
+"cbt.reframe.title" = "Reframe a thought";
+"cbt.reframe.thought.q" = "What thought is troubling you?";
+"cbt.reframe.thought.placeholder" = "e.g. I'll mess this up and everyone will judge me";
+"cbt.reframe.distortion.q" = "Notice any patterns?";
+"cbt.reframe.distortion.hint" = "Optional — pick any that fit. It helps the reframe.";
+"cbt.reframe.cta" = "Help me reframe";
+"cbt.reframe.loading" = "Finding a kinder perspective...";
+"cbt.reframe.result.title" = "A balanced view";
+"cbt.reframe.fallback" = "This thought is one possibility, not a fact. What would you tell a friend who felt this way? Try a kinder, more balanced version of it.";
+"cbt.coping.title" = "My coping plan";
+"cbt.coping.subtitle" = "Build a short list of what helps when things get hard — so it's ready when you need it.";
+"cbt.coping.suggestions" = "Ideas to start with";
+"cbt.coping.placeholder" = "Add something that helps you...";
+"cbt.coping.suggest.breath" = "Take 5 slow breaths";
+"cbt.coping.suggest.call" = "Call someone I trust";
+"cbt.coping.suggest.walk" = "Go for a short walk";
+"cbt.coping.suggest.shower" = "Take a warm shower";
+"cbt.coping.suggest.write" = "Write down what I feel";
+"cbt.coping.suggest.music" = "Put on calming music";
+
+/* Cognitive distortions */
+"distortion.catastrophizing" = "Catastrophizing";
+"distortion.catastrophizing.desc" = "Expecting the worst-case scenario";
+"distortion.allOrNothing" = "All-or-nothing";
+"distortion.allOrNothing.desc" = "Seeing things in black and white";
+"distortion.mindReading" = "Mind reading";
+"distortion.mindReading.desc" = "Assuming you know what others think";
+"distortion.fortuneTelling" = "Fortune telling";
+"distortion.fortuneTelling.desc" = "Predicting the future negatively";
+"distortion.shouldStatements" = "Should statements";
+"distortion.shouldStatements.desc" = "Rigid rules about how things must be";
+"distortion.overgeneralizing" = "Overgeneralizing";
+"distortion.overgeneralizing.desc" = "One event becomes a never-ending pattern";
+"distortion.labeling" = "Labeling";
+"distortion.labeling.desc" = "Defining yourself by one mistake";
+"distortion.emotionalReasoning" = "Emotional reasoning";
+"distortion.emotionalReasoning.desc" = "If it feels true, it must be true";
 
 /* Moods */
 "mood.veryBad" = "Rough";

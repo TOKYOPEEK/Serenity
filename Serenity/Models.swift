@@ -130,6 +130,29 @@ enum EmotionWheel {
     }
 }
 
+// MARK: - ThoughtRecord (CBT thought reframing)
+struct ThoughtRecord: Codable, Identifiable {
+    var id = UUID()
+    var date: Date = Date()
+    var thought: String
+    var distortions: [String]   // localization keys, e.g. "catastrophizing"
+    var reframe: String
+}
+
+/// Common cognitive distortions offered during a reframe.
+enum CognitiveDistortion {
+    static let all = [
+        "catastrophizing", "allOrNothing", "mindReading", "fortuneTelling",
+        "shouldStatements", "overgeneralizing", "labeling", "emotionalReasoning"
+    ]
+}
+
+// MARK: - CopingItem ("when it hits" plan)
+struct CopingItem: Codable, Identifiable {
+    var id = UUID()
+    var text: String
+}
+
 // MARK: - JournalEntry
 struct JournalEntry: Codable, Identifiable {
     var id = UUID()
