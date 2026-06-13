@@ -216,6 +216,7 @@ class AppViewModel: ObservableObject {
         moodEntries.insert(entry, at: 0)
         checkBadges()
         saveMoodEntries()
+        scheduleInsightNotification()
     }
 
     func deleteMoodEntry(_ entry: MoodEntry) {
@@ -515,6 +516,22 @@ class AppViewModel: ObservableObject {
         personalAffirmation = clean
         defaults.set(clean, forKey: StorageKey.affirmationText)
         defaults.set(Date(), forKey: StorageKey.affirmationDate)
+    }
+
+    /// A proactive observation drawn from the user's data (rules-based, offline).
+    var proactiveInsight: String? {
+        ProactiveInsight.current(
+            moods: moodEntries,
+            streak: streak,
+            health: healthEnabled ? healthSnapshot : nil
+        )
+    }
+
+    /// Re-arms the proactive-insight notification with the current text.
+    func scheduleInsightNotification() {
+        notifications.scheduleProactiveInsight(
+            title: L("notification.insight.title"),
+            body: proactiveInsight ?? "")
     }
 
     func fetchLLM(system: String, userPrompt: String, maxTokens: Int) async throws -> String {

@@ -32,6 +32,30 @@
 "onboarding.notif.streak" = "Streak protection reminders";
 "onboarding.notif.insights" = "Personalized AI insights";
 "onboarding.notif.checkin" = "Daily check-in prompts";
+"onboarding.features.title" = "What Serenity offers";
+"onboarding.features.subtitle" = "A few things you can do here";
+"onboarding.feature.ai.title" = "AI that remembers you";
+"onboarding.feature.ai.sub" = "Chat, insights and reports built on your history";
+"onboarding.feature.mood.title" = "Mood check-ins";
+"onboarding.feature.mood.sub" = "Name how you feel and spot what affects it";
+"onboarding.feature.library.title" = "Sounds & meditations";
+"onboarding.feature.library.sub" = "Calming soundscapes and guided sessions";
+"onboarding.feature.tools.title" = "Tools that help";
+"onboarding.feature.tools.sub" = "Reframe a thought, a coping plan, focus timer";
+"onboarding.feature.insights.title" = "See your patterns";
+"onboarding.feature.insights.sub" = "Trends, correlations and gentle nudges";
+
+/* Proactive insight */
+"notification.insight.title" = "A gentle observation";
+"home.insight.title" = "Serenity noticed";
+"home.insight.discuss" = "Talk about it";
+"insight.return" = "It's been a couple of days — how are you? A minute to check in?";
+"insight.streak" = "%d days in a row — you're doing beautifully.";
+"insight.sleep" = "On shorter-sleep nights your mood tends to dip. Maybe an earlier night tonight?";
+"insight.steps" = "You feel better on more active days — perhaps a short walk today?";
+"insight.weighs" = "Your mood tends to dip around \"%@\". Be gentle with yourself there.";
+"insight.lifts" = "\"%@\" seems to lift your mood — try to make room for it today.";
+"insight.generic" = "How are you today? I'm here whenever you'd like to talk.";
 
 /* Tabs */
 "tab.home" = "Home";

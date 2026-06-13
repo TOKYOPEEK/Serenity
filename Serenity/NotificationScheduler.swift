@@ -28,6 +28,30 @@ struct NotificationScheduler {
         )
     }
 
+    /// Schedules a one-off proactive insight at the next occurrence of `hour`,
+    /// replacing any pending one. Re-armed whenever the app recomputes the
+    /// insight, so the text stays fresh. Empty body cancels it.
+    func scheduleProactiveInsight(title: String, body: String, hour: Int = 19) {
+        let id = "proactive_insight"
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [id])
+        guard !body.isEmpty else { return }
+
+        var comps = DateComponents()
+        comps.hour = hour
+        comps.minute = 0
+        guard let fire = Calendar.current.nextDate(
+            after: Date(), matching: comps, matchingPolicy: .nextTime) else { return }
+
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body  = body
+        content.sound = .default
+        let interval = max(60, fire.timeIntervalSinceNow)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+        center.add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
+    }
+
     /// Replaces the pending requests with the supplied daily reminders.
     func reschedule(_ reminders: [DailyReminder], removingIds: [String]) {
         let center = UNUserNotificationCenter.current()

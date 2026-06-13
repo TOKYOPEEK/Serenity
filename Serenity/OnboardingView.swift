@@ -30,7 +30,8 @@ struct OnboardingView: View {
                 Group {
                     if step == 0 { step0View }
                     else if step == 1 { step1View }
-                    else if step == 2 { step2View }
+                    else if step == 2 { featuresView }
+                    else if step == 3 { step2View }
                     else { step3View }
                 }
                 .transition(.asymmetric(
@@ -52,7 +53,7 @@ struct OnboardingView: View {
 
     private var progressDots: some View {
         HStack(spacing: DS.s10) {
-            ForEach(0 ..< 4, id: \.self) { i in
+            ForEach(0 ..< 5, id: \.self) { i in
                 Capsule()
                     .fill(i <= step
                           ? appVM.selectedTheme.primaryColor
@@ -170,13 +171,68 @@ struct OnboardingView: View {
                 appVM.requestNotificationPermission { granted in
                     notifGranted = granted
                     if granted { appVM.scheduleStreakReminder() }
-                    withAnimation(DS.springSmooth) { step = 3 }
+                    withAnimation(DS.springSmooth) { step = 4 }
                 }
             }
 
             SecondaryButton(title: L("onboarding.skip")) {
+                withAnimation(DS.springSmooth) { step = 4 }
+            }
+        }
+    }
+
+    // MARK: - Features showcase
+    private var featuresView: some View {
+        VStack(spacing: DS.s24) {
+            VStack(spacing: DS.s8) {
+                Text(L("onboarding.features.title"))
+                    .font(.app(size: 24, weight: .bold))
+                    .foregroundColor(DS.textPrimary)
+                    .multilineTextAlignment(.center)
+                Text(L("onboarding.features.subtitle"))
+                    .font(.app(size: 14, design: .rounded))
+                    .foregroundColor(DS.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
+
+            VStack(spacing: DS.s12) {
+                featureRow("brain.head.profile", "onboarding.feature.ai")
+                featureRow("face.smiling", "onboarding.feature.mood")
+                featureRow("headphones", "onboarding.feature.library")
+                featureRow("arrow.triangle.2.circlepath", "onboarding.feature.tools")
+                featureRow("chart.xyaxis.line", "onboarding.feature.insights")
+            }
+
+            PrimaryButton(title: L("common.next")) {
                 withAnimation(DS.springSmooth) { step = 3 }
             }
+        }
+    }
+
+    private func featureRow(_ icon: String, _ key: String) -> some View {
+        GlassCard {
+            HStack(spacing: DS.s14) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: DS.r12, style: .continuous)
+                        .fill(appVM.selectedTheme.primaryColor.opacity(0.15))
+                        .frame(width: 38, height: 38)
+                    Image(systemName: icon)
+                        .font(.app(size: 17))
+                        .foregroundStyle(appVM.selectedTheme.gradient)
+                }
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(L("\(key).title"))
+                        .font(.app(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundColor(DS.textPrimary)
+                    Text(L("\(key).sub"))
+                        .font(.app(size: 12, design: .rounded))
+                        .foregroundColor(DS.textTertiary)
+                        .lineLimit(2)
+                }
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, DS.s14)
+            .padding(.vertical, DS.s12)
         }
     }
 

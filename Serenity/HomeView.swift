@@ -26,6 +26,7 @@ struct HomeView: View {
                         .padding(.top, DS.s8)
                     affirmationCard
                     moodHeroCard
+                    insightCard
                     quickActionsRow
                     libraryCard
                     toolsSection
@@ -269,6 +270,40 @@ struct HomeView: View {
                         HabitTodayRow(habit: habit) { appVM.toggleHabitToday(habit) }
                     }
                 }
+            }
+        }
+    }
+
+    // MARK: - Proactive insight
+    @ViewBuilder private var insightCard: some View {
+        if let insight = appVM.proactiveInsight {
+            GlassCard {
+                VStack(alignment: .leading, spacing: DS.s10) {
+                    HStack(spacing: DS.s8) {
+                        Image(systemName: "sparkles")
+                            .font(.app(size: 13)).foregroundStyle(appVM.selectedTheme.gradient)
+                        Text(L("home.insight.title"))
+                            .font(.app(size: 12, weight: .semibold, design: .rounded))
+                            .foregroundColor(DS.textTertiary)
+                        Spacer(minLength: 0)
+                    }
+                    Text(insight)
+                        .font(.app(size: 15, weight: .medium, design: .rounded))
+                        .foregroundColor(DS.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Button(action: {
+                        HapticManager.impact(.light)
+                        withAnimation(DS.springSmooth) { appVM.selectedTab = 2 }
+                    }) {
+                        HStack(spacing: DS.s4) {
+                            Text(L("home.insight.discuss"))
+                            Image(systemName: "arrow.right").font(.app(size: 11, weight: .semibold))
+                        }
+                        .font(.app(size: 13, weight: .semibold, design: .rounded))
+                        .foregroundColor(appVM.selectedTheme.primaryColor)
+                    }
+                }
+                .padding(DS.s16)
             }
         }
     }

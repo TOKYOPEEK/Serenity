@@ -32,6 +32,30 @@
 "onboarding.notif.streak" = "Защита серии дней";
 "onboarding.notif.insights" = "Персональные советы AI";
 "onboarding.notif.checkin" = "Ежедневные напоминания";
+"onboarding.features.title" = "Что умеет Serenity";
+"onboarding.features.subtitle" = "Несколько вещей, которые тут можно";
+"onboarding.feature.ai.title" = "AI, который тебя помнит";
+"onboarding.feature.ai.sub" = "Чат, советы и отчёты на основе твоей истории";
+"onboarding.feature.mood.title" = "Отметки настроения";
+"onboarding.feature.mood.sub" = "Называй чувства и замечай, что на них влияет";
+"onboarding.feature.library.title" = "Звуки и медитации";
+"onboarding.feature.library.sub" = "Спокойные звуки и управляемые практики";
+"onboarding.feature.tools.title" = "Инструменты поддержки";
+"onboarding.feature.tools.sub" = "Разбор мысли, план поддержки, фокус-таймер";
+"onboarding.feature.insights.title" = "Видишь свои паттерны";
+"onboarding.feature.insights.sub" = "Тренды, корреляции и мягкие подсказки";
+
+/* Proactive insight */
+"notification.insight.title" = "Тёплое наблюдение";
+"home.insight.title" = "Serenity заметил";
+"home.insight.discuss" = "Обсудить";
+"insight.return" = "Тебя не было пару дней — как ты? Минутка для чек-ина?";
+"insight.streak" = "%d дней подряд — у тебя прекрасно получается.";
+"insight.sleep" = "После коротких ночей настроение обычно ниже. Может, лечь сегодня пораньше?";
+"insight.steps" = "В активные дни тебе лучше — может, короткая прогулка сегодня?";
+"insight.weighs" = "Вокруг «%@» настроение обычно проседает. Будь к себе бережнее.";
+"insight.lifts" = "«%@» поднимает тебе настроение — постарайся найти этому место сегодня.";
+"insight.generic" = "Как ты сегодня? Я рядом, если захочешь поговорить.";
 
 /* Tabs */
 "tab.home" = "Главная";

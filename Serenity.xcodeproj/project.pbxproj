@@ -40,6 +40,7 @@
 		DEDEDEDEDEDEDEDEDEDEDE02 /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDEDEDEDEDEDEDEDEDEDE01 /* FocusView.swift */; };
 		BA01BA01BA01BA01BA01BA02 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA01BA01BA01BA01BA01BA01 /* SplashView.swift */; };
 		CB02CB02CB02CB02CB02CB02 /* ContentLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB02CB02CB02CB02CB02CB01 /* ContentLibraryView.swift */; };
+		EF01EF01EF01EF01EF01EF02 /* ProactiveInsight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF01EF01EF01EF01EF01EF01 /* ProactiveInsight.swift */; };
 		F8AE38F0DBB24ED1ADEA8F77 /* WellnessViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A580B0828F47414A976877DA /* WellnessViews.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		DEDEDEDEDEDEDEDEDEDEDE01 /* FocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusView.swift; sourceTree = "<group>"; };
 		BA01BA01BA01BA01BA01BA01 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CB02CB02CB02CB02CB02CB01 /* ContentLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLibraryView.swift; sourceTree = "<group>"; };
+		EF01EF01EF01EF01EF01EF01 /* ProactiveInsight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProactiveInsight.swift; sourceTree = "<group>"; };
 		E2E2E2E2E2E2E2E2E2E2E204 /* SerenityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerenityTests.swift; sourceTree = "<group>"; };
 		E99D5D0912724603841DDAD3 /* ProgramViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramViews.swift; sourceTree = "<group>"; };
 		F1A2B3C4D5E64F7A8B9C0D1E /* MoodCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCalendarView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				DEDEDEDEDEDEDEDEDEDEDE01 /* FocusView.swift */,
 				BA01BA01BA01BA01BA01BA01 /* SplashView.swift */,
 				CB02CB02CB02CB02CB02CB01 /* ContentLibraryView.swift */,
+				EF01EF01EF01EF01EF01EF01 /* ProactiveInsight.swift */,
 				11AA22BB33CC44DD55EE66F1 /* PersistenceStore.swift */,
 				11AA22BB33CC44DD55EE66F3 /* NotificationScheduler.swift */,
 				11AA22BB33CC44DD55EE66F5 /* LLMClient.swift */,
@@ -293,6 +296,7 @@
 				DEDEDEDEDEDEDEDEDEDEDE02 /* FocusView.swift in Sources */,
 				BA01BA01BA01BA01BA01BA02 /* SplashView.swift in Sources */,
 				CB02CB02CB02CB02CB02CB02 /* ContentLibraryView.swift in Sources */,
+				EF01EF01EF01EF01EF01EF02 /* ProactiveInsight.swift in Sources */,
 				11AA22BB33CC44DD55EE66F2 /* PersistenceStore.swift in Sources */,
 				11AA22BB33CC44DD55EE66F4 /* NotificationScheduler.swift in Sources */,
 				11AA22BB33CC44DD55EE66F6 /* LLMClient.swift in Sources */,
