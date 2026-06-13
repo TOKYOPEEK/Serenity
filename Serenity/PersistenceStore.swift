@@ -13,6 +13,8 @@ enum StorageKey {
     static let thoughtRecords   = "thoughtRecords"
     static let copingPlan       = "copingPlan"
     static let habits           = "habits"
+    static let affirmationText  = "personalAffirmationText"
+    static let affirmationDate  = "personalAffirmationDate"
 
     // Scalar settings — UserDefaults
     static let isOnboardingComplete   = "isOnboardingComplete"

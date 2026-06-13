@@ -59,6 +59,10 @@
 "home.weekly_report.subtitle" = "Your personalized AI wellness summary";
 "home.tools" = "Tools";
 "home.habits" = "Habits";
+"home.affirmation.personalize" = "Make it personal";
+"share.button" = "Share my week";
+"share.tagline" = "My week · Serenity";
+"share.week_mood" = "average mood this week";
 "home.habits.empty" = "Add a habit to build alongside your mood";
 "analytics.influences.habits" = "Habits that help";
 

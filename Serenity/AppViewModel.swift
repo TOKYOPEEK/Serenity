@@ -40,6 +40,9 @@ class AppViewModel: ObservableObject {
     // Habits
     @Published var habits: [Habit]
 
+    // Personalized affirmation (#20), valid for the current day
+    @Published var personalAffirmation: String?
+
     // Custom tags
     @Published var customTags: [String]
 
@@ -99,6 +102,12 @@ class AppViewModel: ObservableObject {
         self.thoughtRecords   = store.load([ThoughtRecord].self,   key: StorageKey.thoughtRecords)   ?? []
         self.copingPlan       = store.load([CopingItem].self,      key: StorageKey.copingPlan)       ?? []
         self.habits           = store.load([Habit].self,           key: StorageKey.habits)           ?? []
+        // Restore today's personalized affirmation, if it was generated today.
+        if let saved = UserDefaults.standard.string(forKey: StorageKey.affirmationText),
+           let date = UserDefaults.standard.object(forKey: StorageKey.affirmationDate) as? Date,
+           Calendar.current.isDateInToday(date) {
+            self.personalAffirmation = saved
+        }
 
         self.userGoals  = UserDefaults.standard.array(forKey: StorageKey.userGoals) as? [String] ?? []
         self.customTags = UserDefaults.standard.array(forKey: StorageKey.customTags) as? [String] ?? []
@@ -480,6 +489,32 @@ class AppViewModel: ObservableObject {
             streak: streak,
             health: healthEnabled ? healthSnapshot : nil
         )
+    }
+
+    /// Today's affirmation: the AI-personalized one if generated today,
+    /// otherwise a stable daily pick from the built-in set.
+    var currentAffirmation: String {
+        if let p = personalAffirmation, !p.isEmpty { return p }
+        let day = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 0
+        return dailyAffirmations.isEmpty ? "" : dailyAffirmations[day % dailyAffirmations.count]
+    }
+
+    /// Generates a short personal affirmation from the user's history and
+    /// caches it for the day.
+    func generatePersonalAffirmation() async {
+        let system = """
+        You write ONE short, warm, first-person affirmation (max 12 words) in the
+        user's language. Output only the affirmation text — no quotes, no preface.
+        """ + UserContext.systemPreamble(memorySummary)
+        guard let text = try? await fetchLLM(
+            system: system,
+            userPrompt: "Write one personal affirmation for me for today.",
+            maxTokens: 60) else { return }
+        let clean = text.trimmingCharacters(in: CharacterSet(charactersIn: " \n\"'“”«»"))
+        guard !clean.isEmpty else { return }
+        personalAffirmation = clean
+        defaults.set(clean, forKey: StorageKey.affirmationText)
+        defaults.set(Date(), forKey: StorageKey.affirmationDate)
     }
 
     func fetchLLM(system: String, userPrompt: String, maxTokens: Int) async throws -> String {

@@ -162,6 +162,7 @@ struct WeeklyReportView: View {
     @State private var report    = ""
     @State private var isLoading = false
     @State private var hasLoaded = false
+    @State private var shareItem: ShareableImage?
 
     var body: some View {
         ZStack {
@@ -174,6 +175,7 @@ struct WeeklyReportView: View {
                         statsSection
                         narrativeSection
                         if !isLoading && !hasLoaded { generateButton }
+                        shareButton
                         Spacer(minLength: 100)
                     }
                     .padding(.horizontal, DS.s20)
@@ -181,10 +183,41 @@ struct WeeklyReportView: View {
                 }
             }
         }
+        .sheet(item: $shareItem) { item in
+            ActivityView(items: [item.image])
+        }
     }
 
     private var reportHeader: some View {
         SheetHeader(title: L("report.title"))
+    }
+
+    private var shareButton: some View {
+        SecondaryButton(title: L("share.button")) { makeShareImage() }
+    }
+
+    @MainActor
+    private func makeShareImage() {
+        HapticManager.impact(.light)
+        let stats = appVM.weeklyStats()
+        let idx = min(max(Int(stats.averageMood.rounded()), 0), 4)
+        let emojis = ["😔", "😕", "😐", "🙂", "😊"]
+        let moodKeys = ["mood.veryBad", "mood.bad", "mood.neutral", "mood.good", "mood.great"]
+        let card = ShareCardView(
+            weekRange: weekRange,
+            moodEmoji: emojis[idx],
+            moodLabel: L(moodKeys[idx]),
+            streak: stats.streak,
+            checkIns: stats.totalEntries,
+            themes: stats.topTags.prefix(2).map { L("tag.\($0)") },
+            primary: appVM.selectedTheme.primaryColor,
+            secondary: appVM.selectedTheme.secondaryColor
+        )
+        let renderer = ImageRenderer(content: card)
+        renderer.scale = 3
+        if let image = renderer.uiImage {
+            shareItem = ShareableImage(image: image)
+        }
     }
 
     private var statsSection: some View {

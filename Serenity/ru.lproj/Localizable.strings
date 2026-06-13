@@ -59,6 +59,10 @@
 "home.weekly_report.subtitle" = "Персональная AI-сводка о твоём благополучии";
 "home.tools" = "Инструменты";
 "home.habits" = "Привычки";
+"home.affirmation.personalize" = "Сделать личной";
+"share.button" = "Поделиться неделей";
+"share.tagline" = "Моя неделя · Serenity";
+"share.week_mood" = "среднее настроение за неделю";
 "home.habits.empty" = "Добавь привычку и отслеживай её вместе с настроением";
 "analytics.influences.habits" = "Привычки, что помогают";
 

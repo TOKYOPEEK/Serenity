@@ -12,6 +12,7 @@ struct HomeView: View {
     @State private var showReframe      = false
     @State private var showCopingPlan   = false
     @State private var showHabits       = false
+    @State private var affirmationLoading = false
     @State private var selectedProgram: WellnessProgram?
     @State private var animateIn        = false
 
@@ -21,6 +22,7 @@ struct HomeView: View {
                 VStack(spacing: DS.s20) {
                     headerSection
                         .padding(.top, DS.s8)
+                    affirmationCard
                     moodHeroCard
                     quickActionsRow
                     toolsSection
@@ -182,6 +184,44 @@ struct HomeView: View {
             }
         }
         .buttonStyle(ScaleButtonStyle())
+    }
+
+    // MARK: - Affirmation (#20)
+    private var affirmationCard: some View {
+        GlassCard {
+            HStack(spacing: DS.s14) {
+                Image(systemName: "quote.opening")
+                    .font(.app(size: 16))
+                    .foregroundStyle(appVM.selectedTheme.gradient)
+                Text(appVM.currentAffirmation)
+                    .font(.app(size: 15, weight: .medium, design: .rounded))
+                    .foregroundColor(DS.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Spacer(minLength: 0)
+                if appVM.isAIConfigured {
+                    Button(action: refreshAffirmation) {
+                        Image(systemName: "sparkles")
+                            .font(.app(size: 15, weight: .medium))
+                            .foregroundColor(appVM.selectedTheme.primaryColor)
+                            .opacity(affirmationLoading ? 0.4 : 1)
+                            .rotationEffect(.degrees(affirmationLoading ? 360 : 0))
+                            .animation(affirmationLoading ? .linear(duration: 0.8).repeatForever(autoreverses: false) : .default, value: affirmationLoading)
+                    }
+                    .disabled(affirmationLoading)
+                    .accessibilityLabel(L("home.affirmation.personalize"))
+                }
+            }
+            .padding(DS.s16)
+        }
+    }
+
+    private func refreshAffirmation() {
+        HapticManager.impact(.light)
+        affirmationLoading = true
+        Task {
+            await appVM.generatePersonalAffirmation()
+            affirmationLoading = false
+        }
     }
 
     // MARK: - Habits (#48)

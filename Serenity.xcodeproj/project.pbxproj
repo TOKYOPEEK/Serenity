@@ -35,6 +35,7 @@
 		F9F9F9F9F9F9F9F9F9F9F902 /* Correlations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9F9F9F9F9F9F9F9F9F901 /* Correlations.swift */; };
 		FAFAFAFAFAFAFAFAFAFAFA02 /* CBTToolsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAFAFAFAFAFAFAFAFAFA01 /* CBTToolsViews.swift */; };
 		ABABABABABABABABABABAB02 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABABABABABABABABABABAB01 /* HabitsView.swift */; };
+		BCBCBCBCBCBCBCBCBCBCBC02 /* ShareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBCBCBCBCBCBCBCBCBCBC01 /* ShareCard.swift */; };
 		F8AE38F0DBB24ED1ADEA8F77 /* WellnessViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A580B0828F47414A976877DA /* WellnessViews.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		F9F9F9F9F9F9F9F9F9F9F901 /* Correlations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Correlations.swift; sourceTree = "<group>"; };
 		FAFAFAFAFAFAFAFAFAFAFA01 /* CBTToolsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBTToolsViews.swift; sourceTree = "<group>"; };
 		ABABABABABABABABABABAB01 /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
+		BCBCBCBCBCBCBCBCBCBCBC01 /* ShareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCard.swift; sourceTree = "<group>"; };
 		E2E2E2E2E2E2E2E2E2E2E204 /* SerenityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerenityTests.swift; sourceTree = "<group>"; };
 		E99D5D0912724603841DDAD3 /* ProgramViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramViews.swift; sourceTree = "<group>"; };
 		F1A2B3C4D5E64F7A8B9C0D1E /* MoodCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCalendarView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				F9F9F9F9F9F9F9F9F9F9F901 /* Correlations.swift */,
 				FAFAFAFAFAFAFAFAFAFAFA01 /* CBTToolsViews.swift */,
 				ABABABABABABABABABABAB01 /* HabitsView.swift */,
+				BCBCBCBCBCBCBCBCBCBCBC01 /* ShareCard.swift */,
 				11AA22BB33CC44DD55EE66F1 /* PersistenceStore.swift */,
 				11AA22BB33CC44DD55EE66F3 /* NotificationScheduler.swift */,
 				11AA22BB33CC44DD55EE66F5 /* LLMClient.swift */,
@@ -273,6 +276,7 @@
 				F9F9F9F9F9F9F9F9F9F9F902 /* Correlations.swift in Sources */,
 				FAFAFAFAFAFAFAFAFAFAFA02 /* CBTToolsViews.swift in Sources */,
 				ABABABABABABABABABABAB02 /* HabitsView.swift in Sources */,
+				BCBCBCBCBCBCBCBCBCBCBC02 /* ShareCard.swift in Sources */,
 				11AA22BB33CC44DD55EE66F2 /* PersistenceStore.swift in Sources */,
 				11AA22BB33CC44DD55EE66F4 /* NotificationScheduler.swift in Sources */,
 				11AA22BB33CC44DD55EE66F6 /* LLMClient.swift in Sources */,
