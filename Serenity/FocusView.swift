@@ -106,7 +106,7 @@ struct FocusView: View {
                 .font(.app(size: 13, weight: .medium, design: .rounded))
                 .foregroundColor(DS.textTertiary)
             HStack(spacing: DS.s8) {
-                ForEach(SoundEngine.Sound.allCases) { option in
+                ForEach([SoundEngine.Sound.off, .brown, .pink, .white]) { option in
                     soundChip(option)
                 }
             }

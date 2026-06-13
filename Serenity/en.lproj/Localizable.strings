@@ -75,6 +75,57 @@
 "sound.brown" = "Brown";
 "sound.pink" = "Pink";
 "sound.white" = "White";
+"sound.rain" = "Rain";
+"sound.ocean" = "Ocean";
+"sound.forest" = "Forest";
+
+/* Library */
+"home.library" = "Meditate & sounds";
+"home.library.sub" = "Calming sounds and guided sessions";
+"library.title" = "Calm space";
+"library.sounds" = "Ambient sounds";
+"library.guided" = "Guided sessions";
+"library.sleeptimer" = "Sleep timer";
+"library.min" = "m";
+"med.complete" = "Done. Rest in this feeling for a moment.";
+
+"med.calm.title" = "Unwind";
+"med.calm.subtitle" = "Gentle relaxation in 3 minutes";
+"med.calm.1" = "Settle into a comfortable position and softly close your eyes.";
+"med.calm.2" = "Take a deep breath in through your nose… and a slow breath out.";
+"med.calm.3" = "Feel your body grow heavy and at ease.";
+"med.calm.4" = "Let the tension melt from your shoulders and jaw.";
+"med.calm.5" = "Just watch your breath, changing nothing.";
+"med.calm.6" = "When you're ready, gently open your eyes. You're here.";
+
+"med.anxiety.title" = "Ease anxiety";
+"med.anxiety.subtitle" = "5-4-3-2-1 grounding";
+"med.anxiety.1" = "Place your feet on the floor and feel them supported.";
+"med.anxiety.2" = "Breathe in for 4… hold… and out for 6.";
+"med.anxiety.3" = "Name 5 things you can see right now.";
+"med.anxiety.4" = "Now 4 sounds you can hear.";
+"med.anxiety.5" = "Anxiety is a wave — it rises and it passes.";
+"med.anxiety.6" = "In this moment, you are safe.";
+"med.anxiety.7" = "Take one more calm breath. You're doing well.";
+
+"med.sleep.title" = "Fall asleep";
+"med.sleep.subtitle" = "A soft drift into sleep";
+"med.sleep.1" = "Dim the lights and settle in comfortably.";
+"med.sleep.2" = "Take a slow breath in… and a long, soft breath out.";
+"med.sleep.3" = "Relax your face, shoulders, arms… your whole body.";
+"med.sleep.4" = "Let go of today — it is complete.";
+"med.sleep.5" = "With each breath out, you sink a little deeper.";
+"med.sleep.6" = "Thoughts float by like passing clouds.";
+"med.sleep.7" = "Allow yourself to drift into sleep…";
+
+"med.gratitude.title" = "Gratitude";
+"med.gratitude.subtitle" = "A short warmth practice";
+"med.gratitude.1" = "Take a calm breath and let your lips soften into a smile.";
+"med.gratitude.2" = "Bring to mind one person you're grateful for.";
+"med.gratitude.3" = "Recall one small good thing from today.";
+"med.gratitude.4" = "Feel the warmth in your chest from that thought.";
+"med.gratitude.5" = "Tell yourself: I already have enough.";
+"med.gratitude.6" = "Carry this warmth with you through your day.";
 "share.button" = "Share my week";
 "share.tagline" = "My week · Serenity";
 "share.week_mood" = "average mood this week";

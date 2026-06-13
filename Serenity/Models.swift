@@ -173,6 +173,30 @@ struct Habit: Codable, Identifiable {
     ]
 }
 
+// MARK: - Meditation (text-guided session)
+struct Meditation: Identifiable {
+    let id: String
+    let icon: String
+    let minutes: Int
+    let sound: SoundEngine.Sound
+    /// Localization keys for the paced steps shown one at a time.
+    let stepKeys: [String]
+
+    var titleKey: String { "med.\(id).title" }
+    var subtitleKey: String { "med.\(id).subtitle" }
+
+    static let all: [Meditation] = [
+        Meditation(id: "calm", icon: "wind", minutes: 3, sound: .ocean,
+                   stepKeys: (1...6).map { "med.calm.\($0)" }),
+        Meditation(id: "anxiety", icon: "heart.circle", minutes: 4, sound: .rain,
+                   stepKeys: (1...7).map { "med.anxiety.\($0)" }),
+        Meditation(id: "sleep", icon: "moon.stars.fill", minutes: 5, sound: .rain,
+                   stepKeys: (1...7).map { "med.sleep.\($0)" }),
+        Meditation(id: "gratitude", icon: "sparkles", minutes: 3, sound: .forest,
+                   stepKeys: (1...6).map { "med.gratitude.\($0)" })
+    ]
+}
+
 // MARK: - JournalEntry
 struct JournalEntry: Codable, Identifiable {
     var id = UUID()

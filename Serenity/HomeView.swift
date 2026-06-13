@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var showHabits       = false
     @State private var affirmationLoading = false
     @State private var showFocus        = false
+    @State private var showLibrary      = false
     @State private var selectedProgram: WellnessProgram?
     @State private var animateIn        = false
 
@@ -26,6 +27,7 @@ struct HomeView: View {
                     affirmationCard
                     moodHeroCard
                     quickActionsRow
+                    libraryCard
                     toolsSection
                     habitsSection
                     if !appVM.moodEntries.isEmpty { recentMoodSection }
@@ -78,6 +80,10 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showFocus) {
             FocusView()
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showLibrary) {
+            LibraryView()
                 .presentationDragIndicator(.visible)
         }
         .sheet(item: $selectedProgram) { prog in
@@ -265,6 +271,39 @@ struct HomeView: View {
                 }
             }
         }
+    }
+
+    // MARK: - Library (meditations + sounds)
+    private var libraryCard: some View {
+        Button(action: { HapticManager.impact(.light); showLibrary = true }) {
+            GlassCard {
+                HStack(spacing: DS.s16) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: DS.r16, style: .continuous)
+                            .fill(appVM.selectedTheme.primaryColor.opacity(0.15))
+                            .frame(width: 48, height: 48)
+                        Image(systemName: "headphones")
+                            .font(.app(size: 20))
+                            .foregroundStyle(appVM.selectedTheme.gradient)
+                    }
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(L("home.library"))
+                            .font(.app(size: 15, weight: .semibold))
+                            .foregroundColor(DS.textPrimary)
+                        Text(L("home.library.sub"))
+                            .font(.app(size: 12, weight: .regular, design: .rounded))
+                            .foregroundColor(DS.textTertiary)
+                            .lineLimit(1)
+                    }
+                    Spacer(minLength: 0)
+                    Image(systemName: "arrow.right")
+                        .font(.app(size: 13, weight: .medium))
+                        .foregroundColor(DS.textTertiary)
+                }
+                .padding(DS.s20)
+            }
+        }
+        .buttonStyle(ScaleButtonStyle())
     }
 
     // MARK: - Tools (CBT)
