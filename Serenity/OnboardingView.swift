@@ -7,7 +7,6 @@ struct OnboardingView: View {
     @State private var selectedGoals: Set<String> = []
     @State private var notifGranted = false
     @State private var animateIn = false
-    @State private var apiKeyInput = ""
 
     let goals = [
         L("onboarding.goal.stress"),
@@ -31,8 +30,7 @@ struct OnboardingView: View {
                     if step == 0 { step0View }
                     else if step == 1 { step1View }
                     else if step == 2 { featuresView }
-                    else if step == 3 { step2View }
-                    else { step3View }
+                    else { step2View }
                 }
                 .transition(.asymmetric(
                     insertion: .move(edge: .trailing).combined(with: .opacity),
@@ -53,7 +51,7 @@ struct OnboardingView: View {
 
     private var progressDots: some View {
         HStack(spacing: DS.s10) {
-            ForEach(0 ..< 5, id: \.self) { i in
+            ForEach(0 ..< 4, id: \.self) { i in
                 Capsule()
                     .fill(i <= step
                           ? appVM.selectedTheme.primaryColor
@@ -171,12 +169,12 @@ struct OnboardingView: View {
                 appVM.requestNotificationPermission { granted in
                     notifGranted = granted
                     if granted { appVM.scheduleStreakReminder() }
-                    withAnimation(DS.springSmooth) { step = 4 }
+                    finishOnboarding()
                 }
             }
 
             SecondaryButton(title: L("onboarding.skip")) {
-                withAnimation(DS.springSmooth) { step = 4 }
+                finishOnboarding()
             }
         }
     }
@@ -233,65 +231,6 @@ struct OnboardingView: View {
             }
             .padding(.horizontal, DS.s14)
             .padding(.vertical, DS.s12)
-        }
-    }
-
-    private var step3View: some View {
-        VStack(spacing: DS.s28) {
-            ZStack {
-                Circle()
-                    .fill(appVM.selectedTheme.primaryColor.opacity(0.15))
-                    .frame(width: 84, height: 84)
-                Image(systemName: "sparkles")
-                    .font(.app(size: 36, weight: .light))
-                    .foregroundStyle(appVM.selectedTheme.gradient)
-            }
-
-            VStack(spacing: DS.s8) {
-                Text(L("onboarding.api.title"))
-                    .font(.app(size: 24, weight: .bold))
-                    .foregroundColor(DS.textPrimary)
-                    .multilineTextAlignment(.center)
-                Text(L("onboarding.api.subtitle"))
-                    .font(.app(size: 14, design: .rounded))
-                    .foregroundColor(DS.textSecondary)
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(3)
-            }
-
-            GlassCard {
-                VStack(alignment: .leading, spacing: DS.s10) {
-                    TextField(L("onboarding.api.placeholder"), text: $apiKeyInput)
-                        .font(.app(size: 15, design: .monospaced))
-                        .foregroundColor(DS.textPrimary)
-                        .tint(appVM.selectedTheme.primaryColor)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                    Divider().background(DS.strokeSubtle)
-                    HStack(spacing: DS.s6) {
-                        Image(systemName: "info.circle")
-                            .font(.app(size: 11))
-                            .foregroundColor(DS.textTertiary)
-                        Text(L("onboarding.api.hint"))
-                            .font(.app(size: 11, design: .rounded))
-                            .foregroundColor(DS.textTertiary)
-                    }
-                }
-                .padding(DS.s16)
-            }
-
-            PrimaryButton(title: L("onboarding.api.continue")) {
-                let trimmed = apiKeyInput.trimmingCharacters(in: .whitespacesAndNewlines)
-                if !trimmed.isEmpty {
-                    KeychainHelper.save(trimmed, forKey: StorageKey.claudeAPIKey)
-                    appVM.claudeAPIKey = trimmed
-                }
-                finishOnboarding()
-            }
-
-            SecondaryButton(title: L("onboarding.api.skip")) {
-                finishOnboarding()
-            }
         }
     }
 
