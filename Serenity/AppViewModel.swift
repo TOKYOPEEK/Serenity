@@ -37,6 +37,9 @@ class AppViewModel: ObservableObject {
     @Published var thoughtRecords: [ThoughtRecord]
     @Published var copingPlan: [CopingItem]
 
+    // Habits
+    @Published var habits: [Habit]
+
     // Custom tags
     @Published var customTags: [String]
 
@@ -95,6 +98,7 @@ class AppViewModel: ObservableObject {
         self.chatMessages     = store.load([ChatMessage].self,     key: StorageKey.chatMessages)     ?? []
         self.thoughtRecords   = store.load([ThoughtRecord].self,   key: StorageKey.thoughtRecords)   ?? []
         self.copingPlan       = store.load([CopingItem].self,      key: StorageKey.copingPlan)       ?? []
+        self.habits           = store.load([Habit].self,           key: StorageKey.habits)           ?? []
 
         self.userGoals  = UserDefaults.standard.array(forKey: StorageKey.userGoals) as? [String] ?? []
         self.customTags = UserDefaults.standard.array(forKey: StorageKey.customTags) as? [String] ?? []
@@ -173,6 +177,30 @@ class AppViewModel: ObservableObject {
     func deleteThoughtRecord(_ record: ThoughtRecord) {
         thoughtRecords.removeAll { $0.id == record.id }
         saveThoughtRecords()
+    }
+
+    private func saveHabits() { store.save(habits, key: StorageKey.habits) }
+    func addHabit(name: String, icon: String) {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        habits.append(Habit(name: trimmed, icon: icon))
+        saveHabits()
+    }
+    func deleteHabit(_ habit: Habit) {
+        habits.removeAll { $0.id == habit.id }
+        saveHabits()
+    }
+    func toggleHabitToday(_ habit: Habit) {
+        guard let i = habits.firstIndex(where: { $0.id == habit.id }) else { return }
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
+        if let j = habits[i].completions.firstIndex(where: { cal.isDate($0, inSameDayAs: today) }) {
+            habits[i].completions.remove(at: j)
+        } else {
+            habits[i].completions.append(today)
+            HapticManager.notification(.success)
+        }
+        saveHabits()
     }
 
     func addMoodEntry(_ entry: MoodEntry) {

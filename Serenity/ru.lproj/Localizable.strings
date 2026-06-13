@@ -58,6 +58,16 @@
 "home.weekly_report.title" = "Недельный отчёт";
 "home.weekly_report.subtitle" = "Персональная AI-сводка о твоём благополучии";
 "home.tools" = "Инструменты";
+"home.habits" = "Привычки";
+"home.habits.empty" = "Добавь привычку и отслеживай её вместе с настроением";
+"analytics.influences.habits" = "Привычки, что помогают";
+
+/* Habits */
+"habits.title" = "Привычки";
+"habits.subtitle" = "Отслеживай маленькие ежедневные привычки и смотри, как они связаны с настроением.";
+"habits.add" = "Новая привычка";
+"habits.placeholder" = "напр. Медитация, Вода";
+"habits.streak" = "Серия %d дн.";
 
 /* CBT tools */
 "cbt.reframe.title" = "Разобрать мысль";

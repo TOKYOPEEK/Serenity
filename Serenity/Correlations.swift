@@ -38,4 +38,30 @@ enum Correlations {
         let weighs = influences.filter { $0.delta <= -threshold }.sorted { $0.delta < $1.delta }
         return (Array(lifts.prefix(3)), Array(weighs.prefix(3)))
     }
+
+    /// Habits whose completed days carry better-than-average mood.
+    static func habitInfluences(
+        habits: [Habit],
+        moods: [MoodEntry],
+        minCount: Int = 3,
+        threshold: Double = 0.2,
+        calendar cal: Calendar = .current
+    ) -> [(name: String, delta: Double)] {
+        guard moods.count >= 5 else { return [] }
+        let moodByDay = Dictionary(
+            moods.map { (cal.startOfDay(for: $0.date), $0.moodIndex) },
+            uniquingKeysWith: { a, _ in a })
+        guard !moodByDay.isEmpty else { return [] }
+        let overall = Double(moodByDay.values.reduce(0, +)) / Double(moodByDay.count)
+
+        var result: [(String, Double)] = []
+        for habit in habits {
+            let doneDays = Set(habit.completions.map { cal.startOfDay(for: $0) })
+            let moodsOnDone = moodByDay.filter { doneDays.contains($0.key) }.map { $0.value }
+            guard moodsOnDone.count >= minCount else { continue }
+            let avg = Double(moodsOnDone.reduce(0, +)) / Double(moodsOnDone.count)
+            if avg - overall >= threshold { result.append((habit.name, avg - overall)) }
+        }
+        return result.sorted { $0.1 > $1.1 }
+    }
 }

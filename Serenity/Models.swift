@@ -153,6 +153,26 @@ struct CopingItem: Codable, Identifiable {
     var text: String
 }
 
+// MARK: - Habit (#48 — habit tracker tied to mood)
+struct Habit: Codable, Identifiable {
+    var id = UUID()
+    var name: String
+    var icon: String = "checkmark.circle.fill"
+    var completions: [Date] = []   // start-of-day dates the habit was done
+
+    func isDone(on day: Date, calendar cal: Calendar = .current) -> Bool {
+        completions.contains { cal.isDate($0, inSameDayAs: day) }
+    }
+    var doneToday: Bool { isDone(on: Date()) }
+    var streak: Int { Streaks.consecutiveDays(containing: completions) }
+
+    static let iconChoices = [
+        "figure.mind.and.body", "drop.fill", "bed.double.fill", "figure.walk",
+        "book.fill", "leaf.fill", "sun.max.fill", "moon.fill",
+        "heart.fill", "cup.and.saucer.fill", "pencil", "checkmark.circle.fill"
+    ]
+}
+
 // MARK: - JournalEntry
 struct JournalEntry: Codable, Identifiable {
     var id = UUID()

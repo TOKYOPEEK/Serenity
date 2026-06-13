@@ -36,21 +36,28 @@ struct AnalyticsView: View {
 
     private var influencesSection: some View {
         let result = Correlations.activityInfluences(from: appVM.moodEntries)
+        let habitInf = Correlations.habitInfluences(habits: appVM.habits, moods: appVM.moodEntries)
+        let hasAny = !result.lifts.isEmpty || !result.weighs.isEmpty || !habitInf.isEmpty
         return Group {
-            if !result.lifts.isEmpty || !result.weighs.isEmpty {
+            if hasAny {
                 VStack(alignment: .leading, spacing: DS.s12) {
                     SectionHeader(title: L("analytics.influences.title"))
                     GlassCard {
                         VStack(alignment: .leading, spacing: DS.s14) {
                             if !result.lifts.isEmpty {
-                                influenceRow(label: L("analytics.influences.lifts"),
-                                             items: result.lifts,
-                                             color: Color(hex: "34D399"), icon: "arrow.up.right")
+                                chipRow(label: L("analytics.influences.lifts"),
+                                        names: result.lifts.map { L("tag.\($0.tag)") },
+                                        color: Color(hex: "34D399"), icon: "arrow.up.right")
                             }
                             if !result.weighs.isEmpty {
-                                influenceRow(label: L("analytics.influences.weighs"),
-                                             items: result.weighs,
-                                             color: Color(hex: "FBBF24"), icon: "arrow.down.right")
+                                chipRow(label: L("analytics.influences.weighs"),
+                                        names: result.weighs.map { L("tag.\($0.tag)") },
+                                        color: Color(hex: "FBBF24"), icon: "arrow.down.right")
+                            }
+                            if !habitInf.isEmpty {
+                                chipRow(label: L("analytics.influences.habits"),
+                                        names: habitInf.map { $0.name },
+                                        color: appVM.selectedTheme.primaryColor, icon: "checkmark.circle.fill")
                             }
                         }
                         .padding(DS.s16)
@@ -60,17 +67,18 @@ struct AnalyticsView: View {
         }
     }
 
-    private func influenceRow(label: String, items: [ActivityInfluence], color: Color, icon: String) -> some View {
+    private func chipRow(label: String, names: [String], color: Color, icon: String) -> some View {
         VStack(alignment: .leading, spacing: DS.s8) {
             HStack(spacing: DS.s6) {
                 Image(systemName: icon).font(.app(size: 12, weight: .semibold)).foregroundColor(color)
                 Text(label).font(.app(size: 12, weight: .medium, design: .rounded)).foregroundColor(DS.textTertiary)
             }
             HStack(spacing: DS.s8) {
-                ForEach(items) { item in
-                    Text(L("tag.\(item.tag)"))
+                ForEach(names, id: \.self) { name in
+                    Text(name)
                         .font(.app(size: 13, weight: .medium, design: .rounded))
                         .foregroundColor(DS.textPrimary)
+                        .lineLimit(1)
                         .padding(.horizontal, DS.s12).padding(.vertical, DS.s6)
                         .background(Capsule().fill(color.opacity(0.15))
                             .overlay(Capsule().strokeBorder(color.opacity(0.35), lineWidth: 1)))

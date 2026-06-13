@@ -11,6 +11,7 @@ struct HomeView: View {
     @State private var showAllPrograms  = false
     @State private var showReframe      = false
     @State private var showCopingPlan   = false
+    @State private var showHabits       = false
     @State private var selectedProgram: WellnessProgram?
     @State private var animateIn        = false
 
@@ -23,6 +24,7 @@ struct HomeView: View {
                     moodHeroCard
                     quickActionsRow
                     toolsSection
+                    habitsSection
                     if !appVM.moodEntries.isEmpty { recentMoodSection }
                     programsSection
                     aiCompanionCard
@@ -65,6 +67,10 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showCopingPlan) {
             CopingPlanView()
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showHabits) {
+            HabitsView()
                 .presentationDragIndicator(.visible)
         }
         .sheet(item: $selectedProgram) { prog in
@@ -176,6 +182,44 @@ struct HomeView: View {
             }
         }
         .buttonStyle(ScaleButtonStyle())
+    }
+
+    // MARK: - Habits (#48)
+    private var habitsSection: some View {
+        VStack(alignment: .leading, spacing: DS.s12) {
+            HStack(alignment: .firstTextBaseline) {
+                SectionHeader(title: L("home.habits"))
+                Button(action: { HapticManager.impact(.light); showHabits = true }) {
+                    Image(systemName: appVM.habits.isEmpty ? "plus.circle.fill" : "slider.horizontal.3")
+                        .font(.app(size: 15, weight: .medium))
+                        .foregroundColor(appVM.selectedTheme.primaryColor)
+                }
+                .accessibilityLabel(L("habits.title"))
+            }
+            if appVM.habits.isEmpty {
+                Button(action: { HapticManager.impact(.light); showHabits = true }) {
+                    GlassCard {
+                        HStack(spacing: DS.s12) {
+                            Image(systemName: "checklist")
+                                .font(.app(size: 18))
+                                .foregroundColor(appVM.selectedTheme.primaryColor)
+                            Text(L("home.habits.empty"))
+                                .font(.app(size: 14, design: .rounded))
+                                .foregroundColor(DS.textSecondary)
+                            Spacer(minLength: 0)
+                        }
+                        .padding(DS.s16)
+                    }
+                }
+                .buttonStyle(ScaleButtonStyle())
+            } else {
+                VStack(spacing: DS.s10) {
+                    ForEach(appVM.habits) { habit in
+                        HabitTodayRow(habit: habit) { appVM.toggleHabitToday(habit) }
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - Tools (CBT)
@@ -324,6 +368,44 @@ struct HomeView: View {
 }
 
 // MARK: - HomeQuickAction
+private struct HabitTodayRow: View {
+    @EnvironmentObject var appVM: AppViewModel
+    let habit: Habit
+    let toggle: () -> Void
+
+    var body: some View {
+        Button(action: toggle) {
+            GlassCard {
+                HStack(spacing: DS.s14) {
+                    Image(systemName: habit.icon)
+                        .font(.app(size: 17))
+                        .foregroundColor(habit.doneToday ? appVM.selectedTheme.primaryColor : DS.textTertiary)
+                        .frame(width: 26)
+                    Text(habit.name)
+                        .font(.app(size: 15, weight: .medium, design: .rounded))
+                        .foregroundColor(habit.doneToday ? DS.textPrimary : DS.textSecondary)
+                        .strikethrough(habit.doneToday, color: DS.textTertiary)
+                    Spacer(minLength: 0)
+                    if habit.streak > 1 {
+                        Text("\(habit.streak)🔥")
+                            .font(.app(size: 12, weight: .medium, design: .rounded))
+                            .foregroundColor(DS.textTertiary)
+                    }
+                    Image(systemName: habit.doneToday ? "checkmark.circle.fill" : "circle")
+                        .font(.app(size: 22))
+                        .foregroundStyle(habit.doneToday
+                            ? AnyShapeStyle(appVM.selectedTheme.gradient)
+                            : AnyShapeStyle(DS.textTertiary))
+                }
+                .padding(.horizontal, DS.s16)
+                .padding(.vertical, DS.s12)
+            }
+        }
+        .buttonStyle(ScaleButtonStyle())
+        .animation(DS.springSnappy, value: habit.doneToday)
+    }
+}
+
 private struct ToolCard: View {
     let icon: String
     let title: String

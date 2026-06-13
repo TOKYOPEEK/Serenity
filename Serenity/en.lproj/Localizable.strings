@@ -58,6 +58,16 @@
 "home.weekly_report.title" = "Weekly Report";
 "home.weekly_report.subtitle" = "Your personalized AI wellness summary";
 "home.tools" = "Tools";
+"home.habits" = "Habits";
+"home.habits.empty" = "Add a habit to build alongside your mood";
+"analytics.influences.habits" = "Habits that help";
+
+/* Habits */
+"habits.title" = "Habits";
+"habits.subtitle" = "Track small daily habits and see how they relate to your mood.";
+"habits.add" = "New habit";
+"habits.placeholder" = "e.g. Meditate, Drink water";
+"habits.streak" = "%d-day streak";
 
 /* CBT tools */
 "cbt.reframe.title" = "Reframe a thought";
