@@ -166,10 +166,10 @@ struct AnalyticsView: View {
     private var statsGrid: some View {
         let stats = appVM.weeklyStats()
         return LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: DS.s12) {
-            AnalyticsStat(value: String(format: "%.1f", stats.averageMood), label: L("analytics.avg_mood"),  icon: "circle.hexagongrid.fill", color: appVM.selectedTheme.primaryColor)
-            AnalyticsStat(value: "\(stats.totalEntries)", label: L("analytics.entries"), icon: "checkmark.circle.fill", color: appVM.selectedTheme.secondaryColor)
-            AnalyticsStat(value: "\(appVM.streak)",        label: L("analytics.streak"),  icon: "flame.fill",           color: Color(hex: "FBBF24"))
-            AnalyticsStat(value: "\(appVM.journalEntries.count)", label: L("analytics.journal"), icon: "book.fill", color: Color(hex: "A78BFA"))
+            AnalyticsStat(value: stats.averageMood, format: { String(format: "%.1f", $0) }, label: L("analytics.avg_mood"), icon: "circle.hexagongrid.fill", color: appVM.selectedTheme.primaryColor)
+            AnalyticsStat(value: Double(stats.totalEntries), label: L("analytics.entries"), icon: "checkmark.circle.fill", color: appVM.selectedTheme.secondaryColor)
+            AnalyticsStat(value: Double(appVM.streak),        label: L("analytics.streak"),  icon: "flame.fill",           color: Color(hex: "FBBF24"))
+            AnalyticsStat(value: Double(appVM.journalEntries.count), label: L("analytics.journal"), icon: "book.fill", color: Color(hex: "A78BFA"))
         }
     }
 
@@ -276,7 +276,9 @@ private struct HealthMetric: View {
 // MARK: - AnalyticsStat
 private struct AnalyticsStat: View {
     @EnvironmentObject var appVM: AppViewModel
-    let value: String; let label: String; let icon: String; let color: Color
+    let value: Double
+    var format: (Double) -> String = { "\(Int($0))" }
+    let label: String; let icon: String; let color: Color
 
     var body: some View {
         GlassCard {
@@ -286,7 +288,8 @@ private struct AnalyticsStat: View {
                     Image(systemName: icon).font(.app(size: 16)).foregroundColor(color)
                 }
                 VStack(alignment: .leading, spacing: DS.s4) {
-                    Text(value).font(.app(size: 22, weight: .bold, design: .rounded)).foregroundColor(DS.textPrimary)
+                    CountUp(target: value, format: format)
+                        .font(.app(size: 22, weight: .bold, design: .rounded)).foregroundColor(DS.textPrimary)
                     Text(label).font(.app(size: 11, weight: .medium, design: .rounded)).foregroundColor(DS.textTertiary)
                 }
                 Spacer()

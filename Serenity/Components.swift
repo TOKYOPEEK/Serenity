@@ -64,6 +64,61 @@ enum DS {
     static let springGentle = Animation.spring(response: 0.60, dampingFraction: 0.82)
 }
 
+// MARK: - Appear (staggered entrance)
+/// Gentle fade + rise on first appearance, with an optional stagger delay.
+private struct AppearModifier: ViewModifier {
+    let delay: Double
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown = false
+
+    func body(content: Content) -> some View {
+        content
+            .opacity(shown ? 1 : 0)
+            .offset(y: shown ? 0 : 14)
+            .onAppear {
+                guard !reduceMotion else { shown = true; return }
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.85).delay(delay)) {
+                    shown = true
+                }
+            }
+    }
+}
+
+extension View {
+    func appear(_ delay: Double = 0) -> some View { modifier(AppearModifier(delay: delay)) }
+}
+
+// MARK: - AnimatingNumber (count-up)
+/// Tweens a number on appear / change — `animatableData` drives a re-render
+/// each frame so the displayed value counts up smoothly.
+struct AnimatingNumber: View, Animatable {
+    var value: Double
+    var format: (Double) -> String
+    var animatableData: Double {
+        get { value }
+        set { value = newValue }
+    }
+    var body: some View { Text(format(value)) }
+}
+
+struct CountUp: View {
+    let target: Double
+    var format: (Double) -> String = { "\(Int($0))" }
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown: Double = 0
+
+    var body: some View {
+        AnimatingNumber(value: shown, format: format)
+            .onAppear {
+                guard !reduceMotion else { shown = target; return }
+                withAnimation(.easeOut(duration: 0.8)) { shown = target }
+            }
+            .onChange(of: target) { newValue in
+                withAnimation(.easeOut(duration: 0.5)) { shown = newValue }
+            }
+    }
+}
+
 // MARK: - Glass Level
 enum GlassLevel { case subtle, card, floating, modal }
 

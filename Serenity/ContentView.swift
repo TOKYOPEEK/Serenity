@@ -196,9 +196,9 @@ struct ProfileView: View {
 
     private var statsRow: some View {
         HStack(spacing: DS.s12) {
-            ProfileStatCard(value: "\(appVM.moodEntries.count)",   label: L("profile.stat.checkins"))
-            ProfileStatCard(value: "\(appVM.journalEntries.count)", label: L("profile.stat.entries"))
-            ProfileStatCard(value: "\(appVM.badges.filter { $0.isUnlocked }.count)", label: L("profile.stat.badges"))
+            ProfileStatCard(value: appVM.moodEntries.count,   label: L("profile.stat.checkins"))
+            ProfileStatCard(value: appVM.journalEntries.count, label: L("profile.stat.entries"))
+            ProfileStatCard(value: appVM.badges.filter { $0.isUnlocked }.count, label: L("profile.stat.badges"))
         }
     }
 
@@ -603,13 +603,13 @@ struct CustomTagsView: View {
 // MARK: - ProfileStatCard
 private struct ProfileStatCard: View {
     @EnvironmentObject var appVM: AppViewModel
-    let value: String
+    let value: Int
     let label: String
 
     var body: some View {
         GlassCard {
             VStack(spacing: DS.s4) {
-                Text(value)
+                CountUp(target: Double(value))
                     .font(.app(size: 24, weight: .bold, design: .rounded))
                     .foregroundStyle(appVM.selectedTheme.gradient)
                 Text(label)

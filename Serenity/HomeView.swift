@@ -16,34 +16,27 @@ struct HomeView: View {
     @State private var showFocus        = false
     @State private var showLibrary      = false
     @State private var selectedProgram: WellnessProgram?
-    @State private var animateIn        = false
 
     var body: some View {
         ZStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: DS.s20) {
                     headerSection
-                        .padding(.top, DS.s8)
-                    affirmationCard
-                    moodHeroCard
-                    insightCard
-                    quickActionsRow
-                    libraryCard
-                    toolsSection
-                    habitsSection
-                    if !appVM.moodEntries.isEmpty { recentMoodSection }
-                    programsSection
-                    aiCompanionCard
+                        .padding(.top, DS.s8).appear(0.0)
+                    affirmationCard.appear(0.05)
+                    moodHeroCard.appear(0.10)
+                    insightCard.appear(0.15)
+                    quickActionsRow.appear(0.20)
+                    libraryCard.appear(0.25)
+                    toolsSection.appear(0.30)
+                    habitsSection.appear(0.35)
+                    if !appVM.moodEntries.isEmpty { recentMoodSection.appear(0.40) }
+                    programsSection.appear(0.42)
+                    aiCompanionCard.appear(0.45)
                     Spacer(minLength: 110)
                 }
                 .padding(.horizontal, DS.s20)
             }
-
-        }
-        .opacity(animateIn ? 1 : 0)
-        .offset(y: animateIn ? 0 : 16)
-        .onAppear {
-            withAnimation(DS.springGentle.delay(0.05)) { animateIn = true }
         }
         .sheet(isPresented: $showCheckIn) {
             CheckInView()
