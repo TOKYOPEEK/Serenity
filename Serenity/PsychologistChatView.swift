@@ -95,6 +95,9 @@ struct PsychologistChatView: View {
                     chatScrollArea
                 }
             }
+            // Tap anywhere on the conversation to dismiss the keyboard.
+            .contentShape(Rectangle())
+            .onTapGesture { inputFocused = false }
             // Pinning the composer here lets SwiftUI keep it above the keyboard
             // automatically; the bottom padding clears the floating tab bar
             // while it's visible (it slides away once typing starts).
@@ -260,6 +263,7 @@ struct PsychologistChatView: View {
                 .padding(.vertical, DS.s16)
                 Spacer(minLength: DS.s8)
             }
+            .scrollDismissesKeyboard(.interactively)
             .onChange(of: viewModel.messages.count) { _ in
                 withAnimation {
                     if let lastId = viewModel.messages.last?.id { proxy.scrollTo(lastId, anchor: .bottom) }
@@ -324,8 +328,15 @@ struct PsychologistChatView: View {
                     RoundedRectangle(cornerRadius: DS.r20).fill(Color.white.opacity(0.06))
                         .overlay(RoundedRectangle(cornerRadius: DS.r20).strokeBorder(DS.strokeSubtle, lineWidth: 1))
                 )
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button(L("common.done")) { inputFocused = false }
+                            .foregroundColor(appVM.selectedTheme.primaryColor)
+                    }
+                }
 
-            Button(action: { viewModel.sendMessage(viewModel.inputText) }) {
+            Button(action: { inputFocused = false; viewModel.sendMessage(viewModel.inputText) }) {
                 ZStack {
                     Circle()
                         .fill(viewModel.inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
