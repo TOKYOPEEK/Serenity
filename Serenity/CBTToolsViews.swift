@@ -115,8 +115,8 @@ struct ThoughtReframeView: View {
     private var reframeStep: some View {
         Group {
             if isLoading {
-                VStack(spacing: DS.s20) {
-                    ProgressView().tint(appVM.selectedTheme.primaryColor).scaleEffect(1.4)
+                VStack(spacing: DS.s24) {
+                    SparkLoader(size: 68)
                     Text(L("cbt.reframe.loading"))
                         .font(.app(size: 15, design: .rounded)).foregroundColor(DS.textTertiary)
                 }

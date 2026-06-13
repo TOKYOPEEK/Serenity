@@ -252,11 +252,11 @@ struct WeeklyReportView: View {
                             Text(L("report.ai_summary")).font(.app(size: 15, weight: .semibold)).foregroundColor(DS.textPrimary)
                         }
                         if isLoading {
-                            HStack(spacing: DS.s12) {
-                                ProgressView().tint(appVM.selectedTheme.primaryColor)
+                            HStack(spacing: DS.s14) {
+                                SparkLoader(size: 34)
                                 Text(L("report.generating")).font(.app(size: 14, design: .rounded)).foregroundColor(DS.textTertiary)
                             }
-                            .frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, DS.s20)
+                            .frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, DS.s16)
                         } else {
                             TypewriterText(fullText: report, speed: 0.018)
                                 .font(.app(size: 15, design: .rounded))
