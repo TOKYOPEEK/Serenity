@@ -6,6 +6,27 @@ func L(_ key: String) -> String {
     NSLocalizedString(key, comment: "")
 }
 
+/// The localization key for the "day(s)" plural form of `count` in `language`.
+/// Pure (no bundle access) so the rule itself is unit-testable. Russian uses the
+/// 1 / 2–4 / 5+ forms (день / дня / дней) with the standard teens exceptions;
+/// other languages fall back to English singular/plural.
+func pluralDayKey(for count: Int, language: String) -> String {
+    let n = abs(count)
+    if language == "ru" {
+        let mod10 = n % 10, mod100 = n % 100
+        if mod10 == 1 && mod100 != 11 { return "days.one" }
+        if (2...4).contains(mod10) && !(12...14).contains(mod100) { return "days.few" }
+        return "days.many"
+    }
+    return n == 1 ? "days.one" : "days.many"
+}
+
+/// Localized, correctly pluralized "day(s)" word for a count — used for the
+/// streak and program durations (e.g. "3 дня", "5 дней", "1 day").
+func pluralizedDays(_ count: Int) -> String {
+    L(pluralDayKey(for: count, language: Bundle.main.preferredLocalizations.first ?? "en"))
+}
+
 // MARK: - Weekday helper
 func weekdayName(_ weekday: Int) -> String {
     guard weekday >= 1 && weekday <= 7 else { return "" }

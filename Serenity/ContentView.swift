@@ -194,7 +194,7 @@ struct ProfileView: View {
                         Image(systemName: "flame.fill")
                             .font(.app(size: 11))
                             .foregroundColor(appVM.selectedTheme.primaryColor)
-                        Text("\(appVM.streak) \(L("profile.days"))")
+                        Text("\(appVM.streak) \(pluralizedDays(appVM.streak))")
                             .font(.app(size: 13, weight: .medium, design: .rounded))
                             .foregroundColor(DS.textSecondary)
                     }

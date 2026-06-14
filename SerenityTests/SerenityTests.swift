@@ -444,3 +444,38 @@ final class MoodInsightEvalTests: XCTestCase {
         }
     }
 }
+
+// MARK: - Day pluralization (ru 1 / 2–4 / 5+, en singular/plural)
+
+final class PluralDaysTests: XCTestCase {
+
+    func testRussianSingularForm() {
+        // …1 but not …11 → "день"
+        for n in [1, 21, 31, 101, 121] {
+            XCTAssertEqual(pluralDayKey(for: n, language: "ru"), "days.one", "\(n)")
+        }
+    }
+
+    func testRussianFewForm() {
+        // …2–4 but not …12–14 → "дня"
+        for n in [2, 3, 4, 22, 23, 24, 102, 134] {
+            XCTAssertEqual(pluralDayKey(for: n, language: "ru"), "days.few", "\(n)")
+        }
+    }
+
+    func testRussianManyForm() {
+        // …0, …5–9, and the 11–14 teens → "дней"
+        for n in [0, 5, 9, 10, 11, 12, 13, 14, 25, 100, 111, 112] {
+            XCTAssertEqual(pluralDayKey(for: n, language: "ru"), "days.many", "\(n)")
+        }
+    }
+
+    func testEnglishFallback() {
+        XCTAssertEqual(pluralDayKey(for: 1, language: "en"), "days.one")
+        XCTAssertEqual(pluralDayKey(for: 0, language: "en"), "days.many")
+        XCTAssertEqual(pluralDayKey(for: 2, language: "en"), "days.many")
+        // Unknown languages use the same singular/plural fallback.
+        XCTAssertEqual(pluralDayKey(for: 1, language: "de"), "days.one")
+        XCTAssertEqual(pluralDayKey(for: 7, language: "de"), "days.many")
+    }
+}

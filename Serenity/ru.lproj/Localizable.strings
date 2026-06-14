@@ -425,6 +425,9 @@
 "profile.title" = "Профиль";
 "profile.streak_label" = "Серия:";
 "profile.days" = "дней";
+"days.one" = "день";
+"days.few" = "дня";
+"days.many" = "дней";
 "profile.stat.checkins" = "Отметок";
 "profile.stat.entries" = "Записей";
 "profile.stat.badges" = "Достижений";

@@ -106,7 +106,7 @@ struct ProgramCard: View {
                             .lineLimit(2)
                         HStack(spacing: DS.s4) {
                             Image(systemName: "calendar").font(.app(size: 10)).foregroundColor(DS.textTertiary)
-                            Text("\(program.duration) \(L("programs.days"))")
+                            Text("\(program.duration) \(pluralizedDays(program.duration))")
                                 .font(.app(size: 11, weight: .medium, design: .rounded))
                                 .foregroundColor(DS.textTertiary)
                         }
@@ -272,7 +272,7 @@ struct ProgramDetailView: View {
                     .multilineTextAlignment(.center)
                     .lineSpacing(3)
                 HStack(spacing: DS.s24) {
-                    InfoBit(icon: "calendar", text: "\(prog.duration) \(L("programs.days"))")
+                    InfoBit(icon: "calendar", text: "\(prog.duration) \(pluralizedDays(prog.duration))")
                     InfoBit(icon: "tag.fill",  text: prog.category.displayName)
                 }
             }

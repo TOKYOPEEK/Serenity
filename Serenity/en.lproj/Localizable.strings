@@ -425,6 +425,9 @@
 "profile.title" = "Profile";
 "profile.streak_label" = "Streak:";
 "profile.days" = "days";
+"days.one" = "day";
+"days.few" = "days";
+"days.many" = "days";
 "profile.stat.checkins" = "Check-ins";
 "profile.stat.entries" = "Journals";
 "profile.stat.badges" = "Milestones";
