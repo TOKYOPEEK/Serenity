@@ -11,6 +11,10 @@ device.
 > Solo project, built end-to-end as an engineering portfolio piece — from
 > SwiftUI architecture to a streaming LLM client and a serverless proxy.
 
+📖 **Deeper reading:** [ARCHITECTURE.md](ARCHITECTURE.md) (how it's built, with a
+focus on the language-model layer) · [CASE_STUDY.md](CASE_STUDY.md) (the
+decisions and trade-offs, and what I'd do next).
+
 ---
 
 ## Language-technology engineering highlights
@@ -78,7 +82,8 @@ SwiftUI Views ── @EnvironmentObject ─▶ AppViewModel (@MainActor)
 ```
 
 Business logic is deliberately separated into small **pure, unit-tested**
-modules so it can be reasoned about without the UI or the network.
+modules so it can be reasoned about without the UI or the network. Full
+walk-through in [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ---
 
