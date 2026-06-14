@@ -13,6 +13,10 @@ struct ContentView: View {
             tabContent
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
+            // Soft fade so scrolling content dissolves into the background
+            // behind the floating tab bar instead of bleeding past its edges.
+            bottomScrim
+
             CustomTabBar(selectedTab: $appVM.selectedTab)
                 // Slide out of the way while typing so it never covers a
                 // text field; the composer handles keyboard avoidance itself.
@@ -32,6 +36,23 @@ struct ContentView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
             keyboardUp = false
         }
+    }
+
+    // A bottom-anchored gradient that ramps the background colour up under the
+    // tab bar, hiding the hard edge of any content scrolling past it.
+    private var bottomScrim: some View {
+        LinearGradient(
+            stops: [
+                .init(color: .clear,              location: 0.0),
+                .init(color: appBG.opacity(0.6),  location: 0.5),
+                .init(color: appBG,               location: 1.0)
+            ],
+            startPoint: .top, endPoint: .bottom
+        )
+        .frame(height: 160)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        .ignoresSafeArea()
+        .allowsHitTesting(false)
     }
 
     // Only the active tab exists in the hierarchy; inactive tabs are torn down.
