@@ -82,6 +82,8 @@
 "home.weekly_report.title" = "Weekly Report";
 "home.weekly_report.subtitle" = "Your personalized AI wellness summary";
 "home.tools" = "Tools";
+"home.section.practices" = "Practices";
+"home.section.progress" = "Your progress";
 "home.habits" = "Habits";
 "home.affirmation.personalize" = "Make it personal";
 

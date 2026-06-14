@@ -21,18 +21,23 @@ struct HomeView: View {
         ZStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: DS.s20) {
+                    // Сегодня — приветствие, аффирмация, чек-ин, быстрые действия, инсайт
                     headerSection
                         .padding(.top, DS.s8).appear(0.0)
                     affirmationCard.appear(0.05)
                     moodHeroCard.appear(0.10)
-                    insightCard.appear(0.15)
-                    quickActionsRow.appear(0.20)
-                    libraryCard.appear(0.25)
-                    toolsSection.appear(0.30)
-                    habitsSection.appear(0.35)
-                    if !appVM.moodEntries.isEmpty { recentMoodSection.appear(0.40) }
-                    programsSection.appear(0.42)
-                    aiCompanionCard.appear(0.45)
+                    quickActionsRow.appear(0.15)
+                    insightCard.appear(0.20)
+
+                    // AI-чат — флагман, сразу под личной зоной
+                    aiCompanionCard.appear(0.25)
+
+                    // Практики — медитации/звуки, инструменты, фокус
+                    practicesSection.appear(0.30)
+
+                    // Твоя динамика — тренд, привычки, программы
+                    progressSection.appear(0.35)
+
                     Spacer(minLength: 110)
                 }
                 .padding(.horizontal, DS.s20)
@@ -334,10 +339,11 @@ struct HomeView: View {
         .buttonStyle(ScaleButtonStyle())
     }
 
-    // MARK: - Tools (CBT)
-    private var toolsSection: some View {
+    // MARK: - Практики (meditations & sounds + CBT tools + focus)
+    private var practicesSection: some View {
         VStack(alignment: .leading, spacing: DS.s12) {
-            SectionHeader(title: L("home.tools"))
+            SectionHeader(title: L("home.section.practices"))
+            libraryCard
             HStack(spacing: DS.s12) {
                 ToolCard(icon: "arrow.triangle.2.circlepath",
                          title: L("cbt.reframe.title"),
@@ -361,11 +367,15 @@ struct HomeView: View {
         }
     }
 
-    // MARK: - Recent mood trend
-    private var recentMoodSection: some View {
-        VStack(alignment: .leading, spacing: DS.s12) {
-            SectionHeader(title: L("home.recent_mood"))
-            TrendBarChart(entries: Array(appVM.moodEntries.prefix(7)))
+    // MARK: - Твоя динамика (trend + habits + programs)
+    private var progressSection: some View {
+        VStack(alignment: .leading, spacing: DS.s20) {
+            SectionHeader(title: L("home.section.progress"))
+            if !appVM.moodEntries.isEmpty {
+                TrendBarChart(entries: Array(appVM.moodEntries.prefix(7)))
+            }
+            habitsSection
+            programsSection
         }
     }
 

@@ -82,6 +82,8 @@
 "home.weekly_report.title" = "Недельный отчёт";
 "home.weekly_report.subtitle" = "Персональная AI-сводка о твоём благополучии";
 "home.tools" = "Инструменты";
+"home.section.practices" = "Практики";
+"home.section.progress" = "Твоя динамика";
 "home.habits" = "Привычки";
 "home.affirmation.personalize" = "Сделать личной";
 
