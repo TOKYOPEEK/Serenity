@@ -147,9 +147,7 @@ private struct TabBarItem: View {
 struct ProfileView: View {
     @EnvironmentObject var appVM: AppViewModel
     @State private var showThemePicker   = false
-    @State private var showAPIKeySheet   = false
     @State private var showCustomTags    = false
-    @State private var apiKeyInput       = ""
     @State private var showResetAlert    = false
     @State private var showPasscodeAlert = false
 
@@ -159,7 +157,6 @@ struct ProfileView: View {
                 VStack(spacing: DS.s20) {
                     profileHeader
                     statsRow
-                    apiKeyCard
                     appearanceSection
                     remindersSection
                     affirmationsSection
@@ -177,10 +174,6 @@ struct ProfileView: View {
         .sheet(isPresented: $showThemePicker) {
             ThemePickerView()
                 .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
-        }
-        .sheet(isPresented: $showAPIKeySheet) {
-            APIKeySheet(apiKey: $apiKeyInput, isPresented: $showAPIKeySheet)
                 .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $showCustomTags) {
@@ -220,55 +213,6 @@ struct ProfileView: View {
             ProfileStatCard(value: appVM.moodEntries.count,   label: L("profile.stat.checkins"))
             ProfileStatCard(value: appVM.journalEntries.count, label: L("profile.stat.entries"))
             ProfileStatCard(value: appVM.badges.filter { $0.isUnlocked }.count, label: L("profile.stat.badges"))
-        }
-    }
-
-    // API key always visible
-    private var apiKeyCard: some View {
-        GlassCard {
-            VStack(alignment: .leading, spacing: DS.s10) {
-                HStack(spacing: DS.s10) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(appVM.isAIConfigured
-                                  ? appVM.selectedTheme.primaryColor.opacity(0.15)
-                                  : Color(hex: "F87171").opacity(0.15))
-                            .frame(width: 32, height: 32)
-                        Image(systemName: appVM.isAIConfigured ? "key.fill" : "key.slash")
-                            .font(.app(size: 14))
-                            .foregroundColor(appVM.isAIConfigured
-                                             ? appVM.selectedTheme.primaryColor
-                                             : Color(hex: "F87171"))
-                    }
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(L("profile.api_key"))
-                            .font(.app(size: 15, weight: .medium, design: .rounded))
-                            .foregroundColor(DS.textPrimary)
-                        Text(appVM.isAIConfigured
-                             ? L("profile.api_key_set")
-                             : L("profile.api_key_empty"))
-                            .font(.app(size: 11, design: .rounded))
-                            .foregroundColor(appVM.isAIConfigured
-                                             ? appVM.selectedTheme.primaryColor
-                                             : Color(hex: "F87171"))
-                    }
-                    Spacer()
-                    Button(action: {
-                        apiKeyInput = appVM.claudeAPIKey
-                        showAPIKeySheet = true
-                    }) {
-                        Text(appVM.claudeAPIKey.isEmpty ? L("profile.api_key_add") : L("profile.api_key_edit"))
-                            .font(.app(size: 12, weight: .semibold, design: .rounded))
-                            .foregroundColor(appVM.selectedTheme.primaryColor)
-                            .padding(.horizontal, DS.s10)
-                            .padding(.vertical, DS.s6)
-                            .background(
-                                Capsule().fill(appVM.selectedTheme.primaryColor.opacity(0.12))
-                            )
-                    }
-                }
-            }
-            .padding(DS.s16)
         }
     }
 
@@ -808,91 +752,6 @@ private struct ThemeRow: View {
                             )
                     )
             )
-        }
-    }
-}
-
-// MARK: - APIKeySheet
-struct APIKeySheet: View {
-    @EnvironmentObject var appVM: AppViewModel
-    @Binding var apiKey: String
-    @Binding var isPresented: Bool
-
-    @State private var endpointInput: String = ""
-    @State private var modelInput: String = ""
-
-    var body: some View {
-        ZStack {
-            appBG.ignoresSafeArea()
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: DS.s20) {
-                    HStack {
-                        Spacer()
-                        Button(action: { isPresented = false }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.title2)
-                                .foregroundColor(DS.textTertiary)
-                        }
-                        .accessibilityLabel(L("common.close"))
-                    }
-                    .padding(.horizontal, DS.s24)
-                    .padding(.top, DS.s28)
-
-                    SerenityLogo(size: 48)
-
-                    Text(L("profile.api_key"))
-                        .font(.app(size: 22, weight: .bold))
-                        .foregroundColor(DS.textPrimary)
-
-                    Text(L("profile.api_key.caption"))
-                        .font(.app(size: 13, weight: .regular, design: .rounded))
-                        .foregroundColor(DS.textTertiary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, DS.s32)
-
-                    // Optional: bring your own key / endpoint / model
-                    GlassCard {
-                        VStack(alignment: .leading, spacing: DS.s14) {
-                            apiField(label: "API Key", placeholder: "Paste your key...", text: $apiKey)
-                            Divider().background(DS.strokeSubtle)
-                            apiField(label: "Endpoint URL", placeholder: "https://...", text: $endpointInput)
-                            Divider().background(DS.strokeSubtle)
-                            apiField(label: "Model", placeholder: "gpt-5.5", text: $modelInput)
-                        }
-                        .padding(DS.s16)
-                    }
-                    .padding(.horizontal, DS.s24)
-
-                    PrimaryButton(title: L("common.save")) {
-                        appVM.claudeAPIKey = apiKey.trimmingCharacters(in: .whitespacesAndNewlines)
-                        appVM.llmEndpoint  = endpointInput.trimmingCharacters(in: .whitespacesAndNewlines)
-                        appVM.llmModel     = modelInput.trimmingCharacters(in: .whitespacesAndNewlines)
-                        appVM.save()
-                        isPresented = false
-                    }
-                    .padding(.horizontal, DS.s24)
-
-                    Spacer(minLength: 40)
-                }
-            }
-        }
-        .onAppear {
-            endpointInput = appVM.llmEndpoint
-            modelInput    = appVM.llmModel
-        }
-    }
-
-    private func apiField(label: String, placeholder: String, text: Binding<String>) -> some View {
-        VStack(alignment: .leading, spacing: DS.s6) {
-            Text(label)
-                .font(.app(size: 12, weight: .medium, design: .rounded))
-                .foregroundColor(DS.textTertiary)
-            TextField(placeholder, text: text)
-                .font(.app(size: 13, design: .monospaced))
-                .foregroundColor(DS.textPrimary)
-                .tint(appVM.selectedTheme.primaryColor)
-                .autocorrectionDisabled()
-                .textInputAutocapitalization(.never)
         }
     }
 }
