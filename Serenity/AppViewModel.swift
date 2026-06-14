@@ -561,7 +561,13 @@ class AppViewModel: ObservableObject {
         LAContext().canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
     }
 
+    /// Guards against re-entrancy: presenting the biometric sheet briefly
+    /// resigns/activates the app, which would otherwise re-trigger auth in a loop.
+    private var isAuthenticating = false
+
     func authenticateWithBiometrics(completion: @escaping (Bool) -> Void) {
+        guard !isAuthenticating else { return }
+
         let context = LAContext()
         var error: NSError?
         guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
@@ -573,11 +579,16 @@ class AppViewModel: ObservableObject {
             completion(true)
             return
         }
+
+        isAuthenticating = true
         context.evaluatePolicy(
             .deviceOwnerAuthentication,
             localizedReason: L("facelock.reason")
         ) { success, _ in
-            DispatchQueue.main.async { completion(success) }
+            DispatchQueue.main.async {
+                self.isAuthenticating = false
+                completion(success)
+            }
         }
     }
 }

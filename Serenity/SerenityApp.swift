@@ -40,6 +40,7 @@ struct RootView: View {
         .task {
             try? await Task.sleep(nanoseconds: 1_900_000_000)
             withAnimation(.easeInOut(duration: 0.5)) { showSplash = false }
+            tryUnlock()
         }
         .animation(.easeInOut(duration: 0.4), value: appVM.isOnboardingComplete)
         .animation(.easeInOut(duration: 0.3), value: appVM.isUnlocked)
@@ -51,18 +52,26 @@ struct RootView: View {
                     .transition(.opacity)
             }
         }
+        // Privacy blur when the app merely resigns active (Face ID sheet,
+        // Control Center). Do NOT relock here — the biometric sheet itself
+        // resigns active, which would otherwise loop.
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
             withAnimation(.easeIn(duration: 0.15)) { isResigningActive = true }
+        }
+        // Relock only on a real background.
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             if appVM.faceLockEnabled { appVM.isUnlocked = false }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
             withAnimation(.easeOut(duration: 0.2)) { isResigningActive = false }
-            if appVM.faceLockEnabled && !appVM.isUnlocked {
-                appVM.authenticateWithBiometrics { success in
-                    appVM.isUnlocked = success
-                }
-            }
+            if !showSplash { tryUnlock() }
         }
+    }
+
+    /// Single, re-entrancy-safe entry point for biometric unlock.
+    private func tryUnlock() {
+        guard appVM.faceLockEnabled, !appVM.isUnlocked else { return }
+        appVM.authenticateWithBiometrics { success in appVM.isUnlocked = success }
     }
 }
 
@@ -70,9 +79,6 @@ struct RootView: View {
 struct FaceLockView: View {
     @EnvironmentObject var appVM: AppViewModel
     @State private var isAuthenticating = false
-    @State private var didAutoPrompt = false
-    /// Hold the automatic Face ID prompt back until the launch splash has played.
-    var autoPromptDelay: Double = 2.4
 
     var body: some View {
         ZStack {
@@ -106,13 +112,6 @@ struct FaceLockView: View {
                 .padding(.horizontal, DS.s40)
                 .padding(.bottom, DS.s40)
                 .disabled(isAuthenticating)
-            }
-        }
-        .onAppear {
-            guard !didAutoPrompt else { return }
-            didAutoPrompt = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + autoPromptDelay) {
-                authenticate()
             }
         }
     }
