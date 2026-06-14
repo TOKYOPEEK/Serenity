@@ -23,20 +23,20 @@ struct HomeView: View {
                 VStack(spacing: DS.s20) {
                     // Сегодня — приветствие, аффирмация, чек-ин, быстрые действия, инсайт
                     headerSection
-                        .padding(.top, DS.s8).appear(0.0)
-                    affirmationCard.appear(0.05)
-                    moodHeroCard.appear(0.10)
-                    quickActionsRow.appear(0.15)
-                    insightCard.appear(0.20)
+                        .padding(.top, DS.s8).appear(0.0, once: "home.header")
+                    affirmationCard.appear(0.05, once: "home.affirmation")
+                    moodHeroCard.appear(0.10, once: "home.mood")
+                    quickActionsRow.appear(0.15, once: "home.quick")
+                    insightCard.appear(0.20, once: "home.insight")
 
                     // AI-чат — флагман, сразу под личной зоной
-                    aiCompanionCard.appear(0.25)
+                    aiCompanionCard.appear(0.25, once: "home.ai")
 
                     // Практики — медитации/звуки, инструменты, фокус
-                    practicesSection.appear(0.30)
+                    practicesSection.appear(0.30, once: "home.practices")
 
                     // Твоя динамика — тренд, привычки, программы
-                    progressSection.appear(0.35)
+                    progressSection.appear(0.35, once: "home.progress")
 
                     Spacer(minLength: 110)
                 }

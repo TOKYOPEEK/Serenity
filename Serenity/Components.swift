@@ -66,8 +66,16 @@ enum DS {
 
 // MARK: - Appear (staggered entrance)
 /// Gentle fade + rise on first appearance, with an optional stagger delay.
+/// Keyed entrances that have already animated this app session. Lets a screen
+/// play its entrance once and skip the replay when it's torn down and rebuilt
+/// (e.g. switching tabs), while still re-animating on a fresh launch.
+private enum AppearSession {
+    static var played: Set<String> = []
+}
+
 private struct AppearModifier: ViewModifier {
     let delay: Double
+    let onceKey: String?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown = false
 
@@ -76,6 +84,12 @@ private struct AppearModifier: ViewModifier {
             .opacity(shown ? 1 : 0)
             .offset(y: shown ? 0 : 14)
             .onAppear {
+                // Already shown this session — appear instantly, no replay.
+                if let onceKey, AppearSession.played.contains(onceKey) {
+                    shown = true
+                    return
+                }
+                if let onceKey { AppearSession.played.insert(onceKey) }
                 guard !reduceMotion else { shown = true; return }
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.85).delay(delay)) {
                     shown = true
@@ -85,7 +99,11 @@ private struct AppearModifier: ViewModifier {
 }
 
 extension View {
-    func appear(_ delay: Double = 0) -> some View { modifier(AppearModifier(delay: delay)) }
+    /// Gentle fade + rise on appearance. Pass `once:` with a stable key to play
+    /// the entrance only the first time it's seen in a session.
+    func appear(_ delay: Double = 0, once key: String? = nil) -> some View {
+        modifier(AppearModifier(delay: delay, onceKey: key))
+    }
 }
 
 // MARK: - AnimatingNumber (count-up)
