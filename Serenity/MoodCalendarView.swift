@@ -262,7 +262,8 @@ struct MoodCalendarView: View {
     }
 
     private func moodShortName(_ index: Int) -> String {
-        [L("mood.veryBad"), L("mood.bad"), L("mood.neutral"), L("mood.good"), L("mood.great")][index]
+        let names = [L("mood.veryBad"), L("mood.bad"), L("mood.neutral"), L("mood.good"), L("mood.great")]
+        return names[min(max(index, 0), names.count - 1)]
     }
 }
 

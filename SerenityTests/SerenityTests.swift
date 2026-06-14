@@ -479,3 +479,24 @@ final class PluralDaysTests: XCTestCase {
         XCTAssertEqual(pluralDayKey(for: 7, language: "de"), "days.many")
     }
 }
+
+// MARK: - MoodEntry mood-index safety (no crash on bad/legacy data)
+
+final class MoodEntryIndexSafetyTests: XCTestCase {
+    private func entry(_ idx: Int) -> MoodEntry {
+        MoodEntry(moodIndex: idx, energyLevel: 0.5, stressLevel: 0.5, tags: [], note: "")
+    }
+
+    func testEmojiClampsOutOfRangeInsteadOfCrashing() {
+        XCTAssertEqual(entry(2).moodEmoji, "😐")
+        // A stray index must clamp to the nearest valid mood, never crash.
+        XCTAssertEqual(entry(-3).moodEmoji, entry(0).moodEmoji)
+        XCTAssertEqual(entry(99).moodEmoji, entry(4).moodEmoji)
+    }
+
+    func testNameIsNeverEmptyForAnyIndex() {
+        for i in [-5, 0, 2, 4, 7, 1000] {
+            XCTAssertFalse(entry(i).moodName.isEmpty, "index \(i) produced an empty name")
+        }
+    }
+}

@@ -156,11 +156,16 @@ struct MoodEntry: Codable, Identifiable {
     /// before this field still decode cleanly.
     var emotions: [String]?
 
-    var moodEmoji: String { ["😔", "😕", "😐", "🙂", "😊"][moodIndex] }
+    var moodEmoji: String {
+        let emojis = ["😔", "😕", "😐", "🙂", "😊"]
+        // Clamp instead of crashing if a stored entry ever has a stray index.
+        return emojis[min(max(moodIndex, 0), emojis.count - 1)]
+    }
 
     var moodName: String {
-        [L("mood.veryBad"), L("mood.bad"), L("mood.neutral"),
-         L("mood.good"), L("mood.great")][moodIndex]
+        let names = [L("mood.veryBad"), L("mood.bad"), L("mood.neutral"),
+                     L("mood.good"), L("mood.great")]
+        return names[min(max(moodIndex, 0), names.count - 1)]
     }
 
     /// Localized names of the chosen emotions.
