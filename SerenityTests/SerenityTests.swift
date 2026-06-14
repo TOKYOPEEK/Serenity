@@ -357,3 +357,90 @@ final class PersistenceStoreTests: XCTestCase {
         XCTAssertEqual(store.load([String].self, key: "tags"), ["a", "b"], "migrated data must persist as a file")
     }
 }
+
+// MARK: - Mood-insight structured output (LLM-eval harness)
+
+/// Evaluates `AIInsight.parse` — the layer that turns a free-form model reply
+/// into a strict, typed mood insight. The model is asked for JSON only, but in
+/// practice replies arrive fenced, wrapped in prose, or malformed; these cases
+/// pin both the robustness ("accept reasonable variants") and the safety
+/// ("reject anything unusable so the caller falls back") sides of the contract.
+final class MoodInsightEvalTests: XCTestCase {
+
+    /// A well-formed reply that satisfies the schema.
+    private let validJSON = #"{"emoji":"🌟","title":"A steady day","body":"You showed up for yourself today.","tip":"Take a short walk.","tone":"encouraging"}"#
+
+    // MARK: Schema
+
+    func testCleanJSONDecodesEveryField() throws {
+        let i = try XCTUnwrap(AIInsight.parse(from: validJSON))
+        XCTAssertEqual(i.emoji, "🌟")
+        XCTAssertEqual(i.title, "A steady day")
+        XCTAssertEqual(i.tone, "encouraging")
+        XCTAssertFalse(i.body.isEmpty)
+        XCTAssertFalse(i.tip.isEmpty)
+    }
+
+    // MARK: Robustness — golden cases models actually produce
+
+    func testStripsJSONCodeFence() {
+        XCTAssertEqual(AIInsight.parse(from: "```json\n\(validJSON)\n```")?.title, "A steady day")
+    }
+
+    func testStripsPlainCodeFence() {
+        XCTAssertEqual(AIInsight.parse(from: "```\n\(validJSON)\n```")?.title, "A steady day")
+    }
+
+    func testExtractsJSONWrappedInProse() {
+        let raw = "Sure — here's your insight:\n\(validJSON)\nHope that helps 😊"
+        XCTAssertEqual(AIInsight.parse(from: raw)?.tone, "encouraging")
+    }
+
+    func testToleratesSurroundingWhitespace() {
+        XCTAssertNotNil(AIInsight.parse(from: "\n\n   \(validJSON)   \n"))
+    }
+
+    func testIgnoresUnknownFieldsAndKeyOrder() throws {
+        let raw = #"{"tone":"calm","extra":42,"title":"T","body":"B","tip":"P","emoji":"💙"}"#
+        let i = try XCTUnwrap(AIInsight.parse(from: raw))
+        XCTAssertEqual(i.emoji, "💙")
+        XCTAssertEqual(i.tone, "calm")
+    }
+
+    // MARK: Safety — must fail closed (→ caller uses the offline fallback)
+
+    func testEmptyReplyIsRejected() {
+        XCTAssertNil(AIInsight.parse(from: ""))
+    }
+
+    func testPlainProseWithoutJSONIsRejected() {
+        XCTAssertNil(AIInsight.parse(from: "I'm sorry, I can't help with that right now."))
+    }
+
+    func testMissingRequiredFieldIsRejected() {
+        // No "body" — an insight card with a blank body would look broken.
+        XCTAssertNil(AIInsight.parse(from: #"{"emoji":"🌟","title":"T","tip":"P","tone":"calm"}"#))
+    }
+
+    func testBlankTitleOrBodyIsRejected() {
+        XCTAssertNil(AIInsight.parse(from: #"{"emoji":"🌟","title":"   ","body":"x","tip":"p","tone":"calm"}"#))
+        XCTAssertNil(AIInsight.parse(from: #"{"emoji":"🌟","title":"x","body":"","tip":"p","tone":"calm"}"#))
+    }
+
+    func testTruncatedJSONIsRejected() {
+        XCTAssertNil(AIInsight.parse(from: #"{"emoji":"🌟","title":"T","body":"#))
+    }
+
+    // MARK: Offline-fallback contract
+
+    /// Every built-in insight must itself be complete, so a parse failure never
+    /// leaves the user staring at an empty card.
+    func testFallbackInsightsAreCompleteAndValid() {
+        XCTAssertFalse(fallbackInsights.isEmpty)
+        XCTAssertEqual(fallbackInsights.count, 7)
+        for fb in fallbackInsights {
+            XCTAssertFalse(fb.emoji.isEmpty, "fallback needs an emoji")
+            XCTAssertFalse(fb.tone.isEmpty, "fallback needs a tone")
+        }
+    }
+}

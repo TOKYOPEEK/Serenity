@@ -151,6 +151,16 @@ I tested these rather than the UI because this is where correctness lives and
 where regressions would be invisible until a user noticed. Keeping the logic in
 pure functions is what made them testable in the first place.
 
+**Structured LLM output gets the same treatment.** The mood-insight feature
+asks the model for JSON only, but models don't reliably obey — replies come back
+fenced in ```` ```json ````, wrapped in a sentence, or truncated. So the parsing
+lives in a pure `AIInsight.parse` and has its own small **eval harness**
+(`MoodInsightEvalTests`): golden cases assert that reasonable variants still
+decode, and that anything unusable is *rejected* so the caller falls back to a
+complete built-in insight instead of rendering a half-empty card. This is the
+part most likely to drift as models change, so it's the part I most wanted
+pinned by tests.
+
 ---
 
 ## 7. Things I deliberately did *not* do
@@ -171,9 +181,6 @@ pure functions is what made them testable in the first place.
 
 - A provider enum to replace endpoint-string sniffing once a third backend is
   real.
-- A small evaluation harness for the JSON-mode mood-insight prompt (schema
-  validation + a few golden cases) — the place most likely to drift as models
-  change.
 - Snapshot tests for a couple of key views now that the logic layer is covered.
 
 ---

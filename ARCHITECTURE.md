@@ -215,6 +215,9 @@ correctness actually matters:
 - `UserContext` — that name/streak/themes/journal/health all surface, and that
   empty or too-small inputs produce no memory,
 - `Correlations` — lift/weigh detection and rare-tag suppression,
+- `AIInsight.parse` — a small **LLM-output eval harness**: that fenced /
+  prose-wrapped / whitespace-padded JSON still decodes, and that malformed,
+  truncated, or blank replies are rejected so the offline fallback kicks in,
 - `ChatMessage` — backward-compatible decoding (legacy string role → enum),
 - `UserDefaults` default-aware accessor — the "midnight (hour 0) survives
   relaunch" bug,

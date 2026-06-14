@@ -91,6 +91,36 @@ struct AIInsight: Codable {
     var tone: String
 }
 
+extension AIInsight {
+    /// Parses a mood-insight out of a raw model reply.
+    ///
+    /// Models don't reliably honour "respond with JSON only": the reply may be
+    /// fenced in ```json, wrapped in a sentence of prose, or padded with
+    /// whitespace. This pulls the JSON object out, decodes it, and validates the
+    /// essentials. It **fails closed** — returning `nil` whenever there's
+    /// nothing usable — so the caller can fall back to a built-in insight rather
+    /// than show the user a half-empty card.
+    static func parse(from raw: String) -> AIInsight? {
+        guard let json = extractJSONObject(from: raw),
+              let data = json.data(using: .utf8),
+              let insight = try? JSONDecoder().decode(AIInsight.self, from: data),
+              !insight.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              !insight.body.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        else { return nil }
+        return insight
+    }
+
+    /// Best-effort extraction of the JSON object from text that may carry
+    /// markdown fences or surrounding prose. `AIInsight` is a flat object, so
+    /// the span from the first `{` to the last `}` is exactly the payload.
+    private static func extractJSONObject(from raw: String) -> String? {
+        guard let start = raw.firstIndex(of: "{"),
+              let end = raw.lastIndex(of: "}"),
+              start < end else { return nil }
+        return String(raw[start...end])
+    }
+}
+
 // MARK: - MoodEntry
 struct MoodEntry: Codable, Identifiable {
     var id = UUID()

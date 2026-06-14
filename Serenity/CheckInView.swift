@@ -453,8 +453,8 @@ private func fetchMoodInsight(entry: MoodEntry, appVM: AppViewModel) async throw
         userPrompt: prompt,
         maxTokens: 300
     )
-    guard let data = text.data(using: .utf8),
-          let insight = try? JSONDecoder().decode(AIInsight.self, from: data) else {
+    // Models don't always obey "JSON only"; parse defensively (see AIInsight.parse).
+    guard let insight = AIInsight.parse(from: text) else {
         throw LLMError.emptyResponse
     }
     return insight
