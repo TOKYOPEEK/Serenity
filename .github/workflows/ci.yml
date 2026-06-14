@@ -15,7 +15,7 @@ jobs:
     name: Build & test
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Secrets.swift is gitignored; the committed template is a working stub
       # (no bundled key) that compiles, so CI can build without secrets.
