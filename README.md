@@ -22,6 +22,19 @@ decisions and trade-offs, and what I'd do next).
 
 ---
 
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/splash.png" width="200" alt="Launch screen" /><br/><sub><b>Launch</b></sub></td>
+    <td align="center"><img src="docs/screenshots/home.png" width="200" alt="Home" /><br/><sub><b>Home</b></sub></td>
+    <td align="center"><img src="docs/screenshots/chat.png" width="200" alt="AI chat" /><br/><sub><b>AI chat (streamed)</b></sub></td>
+    <td align="center"><img src="docs/screenshots/analytics.png" width="200" alt="Analytics" /><br/><sub><b>Analytics</b></sub></td>
+  </tr>
+</table>
+
+---
+
 ## Language-technology engineering highlights
 
 The parts most relevant to NLP / language-technology work:

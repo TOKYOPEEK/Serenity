@@ -12,3 +12,6 @@ xcuserdata/
 *.xcscmblueprint
 *.xccheckout
 .claude/
+
+# Local screenshot staging (committed copies live in docs/screenshots/)
+/Screenshots/
