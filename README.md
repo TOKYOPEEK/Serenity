@@ -1,5 +1,10 @@
 # Serenity
 
+[![CI](https://github.com/TOKYOPEEK/Serenity/actions/workflows/ci.yml/badge.svg)](https://github.com/TOKYOPEEK/Serenity/actions/workflows/ci.yml)
+&nbsp;![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg)
+&nbsp;![Platform iOS 16+](https://img.shields.io/badge/iOS-16%2B-blue.svg)
+&nbsp;[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 A private, AI-assisted mental-wellness companion for iOS, built in SwiftUI.
 
 Serenity helps you check in on how you feel and understand what drives your

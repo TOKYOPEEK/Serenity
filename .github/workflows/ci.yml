@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build & test
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      # Secrets.swift is gitignored; the committed template is a working stub
+      # (no bundled key) that compiles, so CI can build without secrets.
+      - name: Provide stub Secrets.swift
+        run: cp Serenity/Secrets.swift.template Serenity/Secrets.swift
+
+      - name: Run unit tests
+        run: |
+          xcodebuild test \
+            -scheme Serenity \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -resultBundlePath TestResults.xcresult \
+            CODE_SIGNING_ALLOWED=NO
