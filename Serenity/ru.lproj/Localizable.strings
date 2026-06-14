@@ -297,7 +297,6 @@
 "programs.day_format" = "День %d/%d";
 "programs.title" = "Программы";
 "programs.subtitle" = "7-дневные программы благополучия";
-"programs.days" = "дней";
 "programs.active" = "Активные программы";
 "programs.available" = "Доступные программы";
 "programs.start" = "Начать программу";
@@ -424,7 +423,6 @@
 /* Profile */
 "profile.title" = "Профиль";
 "profile.streak_label" = "Серия:";
-"profile.days" = "дней";
 "days.one" = "день";
 "days.few" = "дня";
 "days.many" = "дней";
@@ -432,9 +430,6 @@
 "profile.stat.entries" = "Записей";
 "profile.stat.badges" = "Достижений";
 "profile.theme" = "Внешний вид";
-"profile.api_key" = "AI-подключение";
-"profile.api_key.caption" = "AI работает по умолчанию. Поля ниже — необязательные, заполни их только чтобы использовать свой ключ.";
-"profile.api_key_hint" = "Необязательно: свой провайдер";
 "profile.notifications" = "Напоминания";
 "profile.badges" = "Достижения";
 "profile.disclaimer_title" = "О Serenity AI";
@@ -652,10 +647,6 @@
 "profile.face_id.unavailable.title" = "Нужен код-пароль";
 "profile.face_id.unavailable.body" = "Чтобы заблокировать Serenity, сначала установи код-пароль на устройстве: Настройки → Face ID и код-пароль.";
 "profile.custom_tags" = "Мои теги";
-"profile.api_key_empty" = "Не настроен";
-"profile.api_key_set" = "Настроен";
-"profile.api_key_add" = "Добавить ключ";
-"profile.api_key_edit" = "Изменить ключ";
 "profile.milestones" = "Достижения";
 
 /* Custom Tags */

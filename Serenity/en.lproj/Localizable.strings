@@ -297,7 +297,6 @@
 "programs.day_format" = "Day %d/%d";
 "programs.title" = "Programs";
 "programs.subtitle" = "7-day structured wellness programs";
-"programs.days" = "days";
 "programs.active" = "Active Programs";
 "programs.available" = "Available Programs";
 "programs.start" = "Start Program";
@@ -424,7 +423,6 @@
 /* Profile */
 "profile.title" = "Profile";
 "profile.streak_label" = "Streak:";
-"profile.days" = "days";
 "days.one" = "day";
 "days.few" = "days";
 "days.many" = "days";
@@ -432,9 +430,6 @@
 "profile.stat.entries" = "Journals";
 "profile.stat.badges" = "Milestones";
 "profile.theme" = "Appearance";
-"profile.api_key" = "AI Connection";
-"profile.api_key.caption" = "AI works out of the box. The fields below are optional — only fill them to use your own key.";
-"profile.api_key_hint" = "Optional: use your own provider";
 "profile.notifications" = "Reminders";
 "profile.badges" = "Milestones";
 "profile.disclaimer_title" = "About Serenity AI";
@@ -652,10 +647,6 @@
 "profile.face_id.unavailable.title" = "Passcode Required";
 "profile.face_id.unavailable.body" = "To lock Serenity, first set a passcode on this device in Settings → Face ID & Passcode.";
 "profile.custom_tags" = "Custom Tags";
-"profile.api_key_empty" = "Not configured";
-"profile.api_key_set" = "Configured";
-"profile.api_key_add" = "Add Key";
-"profile.api_key_edit" = "Edit Key";
 "profile.milestones" = "Milestones";
 
 /* Custom Tags */
